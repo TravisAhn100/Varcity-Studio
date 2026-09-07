@@ -1,6 +1,6 @@
-# Varsity 1.0.1
+# Varsity 1.0.2
 
-A client-side varsity jacket configurator. Choose Regular Varsity, select a garment region, then change manufacturer fabrics and colors in an immediate Three.js preview. Includes rotation, zoom, view presets, approximate male/female mannequins, Regular XS–5XL measurements, and real manufacturer examples.
+A client-side varsity jacket configurator. Choose from seven jacket constructions, select a garment region, then change manufacturer fabrics and colors in an immediate Three.js preview. Includes rotation, zoom, view presets, approximate male/female mannequins, Regular XS–5XL measurements, and real manufacturer examples.
 
 ## Run
 
@@ -14,7 +14,7 @@ npm run preview
 npm test
 ```
 
-Build output: `dist/`. No backend, API key, account system, database, ordering, pricing or image-generation service is required. Refresh opens a fresh default design intentionally; persistence is outside 1.0.1 scope.
+Build output: `dist/`. No backend, API key, account system, database, ordering, pricing or image-generation service is required. Refresh opens a fresh default design intentionally; persistence is outside 1.0.2 scope.
 
 ## Architecture
 
@@ -36,9 +36,13 @@ Append a swatch under its existing family with its **actual manufacturer code**,
 
 The import script documents source sheet coordinates and can be adapted to another local reference directory; it requires Pillow. Imported output is committed, so running this script is not required to develop or deploy.
 
-## Future models
+## Construction system
 
-Add a construction entry and a model factory returning `{ group, parts }` using the same named parts as `makeGarment`. Keep model selection separate from material assignment. Six other constructions are disabled and marked “Coming later.” No alternate model is represented as functional.
+Add a construction entry and a model factory returning `{ group, parts }` using the same named parts as `makeGarment`. Keep model selection separate from material assignment. All seven constructions are active. A shared loft builder clips raglan shoulder panels, exchanges collar geometry, and assembles snap, exposed-zip, or covered-zip closures. Coach uses a longer straight body, turned collar and elastic sleeve hems.
+
+Material choices and camera position survive construction switches. Coach hides rib cuffs/waistband without erasing them. Coach and the high-neck covered-zip model share a separate fabric-collar selection, initially matching the body; other collars keep the rib choice. Hardware choices apply to both snaps and zipper teeth/pull.
+
+`VarsityStar` and the favicon share the same sharp five-point geometry: navy field, white border, red fill. Graduate hero text has a restrained 0.6px yellow stroke behind its navy fill.
 
 ## References and approximations
 
@@ -53,13 +57,13 @@ Source catalogue: https://gwa.kr/goods/catalog?code=00010004 . Real example imag
 - Geometry is a procedural prototype, not a production pattern or cloth simulation. Sleeve and collar transitions are approximate.
 - Ribbing/hardware options are explicitly marked as prototype colors without manufacturer codes. Two cream rib stripes are fixed.
 - Mannequins are faceless neutral forms. Size changes reference data only, not geometry or fit prediction.
-- Regular-fit measurements are transcribed from the supplied chart. Other fits are not offered. This avoids the ambiguous coach M sleeve cell in the source chart.
+- Regular-fit measurements are transcribed from the supplied chart. Other constructions refer users to the original chart. This avoids the ambiguous coach M sleeve cell in the source chart.
 - WebGL is required. Unsupported devices see an explanatory message and a manufacturer construction reference, not a falsely interactive substitute.
 - The reference-only embroidery guide, order form and unsupported fabric families are not exposed as editing features.
 
 ## Validation
 
-`npm run build` performs strict TypeScript checking and production bundling. `npm test` checks all 329 source color/relief assets and family properties, explicitly distinguishes PL12 from TRH234, and verifies initial material resolution, all ten independent parts, finite 3D positions/normals, garment depth, seven snaps, two mannequin forms, Regular M source measurements and JSON serialization. Browser interaction/visual acceptance should also be reviewed on target devices; automated structural checks do not establish visual fidelity.
+`npm run build` performs strict TypeScript checking and production bundling. `npm test` checks all 329 source color/relief assets and family properties, explicitly distinguishes PL12 from TRH234, and verifies initial material resolution, all ten independent parts, finite 3D positions/normals, garment depth, seven snaps, two mannequin forms, Regular M source measurements and JSON serialization. Tests also check all seven constructions, raglan shoulder reach, raised collar height, zipper versus snap hardware, coach hem/collar, preserved swatches and matching logo geometry. Browser interaction/visual acceptance should also be reviewed on target devices; automated structural checks do not establish visual fidelity.
 
 ## GitHub → Cloudflare Pages
 

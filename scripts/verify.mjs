@@ -37,4 +37,35 @@ const {group,parts}=makeGarment();for(const id of ['body','leftSleeve','rightSle
 for(const mesh of group.children){const g=mesh.geometry;g.computeBoundingBox();const box=g.boundingBox;assert(box.max.z-box.min.z>0,'flat mesh');for(const value of g.attributes.position.array)assert(Number.isFinite(value));for(const value of g.attributes.normal.array)assert(Number.isFinite(value));}
 assert.equal(parts.get('snaps').length,7);assert.equal(data.sizes.length,9);assert.deepEqual(data.measurements[2],[65.5,58,47,62]);assert.equal(makeMannequin(false).children.length,7);assert.equal(makeMannequin(true).children.length,7);
 assert.deepEqual(JSON.parse(JSON.stringify(data.initialConfig)),data.initialConfig);
+const configured={...data.initialConfig,body:{material:'special-himir',code:'SHM222'},sleeves:{material:'leather',code:'LD07'}};
+const signatures=new Set();
+for(const {id} of data.jacketTypes){
+ const garment=makeGarment(id),meshes=garment.group.children;
+ for(const mesh of meshes)for(const key of ['position','normal'])for(const n of mesh.geometry.attributes[key].array)assert(Number.isFinite(n),id+' invalid '+key);
+ const snaps=meshes.filter(m=>m.name==='snap'),teeth=meshes.filter(m=>m.name==='zipper-tooth'),flaps=meshes.filter(m=>m.name==='front-placket');
+ assert.equal(snaps.length,id==='zipper'?0:7,id+' snap count');
+ assert.equal(teeth.length>0,id.includes('zipper'),id+' zipper presence');
+ assert.equal(flaps.length>0,id!=='zipper',id+' outer placket');
+ const collarTop=Math.max(...garment.parts.get('collar').flatMap(m=>Array.from(m.geometry.attributes.position.array).filter((_,i)=>i%3===1)));
+ assert.equal(collarTop>1.3,id.startsWith('high-neck'),id+' raised collar');
+ if(id==='coach'){assert(!garment.parts.has('waistband'));assert.equal(garment.parts.get('collar').length,3);assert(!data.visibleRegions(id).some(r=>r.id==='cuffs'));}
+ if(id==='raglan'){
+  const shoulders=garment.parts.get('leftSleeve')[0].geometry.attributes.position;
+  assert(Array.from({length:shoulders.count},(_,i)=>Math.abs(shoulders.getX(i))<.4&&shoulders.getY(i)>.95).some(Boolean),'raglan sleeve reaches neck');
+ }
+ const switched={...configured,jacketType:id};
+ assert.equal(data.regionChoice(switched,'body').code,'SHM222');
+ assert.equal(data.regionChoice(switched,'sleeves').code,'LD07');
+ assert.equal(switched.waistband.code,configured.waistband.code);
+ signatures.add(JSON.stringify(meshes.map(m=>[m.name,m.geometry.attributes.position.count,Array.from(m.geometry.attributes.position.array)])));
+}
+assert.equal(signatures.size,7,'all seven constructions must change geometry');
+const collarConfig={...configured,jacketType:'coach',fabricCollar:{material:'corduroy',code:'PL12'}};
+assert.equal(data.regionChoice(collarConfig,'collar').code,'PL12');
+assert.equal(data.regionChoice({...collarConfig,jacketType:'regular'},'collar').code,'trim-navy');
+const logo=fs.readFileSync(new URL('../src/components/VarsityStar.tsx',import.meta.url),'utf8');
+const favicon=fs.readFileSync(new URL('../public/favicon.svg',import.meta.url),'utf8');
+assert(favicon.includes(logo.match(/starPoints='([^']+)'/)[1]),'favicon and component star geometry must match');
+for(const color of ['#113863','#ffffff','#cf4437'])assert(logo.includes(color)&&favicon.includes(color));
+console.log('Verified seven distinct constructions, preserved selections, closure hardware, collar geometry and shared star identity.');
 console.log(`Verified ${codes.size} source-textured swatches in 12 families, including distinct PL12 corduroy and TRH234 wool materials; ${parts.size} independent meshes/groups, 9 sizes, 2 mannequin forms, and serializable configuration.`);

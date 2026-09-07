@@ -145,8 +145,10 @@ body {
 h1{font-family:var(--font-display);font-size:36px;letter-spacing:-1.2px;line-height:1.2;color:var(--varsity-blue)}
 .intro h1{font-size:39px}.panel-heading h1{font-size:27px;letter-spacing:-1px}.type-panel h1{font-size:28px}
 .primary{background:var(--varsity-red);font-family:var(--font-display);font-size:15px}.primary:hover{background:var(--varsity-red);filter:brightness(.94)}
-.brand-star{color:var(--varsity-blue)!important;position:relative;font-size:16px!important;letter-spacing:0!important}.brand-star:before{content:'';position:absolute;inset:-1px -3px;background:var(--varsity-yellow);z-index:-1}
-.cta-star{color:var(--varsity-yellow);font-family:Arial,sans-serif;font-size:18px;margin-right:8px}
+.wordmark{display:flex;align-items:center;gap:11px}.wordmark .brand-name{font:inherit;letter-spacing:inherit;margin:0}.nav-star{width:43px;height:43px;flex-shrink:0}
+.cta-star{width:22px;height:22px;display:inline-block;vertical-align:middle;margin-right:8px}
+.intro h1{-webkit-text-stroke:.6px var(--varsity-yellow);paint-order:stroke fill}
+.construction-preview{width:56px;height:56px;flex-shrink:0}.type-list button{padding:7px 12px;gap:13px;min-height:72px}.type-list .type-active{color:var(--varsity-red)}.type-active>span{font-family:var(--font-ui)}.type-list small{line-height:1.45}.construction-continue{margin-top:20px;width:100%}
 .watermark{font-family:var(--font-display);font-weight:400;letter-spacing:-.065em;opacity:.6}
 button:focus-visible,a:focus-visible,.swatch-grid:focus-visible{outline-color:var(--varsity-red)}
 .region-grid button[aria-pressed=true]{background:var(--interaction-tint);color:var(--varsity-red)}

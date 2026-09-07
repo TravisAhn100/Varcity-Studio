@@ -4,7 +4,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {makeGarment,makeMannequin} from './garment';
 import {MaterialLibrary} from './materialLibrary';
-import {Config,Region,resolveChoice} from '../data/config';
+import {Config,Region,resolveChoice,regionChoice} from '../data/config';
 export type ViewCommand={angle:number;serial:number;zoom?:number};
 export default function Viewer({config,command,onSelect}:{config:Config;command:ViewCommand;onSelect:(r:Region)=>void}){
  const host=useRef<HTMLDivElement>(null);const engine=useRef<any>(null);const [error,setError]=useState('');const [textureError,setTextureError]=useState('');const select=useRef(onSelect);select.current=onSelect;
@@ -20,17 +20,18 @@ export default function Viewer({config,command,onSelect}:{config:Config;command:
  const resize=()=>{const {width,height}=node.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();render();};
  function render(){renderer.render(scene,camera);}controls.addEventListener('change',render);
  const observer=new ResizeObserver(resize);observer.observe(node);
- let down=[0,0];const pointerDown=(e:PointerEvent)=>{down=[e.clientX,e.clientY];};const pointerUp=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const rect=node.getBoundingClientRect();const ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hit=ray.intersectObjects(group.children).find(h=>h.object.userData.region);if(hit)select.current(hit.object.userData.region);};
+ let down=[0,0];const pointerDown=(e:PointerEvent)=>{down=[e.clientX,e.clientY];};const pointerUp=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const rect=node.getBoundingClientRect();const ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hit=ray.intersectObjects(engine.current.group.children).find(h=>h.object.userData.region);if(hit)select.current(hit.object.userData.region);};
  renderer.domElement.addEventListener('pointerdown',pointerDown);renderer.domElement.addEventListener('pointerup',pointerUp);renderer.domElement.setAttribute('aria-label','Rotatable 3D varsity jacket. Drag to rotate or use the view buttons.');
  const library=new MaterialLibrary(render,code=>setTextureError(code),renderer.capabilities.getMaxAnisotropy());
- engine.current={scene,camera,controls,parts,mannequins,render,library,oldMannequin:'none'};resize();
+ engine.current={scene,camera,controls,group,parts,construction:'regular',mannequins,render,library,oldMannequin:'none'};resize();
  return()=>{observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',pointerDown);renderer.domElement.removeEventListener('pointerup',pointerUp);scene.traverse(obj=>{if(obj instanceof THREE.Mesh){obj.geometry.dispose();const ms=Array.isArray(obj.material)?obj.material:[obj.material];ms.forEach(m=>m.dispose());}});library.dispose();env.dispose();pmrem.dispose();renderer.dispose();node.removeChild(renderer.domElement);engine.current=null;};
  },[]);
  useEffect(()=>{const e=engine.current;if(!e)return;setTextureError('');
+ if(e.construction!==config.jacketType){e.scene.remove(e.group);e.group.traverse((m:THREE.Object3D)=>{if(m instanceof THREE.Mesh)m.geometry.dispose();});const garment=makeGarment(config.jacketType);e.group=garment.group;e.parts=garment.parts;e.construction=config.jacketType;e.scene.add(e.group);}
  const mapping:Record<string,Region>={body:'body',leftSleeve:'sleeves',rightSleeve:'sleeves',collar:'collar',leftCuff:'cuffs',rightCuff:'cuffs',waistband:'waistband',leftPocketTrim:'pocketTrim',rightPocketTrim:'pocketTrim',snaps:'snaps'};
- const materials:Partial<Record<Region,THREE.Material>>={};Object.values(mapping).forEach(region=>{if(!materials[region])materials[region]=e.library.get(resolveChoice(config[region]),region);});
+ const materials:Partial<Record<Region,THREE.Material>>={};e.parts.forEach((_meshes:THREE.Mesh[],id:string)=>{const region=mapping[id];if(!materials[region])materials[region]=e.library.get(resolveChoice(regionChoice(config,region)),region);});
  e.library.prune(new Set(Object.values(materials)));
- e.parts.forEach((meshes:THREE.Mesh[],id:string)=>meshes.forEach(m=>m.material=materials[mapping[id]]!));Object.entries(e.mannequins).forEach(([id,m])=>{(m as THREE.Group).visible=id===config.mannequin;});
+ e.parts.forEach((meshes:THREE.Mesh[],id:string)=>meshes.forEach(m=>{if(!m.userData.materialAssigned){(m.material as THREE.Material).dispose();m.userData.materialAssigned=true;}m.material=materials[mapping[id]]!;}));Object.entries(e.mannequins).forEach(([id,m])=>{(m as THREE.Group).visible=id===config.mannequin;});
  if(e.oldMannequin!==config.mannequin){e.controls.target.set(0,config.mannequin==='none'?0:-.5,0);e.camera.position.set(0,.3,config.mannequin==='none'?7.1:9.1);e.oldMannequin=config.mannequin;e.controls.update();}e.render();
  },[config]);
  useEffect(()=>{const e=engine.current;if(!e)return;const distance=command.zoom?THREE.MathUtils.clamp(e.camera.position.distanceTo(e.controls.target)*command.zoom,4,10):(config.mannequin==='none'?7.1:9.1);const a=command.angle;e.camera.position.set(Math.sin(a)*distance,e.controls.target.y+.3,Math.cos(a)*distance);e.controls.update();e.render();},[command]);
