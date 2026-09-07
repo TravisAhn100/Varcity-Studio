@@ -5,3 +5,18 @@ dist/
 *.tsbuildinfo
 .wrangler/
 .DS_Store
+
+# Local caches, reports and temporary files
+.cache/
+.vite/
+coverage/
+*.log
+*.tmp
+*.swp
+*~
+Thumbs.db
+
+# Local credentials and private keys
+.dev.vars*
+*.pem
+*.key
