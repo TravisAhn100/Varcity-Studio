@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {fabricResponse,microRoughness} from './fabricResponse';
 import type { Region, resolveChoice } from '../data/config';
 
 type Resolved = ReturnType<typeof resolveChoice>;
@@ -8,6 +9,7 @@ type Entry = { material: THREE.MeshPhysicalMaterial; textures: THREE.Texture[]; 
 export class MaterialLibrary {
   private cache = new Map<string, Entry>();
   private loader = new THREE.TextureLoader();
+  private roughnessFields=new Map<string,THREE.Texture>();
   constructor(private render: () => void, private onError: (code: string) => void, private anisotropy = 4) {}
 
   get(choice: Resolved, region: Region) {
@@ -23,7 +25,14 @@ export class MaterialLibrary {
       color: choice.baseColor, roughness: p.roughness, metalness: p.metalness,
       sheen: p.sheen, sheenRoughness: .9, clearcoat: p.clearcoat,
       bumpScale: p.bumpScale, side: THREE.DoubleSide,
+      ...fabricResponse(choice.kind,choice.code.startsWith('SHM')),
     });
+    if(choice.kind!=='metal'){
+      const fieldKey=choice.kind+':'+region;
+      let field=this.roughnessFields.get(fieldKey);
+      if(!field){field=microRoughness(choice.kind);if(region==='sleeves')field.repeat.set(8,14);else if(region==='pocketTrim')field.repeat.set(1,4);this.roughnessFields.set(fieldKey,field);}
+      material.roughnessMap=field;
+    }
     material.name = key;
     material.userData = { manufacturerCode: choice.manufacturerCode, colorMap: choice.colorMap, bumpMap: choice.bumpMap };
     const entry: Entry = { material, textures: [], disposed: false };
@@ -58,7 +67,7 @@ export class MaterialLibrary {
       const ribs = document.createElement('canvas'); ribs.width = 128; ribs.height = 32;
       const r = ribs.getContext('2d')!;
       for (let x = 0; x < 128; x++) { const v = Math.round(128 + 80 * Math.cos(x * Math.PI / 4)); r.fillStyle = `rgb(${v},${v},${v})`; r.fillRect(x, 0, 1, 32); }
-      const bump = new THREE.CanvasTexture(ribs); bump.wrapS = THREE.RepeatWrapping; bump.repeat.x = 5;
+      const bump = new THREE.CanvasTexture(ribs); bump.wrapS = THREE.RepeatWrapping; bump.repeat.x = region==='waistband'?9:region==='collar'?4:2;
       material.color.set('#ffffff'); material.map = map; material.bumpMap = bump;
       entry.textures.push(map, bump);
     }
@@ -73,5 +82,5 @@ export class MaterialLibrary {
     }
   }
   private release(entry: Entry) { entry.disposed = true; entry.material.dispose(); entry.textures.forEach(t => t.dispose()); }
-  dispose() { this.cache.forEach(entry => this.release(entry)); this.cache.clear(); }
+  dispose() { this.cache.forEach(entry => this.release(entry)); this.cache.clear(); this.roughnessFields.forEach(t=>t.dispose());this.roughnessFields.clear(); }
 }

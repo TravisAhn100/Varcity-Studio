@@ -48,7 +48,7 @@ assert(pl12.materialProperties.bumpScale>trh234.materialProperties.bumpScale,'co
 for(const {id} of data.regions){const choice=data.resolveChoice(data.initialConfig[id]);assert(choice.baseColor,id+' default missing');}
 const {group,parts}=makeGarment();for(const id of ['body','leftSleeve','rightSleeve','collar','leftCuff','rightCuff','waistband','leftPocketTrim','rightPocketTrim','snaps'])assert(parts.has(id),'missing '+id);
 for(const mesh of group.children){const g=mesh.geometry;g.computeBoundingBox();const box=g.boundingBox;assert(box.max.z-box.min.z>0,'flat mesh');for(const value of g.attributes.position.array)assert(Number.isFinite(value));for(const value of g.attributes.normal.array)assert(Number.isFinite(value));}
-assert.equal(parts.get('snaps').length,7);assert.equal(data.sizes.length,9);assert.deepEqual(data.measurements[2],[65.5,58,47,62]);assert.equal(makeMannequin(false).children.length,7);assert.equal(makeMannequin(true).children.length,7);
+assert.equal(parts.get('snaps').length,7);assert.equal(data.sizes.length,9);assert.deepEqual(data.measurements[2],[65.5,58,47,62]);for(const female of [false,true]){const mannequin=makeMannequin(female);for(const name of ['torso','neck','head','pelvis','leftArm','rightArm','leftHand','rightHand','leftLeg','rightLeg','leftFoot','rightFoot'])assert(mannequin.getObjectByName(name),'missing mannequin '+name);}
 assert.deepEqual(JSON.parse(JSON.stringify(data.initialConfig)),data.initialConfig);
 const configured={...data.initialConfig,body:{material:'special-himir',code:'SHM222'},sleeves:{material:'leather',code:'LD07'}};
 const signatures=new Set();
@@ -131,3 +131,50 @@ for(const closure of ['snaps','zipper','placket'])for(const collar of ['varsity'
  assert(!html.includes('Coach fabric'),'coach must not appear in material selector');
 }
 console.log('Verified server rendering of navigation and all region controls across closure/collar combinations.');
+
+const THREE=await import('three');
+const garmentModule=load('src/viewer/garment.ts'),{bodyPoint,sleevePoint,sleeveCurve,fitPresets}=garmentModule;
+let maxTriangles=0,maxMeshes=0;
+const fitBounds={};
+for(const mode of ['none','male','female']){
+ const fitGarment=makeGarment(data.initialConfig.construction,mode);
+ fitBounds[mode]=new THREE.Box3().setFromObject(fitGarment.group);
+ for(const shoulder of ['regular','raglan'])for(const closure of ['snaps','zipper','placket'])for(const collar of ['varsity','high-neck']){
+  const design=makeGarment({shoulder,closure,collar},mode);
+  let triangles=0;
+  for(const mesh of design.group.children){
+   triangles+=(mesh.geometry.index?.count??mesh.geometry.attributes.position.count)/3;
+   for(const key of ['position','normal','uv'])for(const n of mesh.geometry.attributes[key].array)assert(Number.isFinite(n),mode+' '+key+' must remain finite');
+  }
+  maxTriangles=Math.max(maxTriangles,triangles);maxMeshes=Math.max(maxMeshes,design.group.children.length);
+  assert(triangles<36000,'jacket triangle budget');
+  assert(design.group.children.length<=22,'comparison draw-call budget');
+  if(closure!=='snaps'){const teeth=design.group.getObjectByName('zipper-tooth');assert(teeth.userData.toothCount>50);assert.equal(design.parts.get('snaps').filter(m=>m.name==='zipper-tooth').length,1,'zipper teeth merged into one draw call');}
+  assert.deepEqual(design.group.userData.construction,{shoulder,closure,collar});
+  assert.equal(design.group.userData.fitMode,mode);
+  if(shoulder==='raglan'){
+   const key=(p,i)=>[p.getX(i),p.getY(i),p.getZ(i)].map(v=>v.toFixed(5)).join(',');
+   const torso=design.parts.get('body')[0].geometry.attributes.position,shoulderMesh=design.parts.get('leftSleeve')[0].geometry.attributes.position;
+   const boundary=new Set(Array.from({length:torso.count},(_,i)=>key(torso,i)));
+   assert(Array.from({length:shoulderMesh.count},(_,i)=>boundary.has(key(shoulderMesh,i))).filter(Boolean).length>20,'raglan/body seam stays joined in '+mode);
+  }
+  design.group.children.forEach(m=>{m.geometry.dispose();m.material.dispose();});
+ }
+}
+assert(fitBounds.male.max.x>fitBounds.none.max.x&&fitBounds.none.max.x>fitBounds.female.max.x,'fit shoulder/sleeve width');
+assert.notEqual(fitPresets.female.shoulderWidth,fitPresets.female.torsoLength,'female fit must not be uniform scaling');
+assert.notEqual(fitPresets.male.sleeveVolume,fitPresets.male.torsoLength,'male fit must not be uniform scaling');
+const curve=sleeveCurve(1),mid=curve.getPoint(.5),chord=curve.getPoint(0).lerp(curve.getPoint(1),.5);
+assert(mid.distanceTo(chord)>.10,'sleeve must bend away from a straight tube');
+assert(curve.getPoint(.5).z<curve.getPoint(1).z-.1,'forearm bends forward');
+let waistFold=0,cuffFold=0,elbowFold=0,armpitFold=0;
+for(let i=0;i<64;i++){const u=i/64;waistFold=Math.max(waistFold,bodyPoint(u,.11).distanceTo(bodyPoint(u,.11,false)));cuffFold=Math.max(cuffFold,sleevePoint(1,u,.10).distanceTo(sleevePoint(1,u,.10,false)));elbowFold=Math.max(elbowFold,sleevePoint(1,u,.42).distanceTo(sleevePoint(1,u,.42,false)));armpitFold=Math.max(armpitFold,bodyPoint(u,.65).distanceTo(bodyPoint(u,.65,false)));}
+for(const [zone,d] of Object.entries({waistFold,cuffFold,elbowFold,armpitFold})){assert(d>.008,zone+' should be modeled');assert(d<.07,zone+' should remain subtle');}
+const response=load('src/viewer/fabricResponse.ts');
+assert(response.fabricResponse('wool').roughness>response.fabricResponse('leather').roughness);
+assert(response.fabricResponse('premium').clearcoat>response.fabricResponse('leather').clearcoat);
+assert(response.fabricResponse('corduroy').bumpScale>response.fabricResponse('wool').bumpScale);
+assert.equal(response.fabricResponse('wool').clearcoat,0);
+const roughness=response.microRoughness('wool');assert.equal(roughness.image.width,64);assert.equal(roughness.image.height,64);assert.equal(roughness.colorSpace,THREE.NoColorSpace);roughness.dispose();
+console.log(`Verified 36 construction/fit combinations; max ${maxTriangles} triangles and ${maxMeshes} meshes per jacket; curved sleeves, bounded folds, complete mannequins and distinct fabric responses.`);
+assert.equal(designs.designSignature({...data.initialConfig,mannequin:'male'}),designs.designSignature({...data.initialConfig,mannequin:'female'}),'fit mode alone is not an unsaved design change');

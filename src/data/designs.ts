@@ -5,6 +5,8 @@ export type SavedDesign={id:number;config:Config;savedAt:string};
 export type DesignSlots=[SavedDesign|null,SavedDesign|null,SavedDesign|null];
 export const emptySlots=():DesignSlots=>[null,null,null];
 export const cloneConfig=(config:Config):Config=>JSON.parse(JSON.stringify(config));
+// Fit mode is presentation, so switching mannequins does not dirty a saved design.
+export const designSignature=(config:Config)=>JSON.stringify({...config,mannequin:'none'});
 const oneOf=(value:unknown,values:readonly string[])=>typeof value==='string'&&values.includes(value);
 function validChoice(value:unknown,kind:'fabric'|'rib'|'metal'):value is Choice{
  if(!value||typeof value!=='object')return false;

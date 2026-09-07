@@ -4,7 +4,7 @@ import {ArrowRight,ArrowUpRight,RotateCcw,Plus,Minus,MoveHorizontal,Shirt,Chevro
 import {Dialog,DialogContent,DialogTitle,DialogDescription} from '@/components/ui/dialog';
 import Viewer from '../src/viewer/Viewer';
 import {initialConfig,type Config,type Region,regions,hasFabricCollar,changeConstruction,constructionLabel,hardwareLabel} from '../src/data/config';
-import {STORAGE_KEY,decodeDesigns,encodeDesigns,saveSlot,deleteSlot,cloneConfig,type DesignSlots} from '../src/data/designs';
+import {STORAGE_KEY,decodeDesigns,encodeDesigns,saveSlot,deleteSlot,cloneConfig,designSignature,type DesignSlots} from '../src/data/designs';
 import VarsityStar from '../src/components/VarsityStar';
 import ConstructionControls from '../src/components/ConstructionControls';
 import MaterialEditor from '../src/components/MaterialEditor';
@@ -30,7 +30,7 @@ export default function App(){
  const [message,setMessage]=useState(loaded.warning);
  const [pending,setPending]=useState<(()=>void)|null>(null);
  const [command,setCommand]=useState({angle:0,serial:0,zoom:1});
- const dirty=editingId!==null&&JSON.stringify(config)!==baseline;
+ const dirty=editingId!==null&&designSignature(config)!==designSignature(JSON.parse(baseline));
  const viewingDesigns=libraryMode==='view'||libraryMode==='compare';
  const index=regions.findIndex(r=>r.id===region);
  const labelFor=(r:Region)=>r==='snaps'?hardwareLabel(config.construction):regions.find(x=>x.id===r)!.label;
@@ -84,7 +84,7 @@ export default function App(){
     <div className="region-grid" aria-label="Jacket regions">{regions.map((r,i)=><button key={r.id} aria-pressed={region===r.id} onClick={()=>setRegion(r.id)}><span>{String(i+1).padStart(2,'0')}</span>{labelFor(r.id)}{region===r.id&&<span className="selected-dot"/>}</button>)}</div>
     <MaterialEditor config={config} region={region} onChoose={setChoice}/>
     <div className="editor-progress"><span>STEP {index+1} / 7</span><div>{index>0&&<button className="previous-step" onClick={()=>setRegion(regions[index-1].id)}>Back</button>}<button className="primary" onClick={()=>{if(index<6)setRegion(regions[index+1].id);else{setMessage('');setLibraryMode('save');}}}>{index===6?'Save your design':`Next: ${labelFor(regions[index+1].id)}`} <ArrowRight size={16}/></button></div></div>
-    <div className="panel-footer"><span>Designed by you.</span><span>VARSITY / 1.1.0</span></div>
+    <div className="panel-footer"><span>Designed by you.</span><span>VARSITY / 1.2.0</span></div>
    </>}
   </aside></main>
   <footer className="site-footer"><span>VARSITY DESIGN STUDIO</span><span>Materials referenced from <a href="https://gwa.kr/goods/catalog?code=00010004" target="_blank" rel="noreferrer">과잠팩토리 ↗</a></span><span>PROTOTYPE / 2026</span></footer>
