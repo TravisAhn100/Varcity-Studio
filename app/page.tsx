@@ -1,29 +1,95 @@
 'use client';
-import {useState} from 'react';
-import {ArrowRight,ArrowUpRight,RotateCcw,Plus,Minus,MoveHorizontal,Ruler,Shirt,Check} from 'lucide-react';
+import {useEffect,useRef,useState} from 'react';
+import {ArrowRight,ArrowUpRight,RotateCcw,Plus,Minus,MoveHorizontal,Shirt,ChevronDown} from 'lucide-react';
 import {Dialog,DialogContent,DialogTitle,DialogDescription} from '@/components/ui/dialog';
-import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from '@/components/ui/select';
-import {Table,TableBody,TableCell,TableHead,TableHeader,TableRow} from '@/components/ui/table';
 import Viewer from '../src/viewer/Viewer';
-import {initialConfig,Config,Region,regions,families,resolveChoice,sizes,measurements,trimColors,snapColors,jacketTypes,hasFabricCollar,visibleRegions,regionChoice,JacketType} from '../src/data/config';
+import {initialConfig,type Config,type Region,regions,hasFabricCollar,changeConstruction,constructionLabel,hardwareLabel} from '../src/data/config';
+import {STORAGE_KEY,decodeDesigns,encodeDesigns,saveSlot,deleteSlot,cloneConfig,type DesignSlots} from '../src/data/designs';
 import VarsityStar from '../src/components/VarsityStar';
-import ConstructionPreview from '../src/components/ConstructionPreview';
+import ConstructionControls from '../src/components/ConstructionControls';
+import MaterialEditor from '../src/components/MaterialEditor';
+import References from '../src/components/References';
+import DesignLibrary,{type LibraryMode} from '../src/components/DesignLibrary';
+
+function readSavedDesigns(){
+ try{return decodeDesigns(window.localStorage.getItem(STORAGE_KEY));}
+ catch{return {slots:decodeDesigns(null).slots,warning:'Browser storage is unavailable. Enable it to save designs.'};}
+}
 export default function App(){
- const [step,setStep]=useState<'start'|'type'|'customize'>('start');const [config,setConfig]=useState<Config>(initialConfig);const [region,setRegion]=useState<Region>('body');const [modal,setModal]=useState<'sizes'|'examples'|null>(null);const [command,setCommand]=useState({angle:0,serial:0,zoom:1});
- const construction=jacketTypes.find(t=>t.id===config.jacketType)!;
- const availableRegions=visibleRegions(config.jacketType);
- const labelFor=(r:Region)=>r==='snaps'?(config.jacketType==='zipper'?'Zipper':config.jacketType.includes('zipper')?'Zipper & snaps':'Snaps'):regions.find(x=>x.id===r)!.label;
- const chooseConstruction=(type:JacketType)=>{setConfig(c=>({...c,jacketType:type}));if(!visibleRegions(type).some(r=>r.id===region))setRegion('body');};
- const choice=regionChoice(config,region),selected=resolveChoice(choice);const family=families.find(f=>f.id===choice.material);const isTrim=['collar','cuffs','waistband'].includes(region)&&!(region==='collar'&&hasFabricCollar(config.jacketType));const options=region==='snaps'?snapColors:isTrim?trimColors:family!.swatches;
+ const [loaded]=useState(readSavedDesigns);
+ const [slots,setSlots]=useState<DesignSlots>(loaded.slots);
+ const slotsRef=useRef(slots);slotsRef.current=slots;
+ const [step,setStep]=useState<'start'|'customize'>('start');
+ const [config,setConfig]=useState<Config>(()=>cloneConfig(initialConfig));
+ const [region,setRegion]=useState<Region>('body');
+ const [modal,setModal]=useState<'sizes'|'examples'|null>(null);
+ const [libraryMode,setLibraryMode]=useState<LibraryMode>(null);
+ const [constructionOpen,setConstructionOpen]=useState(false);
+ const [editingId,setEditingId]=useState<number|null>(null);
+ const [baseline,setBaseline]=useState(JSON.stringify(initialConfig));
+ const [message,setMessage]=useState(loaded.warning);
+ const [pending,setPending]=useState<(()=>void)|null>(null);
+ const [command,setCommand]=useState({angle:0,serial:0,zoom:1});
+ const dirty=editingId!==null&&JSON.stringify(config)!==baseline;
+ const viewingDesigns=libraryMode==='view'||libraryMode==='compare';
+ const index=regions.findIndex(r=>r.id===region);
+ const labelFor=(r:Region)=>r==='snaps'?hardwareLabel(config.construction):regions.find(x=>x.id===r)!.label;
+ const navigate=(action:()=>void)=>{if(dirty)setPending(()=>action);else action();};
+ const setChoice=(material:string,code:string)=>setConfig(c=>({...c,[region==='collar'&&hasFabricCollar(c.construction)?'fabricCollar':region]:{material,code}}));
+ const persist=(next:DesignSlots)=>{
+  try{window.localStorage.setItem(STORAGE_KEY,encodeDesigns(next));slotsRef.current=next;setSlots(next);return true;}
+  catch{setMessage('Your design could not be saved. Browser storage may be full or disabled. Your current jacket is still here.');return false;}
+ };
+ const saveCurrent=(id:number)=>{
+  if(!persist(saveSlot(slotsRef.current,id,config)))return false;
+  setEditingId(id);setBaseline(JSON.stringify(config));setMessage(`Design ${id} saved in this browser.`);return true;
+ };
+ const editDesign=(id:number)=>navigate(()=>{
+  const saved=slotsRef.current[id-1];if(!saved)return;
+  const next=cloneConfig(saved.config);setConfig(next);setBaseline(JSON.stringify(next));setEditingId(id);
+  setRegion('body');setStep('customize');setLibraryMode(null);setConstructionOpen(false);setMessage('');
+ });
+ const removeDesign=(id:number)=>{
+  if(persist(deleteSlot(slotsRef.current,id))){if(editingId===id){setEditingId(null);setBaseline(JSON.stringify(config));}setMessage(`Design ${id} deleted. The slot is ready for another jacket.`);}
+ };
+ useEffect(()=>{
+  if(!dirty)return;
+  const warn=(event:BeforeUnloadEvent)=>{event.preventDefault();event.returnValue='';};
+  window.addEventListener('beforeunload',warn);return()=>window.removeEventListener('beforeunload',warn);
+ },[dirty]);
  const goView=(angle:number,zoom=1)=>setCommand(c=>({angle,serial:c.serial+1,zoom}));
- const setChoice=(material:string,code:string)=>setConfig(c=>({...c,[region==='collar'&&hasFabricCollar(c.jacketType)?'fabricCollar':region]:{material,code}}));
- return <div className="app-shell"><header className="main-header"><button className="wordmark" onClick={()=>setStep('start')} aria-label="Varsity home"><VarsityStar className="nav-star"/><span className="brand-name">varsity</span></button><span className="edition">DESIGN STUDIO <span aria-hidden="true">/</span> 1.0.2</span><button className="text-link" onClick={()=>setModal('examples')}>Real examples <ArrowUpRight size={16}/></button></header>
- <main className="workspace"><section className="stage"><div className="stage-top"><span className="eyebrow">THE ORIGINAL / 01</span><span className="studio-dot">LIVE 3D PREVIEW</span></div><div className="watermark" aria-hidden="true">VARSITY</div><Viewer config={config} command={command} onSelect={r=>{if(step==='customize')setRegion(r);}}/>
- <div className="viewer-tools"><button aria-label="Zoom in" onClick={()=>goView(command.angle,.85)}><Plus size={17}/></button><button aria-label="Zoom out" onClick={()=>goView(command.angle,1.15)}><Minus size={17}/></button><button aria-label="Reset camera" onClick={()=>{setCommand(c=>({angle:0,serial:c.serial+1,zoom:0}));}}><RotateCcw size={16}/></button></div>
- <div className="stage-bottom"><div className="view-buttons">{[['Front',0],['Back',Math.PI],['Left ¾',-Math.PI/4],['Right ¾',Math.PI/4]].map(([label,angle])=><button key={label} aria-pressed={command.angle===angle} onClick={()=>setCommand(c=>({angle:Number(angle),serial:c.serial+1,zoom:0}))}>{label}</button>)}</div><span className="drag-hint"><MoveHorizontal size={15}/> Drag to rotate · Scroll to zoom</span></div>
- <div className="model-bar"><span>VIEW ON</span><div>{(['none','male','female'] as const).map(m=><button key={m} aria-pressed={config.mannequin===m} onClick={()=>setConfig(c=>({...c,mannequin:m}))}>{m==='none'?'Jacket only':m==='male'?'Male':'Female'}</button>)}</div><span className="model-note">{config.mannequin==='none'?'360° studio view':'Approximate mannequin'}</span></div></section>
- <aside className="control-panel">{step==='start'?<div className="intro"><span className="eyebrow">MADE TO BE YOURS</span><h1>Your jacket.<br/>Your signature.</h1><p>Start with a classic. Make it your own with fabrics, colors, and the details that matter.</p><div className="intro-spec"><Shirt size={21}/><div><strong>Seven constructions. Your signature.</strong><span>Classic silhouettes. Original fabric textures.</span></div></div><button className="primary" onClick={()=>setStep('type')}><span><VarsityStar className="cta-star"/> Make Your Jacket</span> <ArrowRight size={19}/></button><span className="small-note">Manufacturer fabrics. A real-time preview.</span><div className="intro-bottom"><span>01 / SELECT</span><span>02 / CUSTOMIZE</span><span>03 / VIEW</span></div></div>:step==='type'?<div className="type-panel"><span className="eyebrow">01 / THE FOUNDATION</span><h1>Choose your style.</h1><p className="muted">Select a construction to see it in 3D.</p><div className="type-list">{jacketTypes.map(t=><button key={t.id} aria-pressed={config.jacketType===t.id} className={config.jacketType===t.id?'type-active':''} onClick={()=>chooseConstruction(t.id)}><ConstructionPreview type={t.id}/><span>{t.label}<small>{t.detail}</small></span>{config.jacketType===t.id&&<Check size={17}/>}</button>)}</div><button className="primary construction-continue" onClick={()=>setStep('customize')}>Customize this jacket <ArrowRight size={18}/></button></div>:<><div className="panel-heading"><span className="eyebrow">02 / MAKE IT PERSONAL</span><h1>{construction.label}</h1><div className="heading-links"><button onClick={()=>setStep('type')}>Change style</button><button onClick={()=>setModal('sizes')}><Ruler size={14}/> {config.size} · Size reference</button></div></div><div className="region-grid" aria-label="Jacket regions">{availableRegions.map((r,i)=><button key={r.id} aria-pressed={region===r.id} onClick={()=>setRegion(r.id)}><span>{String(i+1).padStart(2,'0')}</span>{labelFor(r.id)}{region===r.id&&<span className="selected-dot"/>}</button>)}</div><div className="material-controls"><div className="section-label"><h2>{labelFor(region)}</h2><span>{isTrim?'RIBBED FINISH':region==='snaps'?'HARDWARE':'MATERIAL & COLOR'}</span></div>{!isTrim&&region!=='snaps'?<><label id="material-label">Material</label><Select value={choice.material} onValueChange={value=>{const f=families.find(f=>f.id===value);if(f)setChoice(f.id,f.swatches.find(s=>!s.discontinued)!.code);}}><SelectTrigger aria-labelledby="material-label" className="material-select"><SelectValue>{family!.label}</SelectValue></SelectTrigger><SelectContent>{families.map(f=><SelectItem key={f.id} value={f.id}>{f.label}</SelectItem>)}</SelectContent></Select><p className="fabric-description">{{wool:'Soft matte fibers, with the texture of the original fabric.',corduroy:'Original vertical ribs with a raised, matte fabric finish.',premium:'Source leather grain with a polished sheen.',leather:'Source synthetic leather grain with soft reflections.',denim:'Original diagonal twill weave in a matte denim finish.',nylon:'Fine woven texture with a subtle bomber-fabric sheen.',coach:'Fine woven fabric with a soft, matte surface.',cashmere:'Original brushed texture with a soft fabric sheen.',pattern:'The original woven pattern, carried onto the jacket.'}[family!.kind]}</p></>:<p className="fabric-description">{isTrim?'Ribbed knit with two cream stripes. Prototype trim colors; manufacturer codes are not supplied.':'Prototype hardware finishes; manufacturer codes are not supplied.'}</p>}<div className="color-label"><label>Color</label><span>{options.length} swatches{options.length>12 ? ' · Scroll to explore' : ''}</span></div><div className="swatch-grid" tabIndex={0} aria-label="Material color swatches">{options.map(s=><button className="swatch-button" key={s.code} disabled={'discontinued' in s&&s.discontinued} aria-label={'label' in s?s.label:s.code} aria-pressed={choice.code===s.code} title={'discontinued' in s&&s.discontinued?s.code+' · Discontinued':'label' in s?s.label:s.code} onClick={()=>setChoice(choice.material,s.code)}><span className="swatch" style={{backgroundColor:s.baseColor,backgroundImage:'texture' in s?`url(${s.texture})`:undefined}}>{choice.code===s.code&&<Check size={17}/>}</span><span>{'label' in s?s.label:s.code}</span>{'discontinued' in s&&s.discontinued&&<small>Discontinued</small>}</button>)}</div><div className="selected-material" aria-live="polite"><span className="material-tile" style={{backgroundColor:selected.baseColor,backgroundImage:selected.texture?`url(${selected.texture})`:undefined}}/><div><span className="selected-caption">Selected</span><strong>{selected.manufacturerCode||selected.label}</strong><span>{family?.label||(isTrim?'Ribbed knit':'Hardware finish')}</span></div><Check size={17}/></div><p className="small-note">{family?'Original swatch texture. Screen colors and texture scale are approximate.':'Trim and hardware are visual approximations.'}</p>{family&&<a className="reference-link" href={family.reference} target="_blank" rel="noreferrer">View original fabric sheet <ArrowUpRight size={14}/></a>}</div><div className="panel-footer"><span>Designed by you.</span><span>VARSITY / 1.0.2</span></div></>}</aside></main>
- <footer className="site-footer"><span>VARSITY DESIGN STUDIO</span><span>Materials referenced from <a href="https://gwa.kr/goods/catalog?code=00010004" target="_blank" rel="noreferrer">과잠팩토리 ↗</a></span><span>PROTOTYPE / 2026</span></footer>
- <Dialog open={modal!==null} onOpenChange={open=>{if(!open)setModal(null);}}><DialogContent className="reference-modal"><DialogTitle>{modal==='sizes'?'Find your size.':'From fabric to real life.'}</DialogTitle><DialogDescription>{modal==='sizes'?'Manufacturer regular varsity reference · Measurements in cm':'Manufacturer examples. Photos show finished embroidery; this prototype customizes materials only.'}</DialogDescription>{modal==='sizes'?<><div className="size-picker">{sizes.map(s=><button key={s} aria-pressed={config.size===s} onClick={()=>setConfig(c=>({...c,size:s}))}>{s}</button>)}</div><Table><TableHeader><TableRow>{['Size','Length','Chest width','Shoulder','Sleeve'].map(s=><TableHead key={s}>{s}</TableHead>)}</TableRow></TableHeader><TableBody>{measurements.map((row,i)=><TableRow key={sizes[i]} className={config.size===sizes[i]?'chosen-size':''}><TableCell>{sizes[i]}</TableCell>{row.map((n,j)=><TableCell key={j}>{n}</TableCell>)}</TableRow>)}</TableBody></Table><p className="small-note">This table describes the regular varsity. For other constructions, consult the original chart or manufacturer. Size selection is for reference. The jacket geometry does not change size, and mannequins do not predict fit.</p><a className="reference-link" href="/references/size.jpg" target="_blank" rel="noreferrer">Open original size chart ↗</a></>:<div className="examples-grid">{[{name:'호서대 디딤돌',body:'HM36',sleeve:'SLD31',url:'https://gwa.kr/data/goods/1/2026/08/2062_temp_17857353774219large.jpg'},{name:'클루밍',body:'TRH234',sleeve:'SLD34',url:'https://gwa.kr/data/goods/1/2026/08/2061_temp_17857351625339large.jpg'},{name:'인천예고 조소과',body:'SHM228',sleeve:'SLD32',url:'https://gwa.kr/data/goods/1/2023/07/1447_temp_16885197637924large.jpg'}].map(ex=><article key={ex.body}><img src={ex.url} alt={ex.name+' regular varsity jacket'} onError={e=>{e.currentTarget.style.display='none';}}/><h3>{ex.name}</h3><p>Body {ex.body}<br/>Sleeves {ex.sleeve}</p><a href="https://gwa.kr/goods/catalog?code=00010004" target="_blank" rel="noreferrer">Manufacturer catalogue ↗</a></article>)}</div>}</DialogContent></Dialog>
+ return <div className="app-shell">
+  <header className="main-header">
+   <button className="wordmark" onClick={()=>navigate(()=>setStep('start'))} aria-label="Varsity home"><VarsityStar className="nav-star"/><span className="brand-name">varsity</span></button>
+   <nav className="design-navigation" aria-label="Design library"><button onClick={()=>navigate(()=>setLibraryMode('library'))}>MY DESIGNS</button><span aria-hidden="true">·</span><button onClick={()=>navigate(()=>setLibraryMode('select'))}>COMPARE</button></nav>
+   <button className="text-link" onClick={()=>setModal('examples')}>Real examples <ArrowUpRight size={16}/></button>
+  </header>
+  <main className="workspace">
+   <div className="configurator-top">
+    <div className="configurator-heading"><span className="eyebrow">THE ORIGINAL / 01</span><span className="studio-dot">LIVE 3D PREVIEW</span><div className="construction-heading-actions">
+     <button aria-expanded={constructionOpen} aria-controls="construction-options" onClick={()=>setConstructionOpen(x=>!x)}>CONSTRUCTION <ChevronDown size={15} className={constructionOpen?'chevron-open':''}/></button><span aria-hidden="true">·</span><button onClick={()=>setModal('sizes')}>{config.size} / SIZE REFERENCE</button>
+    </div></div>
+    {constructionOpen&&<ConstructionControls value={config.construction} onChange={patch=>setConfig(c=>changeConstruction(c,patch))}/>}
+   </div>
+   <section className="stage">
+    <div className="watermark" aria-hidden="true">VARSITY</div>
+    {!viewingDesigns&&<Viewer config={config} command={command} onSelect={r=>{if(step==='customize')setRegion(r);}}/>}
+    <div className="viewer-tools"><button aria-label="Zoom in" onClick={()=>goView(command.angle,.85)}><Plus size={17}/></button><button aria-label="Zoom out" onClick={()=>goView(command.angle,1.15)}><Minus size={17}/></button><button aria-label="Reset camera" onClick={()=>setCommand(c=>({angle:0,serial:c.serial+1,zoom:0}))}><RotateCcw size={16}/></button></div>
+    <div className="stage-bottom"><div className="view-buttons">{[['Front',0],['Back',Math.PI],['Left ¾',-Math.PI/4],['Right ¾',Math.PI/4]].map(([label,angle])=><button key={label} aria-pressed={command.angle===angle} onClick={()=>setCommand(c=>({angle:Number(angle),serial:c.serial+1,zoom:0}))}>{label}</button>)}</div><span className="drag-hint"><MoveHorizontal size={15}/> Drag to rotate · Scroll to zoom</span></div>
+    <div className="model-bar"><span>VIEW ON</span><div>{(['none','male','female'] as const).map(m=><button key={m} aria-pressed={config.mannequin===m} onClick={()=>setConfig(c=>({...c,mannequin:m}))}>{m==='none'?'Jacket only':m==='male'?'Male':'Female'}</button>)}</div><span className="model-note">{config.mannequin==='none'?'360° studio view':'Approximate mannequin'}</span></div>
+   </section>
+   <aside className="control-panel">
+    {step==='start'?<div className="intro"><span className="eyebrow">MADE TO BE YOURS</span><h1>Your jacket.<br/>Your signature.</h1><p>Make it your own with original fabrics, colors, and the details that matter. Save your favorites. Compare them together.</p><div className="intro-spec"><Shirt size={21}/><div><strong>Create. Save. Compare.</strong><span>Three designs. Every detail yours.</span></div></div><button className="primary" onClick={()=>setStep('customize')}><span><VarsityStar className="cta-star"/> Make Your Jacket</span><ArrowRight size={19}/></button><span className="small-note">Manufacturer fabrics. A real-time preview.</span><div className="intro-bottom"><span>01 / CREATE</span><span>02 / SAVE</span><span>03 / COMPARE</span></div></div>:<>
+    <div className="panel-heading"><span className="eyebrow">{editingId?`DESIGN ${editingId} / ${dirty?'UNSAVED CHANGES':'SAVED'}`:'YOUR JACKET'}</span><h1>Make it personal.</h1><p className="construction-summary">{constructionLabel(config.construction)}</p></div>
+    <div className="region-grid" aria-label="Jacket regions">{regions.map((r,i)=><button key={r.id} aria-pressed={region===r.id} onClick={()=>setRegion(r.id)}><span>{String(i+1).padStart(2,'0')}</span>{labelFor(r.id)}{region===r.id&&<span className="selected-dot"/>}</button>)}</div>
+    <MaterialEditor config={config} region={region} onChoose={setChoice}/>
+    <div className="editor-progress"><span>STEP {index+1} / 7</span><div>{index>0&&<button className="previous-step" onClick={()=>setRegion(regions[index-1].id)}>Back</button>}<button className="primary" onClick={()=>{if(index<6)setRegion(regions[index+1].id);else{setMessage('');setLibraryMode('save');}}}>{index===6?'Save your design':`Next: ${labelFor(regions[index+1].id)}`} <ArrowRight size={16}/></button></div></div>
+    <div className="panel-footer"><span>Designed by you.</span><span>VARSITY / 1.1.0</span></div>
+   </>}
+  </aside></main>
+  <footer className="site-footer"><span>VARSITY DESIGN STUDIO</span><span>Materials referenced from <a href="https://gwa.kr/goods/catalog?code=00010004" target="_blank" rel="noreferrer">과잠팩토리 ↗</a></span><span>PROTOTYPE / 2026</span></footer>
+  <References modal={modal} setModal={setModal} config={config} onSize={size=>setConfig(c=>({...c,size}))}/>
+  <DesignLibrary mode={libraryMode} onMode={setLibraryMode} slots={slots} editingId={editingId} onSave={id=>{if(saveCurrent(id))setLibraryMode('library');}} onEdit={editDesign} onDelete={removeDesign} message={message}/>
+  <Dialog open={pending!==null} onOpenChange={open=>{if(!open)setPending(null);}}><DialogContent className="unsaved-dialog"><DialogTitle>Save changes to Design {editingId}?</DialogTitle><DialogDescription>Your saved jacket has unsaved changes.</DialogDescription>{message&&<p role="status">{message}</p>}<div className="unsaved-actions"><button onClick={()=>setPending(null)}>Keep editing</button><button onClick={()=>{const action=pending;setConfig(JSON.parse(baseline));setPending(null);action?.();}}>Discard</button><button className="primary" onClick={()=>{if(editingId&&saveCurrent(editingId)){const action=pending;setPending(null);action?.();}}}>Save</button></div></DialogContent></Dialog>
  </div>;
 }

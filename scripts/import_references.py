@@ -16,7 +16,6 @@ sets=[
 ('corduroy','Corduroy','corduroy','10 코듀로이(골덴) 원단.jpg','PL',range(1,19),26,194,144,285),
 ('denim','Denim','denim','6 데님원단.jpg','DN',range(1,7),27,221,144,285),
 ('bomber','Flight / bomber','nylon','7 항공점퍼 원단.jpg','MA',range(1,26),27,233,144,285),
-('coach','Coach fabric','coach','☆-코치자켓-☆.jpg','CO',range(1,22),27,222,144,285),
 ('cashmere','Cashmere-like','cashmere','9 캐시미어 원단.jpg','CM',range(1,23),27,255,144,285),
 ('pattern','Woven pattern','pattern','8 패턴 원단.jpg','PT',range(1,53),27,223,144,285)]
 properties={
@@ -26,7 +25,6 @@ properties={
  'corduroy':dict(roughness=.96,metalness=0,sheen=.35,clearcoat=0,bumpScale=.026,tileRepeat=[8,4]),
  'denim':dict(roughness=.91,metalness=0,sheen=.18,clearcoat=0,bumpScale=.012,tileRepeat=[10,5]),
  'nylon':dict(roughness=.58,metalness=0,sheen=.25,clearcoat=.08,bumpScale=.006,tileRepeat=[12,6]),
- 'coach':dict(roughness=.83,metalness=0,sheen=.22,clearcoat=0,bumpScale=.006,tileRepeat=[12,6]),
  'cashmere':dict(roughness=.97,metalness=0,sheen=.65,clearcoat=0,bumpScale=.011,tileRepeat=[9,4.5]),
  'pattern':dict(roughness=.92,metalness=0,sheen=.2,clearcoat=0,bumpScale=.014,tileRepeat=[8,4])}
 def mirror(tile):

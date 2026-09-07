@@ -4,9 +4,10 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {makeGarment,makeMannequin} from './garment';
 import {MaterialLibrary} from './materialLibrary';
-import {Config,Region,resolveChoice,regionChoice} from '../data/config';
+import {Config,Region,resolveChoice,regionChoice,constructionKey} from '../data/config';
+import type {CameraSync} from './cameraSync';
 export type ViewCommand={angle:number;serial:number;zoom?:number};
-export default function Viewer({config,command,onSelect}:{config:Config;command:ViewCommand;onSelect:(r:Region)=>void}){
+export default function Viewer({config,command,onSelect,cameraSync}:{config:Config;command:ViewCommand;onSelect:(r:Region)=>void;cameraSync?:CameraSync}){
  const host=useRef<HTMLDivElement>(null);const engine=useRef<any>(null);const [error,setError]=useState('');const [textureError,setTextureError]=useState('');const select=useRef(onSelect);select.current=onSelect;
  useEffect(()=>{if(!host.current)return;const node=host.current;let renderer:THREE.WebGLRenderer;
  try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch{setError('3D preview needs WebGL. Try a browser with hardware acceleration enabled.');return;}
@@ -17,17 +18,21 @@ export default function Viewer({config,command,onSelect}:{config:Config;command:
  scene.add(new THREE.HemisphereLight(0xffffff,0xadb0aa,2));const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(3,5,5);light.castShadow=true;light.shadow.mapSize.set(1024,1024);scene.add(light);
  const {group,parts}=makeGarment();scene.add(group);const mannequins={male:makeMannequin(false),female:makeMannequin(true)};Object.values(mannequins).forEach(m=>{m.visible=false;scene.add(m);});
  const floor=new THREE.Mesh(new THREE.CircleGeometry(5,64),new THREE.ShadowMaterial({opacity:.12}));floor.rotation.x=-Math.PI/2;floor.position.y=-2.99;floor.receiveShadow=true;scene.add(floor);
- const resize=()=>{const {width,height}=node.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();render();};
- function render(){renderer.render(scene,camera);}controls.addEventListener('change',render);
+ const resize=()=>{const {width,height}=node.getBoundingClientRect();if(!width||!height)return;renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();render();};
+ let disposed=false,syncing=false;const syncOwner={};
+ function render(){if(!disposed)renderer.render(scene,camera);}
+ const syncChange=()=>{render();if(!syncing)cameraSync?.publish(syncOwner,{position:camera.position.toArray(),target:controls.target.toArray()});};
+ controls.addEventListener('change',syncChange);
+ const unsubscribe=cameraSync?.subscribe(syncOwner,pose=>{syncing=true;camera.position.fromArray(pose.position);controls.target.fromArray(pose.target);controls.update();render();syncing=false;});
  const observer=new ResizeObserver(resize);observer.observe(node);
  let down=[0,0];const pointerDown=(e:PointerEvent)=>{down=[e.clientX,e.clientY];};const pointerUp=(e:PointerEvent)=>{if(Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const rect=node.getBoundingClientRect();const ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hit=ray.intersectObjects(engine.current.group.children).find(h=>h.object.userData.region);if(hit)select.current(hit.object.userData.region);};
  renderer.domElement.addEventListener('pointerdown',pointerDown);renderer.domElement.addEventListener('pointerup',pointerUp);renderer.domElement.setAttribute('aria-label','Rotatable 3D varsity jacket. Drag to rotate or use the view buttons.');
  const library=new MaterialLibrary(render,code=>setTextureError(code),renderer.capabilities.getMaxAnisotropy());
- engine.current={scene,camera,controls,group,parts,construction:'regular',mannequins,render,library,oldMannequin:'none'};resize();
- return()=>{observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',pointerDown);renderer.domElement.removeEventListener('pointerup',pointerUp);scene.traverse(obj=>{if(obj instanceof THREE.Mesh){obj.geometry.dispose();const ms=Array.isArray(obj.material)?obj.material:[obj.material];ms.forEach(m=>m.dispose());}});library.dispose();env.dispose();pmrem.dispose();renderer.dispose();node.removeChild(renderer.domElement);engine.current=null;};
+ engine.current={scene,camera,controls,group,parts,construction:'regular/snaps/varsity',mannequins,render,library,oldMannequin:'none'};resize();
+ return()=>{disposed=true;unsubscribe?.();observer.disconnect();controls.dispose();renderer.domElement.removeEventListener('pointerdown',pointerDown);renderer.domElement.removeEventListener('pointerup',pointerUp);scene.traverse(obj=>{if(obj instanceof THREE.Mesh){obj.geometry.dispose();const ms=Array.isArray(obj.material)?obj.material:[obj.material];ms.forEach(m=>m.dispose());}});library.dispose();env.dispose();pmrem.dispose();renderer.dispose();node.removeChild(renderer.domElement);engine.current=null;};
  },[]);
  useEffect(()=>{const e=engine.current;if(!e)return;setTextureError('');
- if(e.construction!==config.jacketType){e.scene.remove(e.group);e.group.traverse((m:THREE.Object3D)=>{if(m instanceof THREE.Mesh)m.geometry.dispose();});const garment=makeGarment(config.jacketType);e.group=garment.group;e.parts=garment.parts;e.construction=config.jacketType;e.scene.add(e.group);}
+ if(e.construction!==constructionKey(config.construction)){e.scene.remove(e.group);e.group.traverse((m:THREE.Object3D)=>{if(m instanceof THREE.Mesh)m.geometry.dispose();});const garment=makeGarment(config.construction);e.group=garment.group;e.parts=garment.parts;e.construction=constructionKey(config.construction);e.scene.add(e.group);}
  const mapping:Record<string,Region>={body:'body',leftSleeve:'sleeves',rightSleeve:'sleeves',collar:'collar',leftCuff:'cuffs',rightCuff:'cuffs',waistband:'waistband',leftPocketTrim:'pocketTrim',rightPocketTrim:'pocketTrim',snaps:'snaps'};
  const materials:Partial<Record<Region,THREE.Material>>={};e.parts.forEach((_meshes:THREE.Mesh[],id:string)=>{const region=mapping[id];if(!materials[region])materials[region]=e.library.get(resolveChoice(regionChoice(config,region)),region);});
  e.library.prune(new Set(Object.values(materials)));

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type {JacketType} from '../data/config';
+import type {Construction} from '../data/config';
 // Closed elliptical cross sections give every garment part volume.
 export function loft(rings:number[][], segments=80){
  const positions:number[]=[],uv:number[]=[],indices:number[]=[];
@@ -7,11 +7,11 @@ export function loft(rings:number[][], segments=80){
  for(let r=0;r<rings.length-1;r++)for(let j=0;j<segments;j++){const a=r*(segments+1)+j,b=a+segments+1;indices.push(a,b,a+1,b,b+1,a+1);}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));g.setIndex(indices);g.computeVertexNormals();return g;
 }
-export function makeGarment(type:JacketType='regular'){
- const coach=type==='coach',raglan=type==='raglan'||coach,high=type.startsWith('high-neck'),zip=type.includes('zipper'),covered=type.includes('placket');
+export function makeGarment(construction:Construction={shoulder:'regular',closure:'snaps',collar:'varsity'}){
+ const raglan=construction.shoulder==='raglan',high=construction.collar==='high-neck',zip=construction.closure!=='snaps',covered=construction.closure==='placket';
  const group=new THREE.Group(), parts=new Map<string,THREE.Mesh[]>();
  function add(id:string,g:THREE.BufferGeometry,pos=[0,0,0]){const mesh=new THREE.Mesh(g);mesh.position.set(...pos as [number,number,number]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.region=id;group.add(mesh);parts.set(id,[...(parts.get(id)||[]),mesh]);return mesh;}
- const bodyGeometry=loft(coach?[[-1.25,.85,.36],[-1.21,.86,.37],[-.8,.85,.37],[-.55,.85,.38],[-.25,.85,.39],[.05,.87,.40],[.35,.88,.4],[.63,.9,.36],[.82,.82,.32],[.99,.53,.27],[1.05,.31,.23]]:[[-1,.69,.31],[-.94,.75,.34],[-.78,.79,.35],[-.55,.81,.37],[-.25,.84,.39],[.05,.87,.40],[.35,.88,.4],[.63,.9,.36],[.82,.82,.32],[.99,.53,.27],[1.05,.31,.23]]);
+ const bodyGeometry=loft([[-1,.69,.31],[-.94,.75,.34],[-.78,.79,.35],[-.55,.81,.37],[-.25,.84,.39],[.05,.87,.40],[.35,.88,.4],[.63,.9,.36],[.82,.82,.32],[.99,.53,.27],[1.05,.31,.23]]);
  if(raglan){
   // Cut the shoulder surface along a diagonal from neck to underarm.
   // Clip triangles at the boundary so the material seam is continuous.
@@ -34,18 +34,14 @@ export function makeGarment(type:JacketType='regular'){
  const suffix=side===1?'left':'right';
  const sleeve=add(suffix+'Sleeve',loft([[-1.02,.155,.18,side*1.19],[-.93,.18,.21,side*1.22],[-.8,.205,.23,side*1.24],[-.55,.22,.235,side*1.23],[-.3,.24,.25,side*1.18],[-.08,.25,.26,side*1.12],[.2,.255,.27,side*1.04],[.45,.26,.28,side*.95],[.65,.245,.26,side*.88],[.76,.17,.20,side*.84],[.8,.03,.04,side*.8]]));
  sleeve.userData.region='sleeves';
- const cuff=add(coach?suffix+'Sleeve':suffix+'Cuff',loft(coach?[[-1.15,.15,.175,side*1.19],[-1.12,.17,.19,side*1.19],[-1.02,.165,.185,side*1.19],[-.99,.17,.19,side*1.19]]:[[-1.18,.158,.18,side*1.19],[-1.16,.164,.184,side*1.19],[-.98,.165,.185,side*1.19],[-.96,.158,.18,side*1.19]]));cuff.userData.region=coach?'sleeves':'cuffs';
+ const cuff=add(suffix+'Cuff',loft([[-1.18,.158,.18,side*1.19],[-1.16,.164,.184,side*1.19],[-.98,.165,.185,side*1.19],[-.96,.158,.18,side*1.19]]));cuff.userData.region='cuffs';
  const pocket=add(suffix+'PocketTrim',new THREE.CapsuleGeometry(.027,.35,6,12),[side*.56,-.48,.35]);pocket.rotation.z=-side*.40;pocket.userData.region='pocketTrim';
  }
- if(!coach)add('waistband',loft([[-1.18,.70,.32],[-1.16,.73,.335],[-.99,.73,.335],[-.96,.70,.32]]));
- const collar=add('collar',loft(coach?[[1.02,.31,.235],[1.14,.32,.24],[1.02,.47,.33],[.99,.47,.33],[1.10,.31,.23],[1.02,.29,.21]]:high?[[.98,.32,.235],[1.06,.35,.25],[1.38,.32,.24],[1.40,.30,.23],[1.38,.275,.21],[1.02,.28,.21]]:[[.98,.32,.235],[1.04,.345,.25],[1.18,.33,.24],[1.20,.31,.23],[1.18,.285,.21],[1.02,.28,.21]]));
+ add('waistband',loft([[-1.18,.70,.32],[-1.16,.73,.335],[-.99,.73,.335],[-.96,.70,.32]]));
+ const collar=add('collar',loft(high?[[.98,.32,.235],[1.06,.35,.25],[1.38,.32,.24],[1.40,.30,.23],[1.38,.275,.21],[1.02,.28,.21]]:[[.98,.32,.235],[1.04,.345,.25],[1.18,.33,.24],[1.20,.31,.23],[1.18,.285,.21],[1.02,.28,.21]]));
  const p=collar.geometry.attributes.position;for(let i=0;i<p.count;i++){const z=p.getZ(i);p.setY(i,p.getY(i)-Math.max(0,z)*.7);}collar.geometry.computeVertexNormals();
- if(coach)for(const side of [-1,1]){
-  const shape=new THREE.Shape();shape.moveTo(side*.04,1.07);shape.lineTo(side*.30,1.12);shape.lineTo(side*.44,.86);shape.lineTo(side*.23,.69);shape.closePath();
-  add('collar',new THREE.ExtrudeGeometry(shape,{depth:.025,bevelEnabled:true,bevelSize:.008,bevelThickness:.006,bevelSegments:2,steps:1}),[0,0,.265]);
- }
- const top=high?1.23:.83,bottom=coach?-1.22:-1.12;
- const frontZ=(y:number)=>y>.8?.26:y>.55?.34:y<-.85?(coach?.375:.34):.415;
+ const top=high?1.23:.83,bottom=-1.12;
+ const frontZ=(y:number)=>y>.8?.26:y>.55?.34:y<-.85?.34:.415;
  if(!zip||covered){
   // A contoured outer flap follows the body's depth; zipper remains at its edge.
   const ys=[bottom,-.85,.55,.8,top].filter((y,i,a)=>i===0||y>a[i-1]);
@@ -58,7 +54,7 @@ export function makeGarment(type:JacketType='regular'){
   for(let y=bottom+.03;y<top;y+=.032){const tooth=add('snaps',new THREE.BoxGeometry(.019,.014,.015),[x+(Math.round((y-bottom)/.032)%2?-.009:.009),y,frontZ(y)+.018]);tooth.name='zipper-tooth';}
   const slider=add('snaps',new THREE.BoxGeometry(.046,.064,.023),[x,top-.05,frontZ(top-.05)+.03]);slider.name='zipper-pull';
  }
- group.userData.construction=type;
+ group.userData.construction={...construction};
  return {group,parts};
 }
 export function makeMannequin(female:boolean){
