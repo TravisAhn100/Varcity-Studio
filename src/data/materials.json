@@ -1,0 +1,265 @@
+[
+  {
+    "id": "himir",
+    "label": "Himir",
+    "kind": "wool",
+    "swatches": [
+      {
+        "code": "HM01",
+        "baseColor": "#242053",
+        "texture": "/textures/HM01.jpg"
+      },
+      {
+        "code": "HM08",
+        "baseColor": "#a89e89",
+        "texture": "/textures/HM08.jpg"
+      },
+      {
+        "code": "HM13",
+        "baseColor": "#981f2e",
+        "texture": "/textures/HM13.jpg"
+      },
+      {
+        "code": "HM25",
+        "baseColor": "#5e6424",
+        "texture": "/textures/HM25.jpg"
+      },
+      {
+        "code": "HM28",
+        "baseColor": "#0b2f1e",
+        "texture": "/textures/HM28.jpg"
+      },
+      {
+        "code": "HM36",
+        "baseColor": "#2c1d18",
+        "texture": "/textures/HM36.jpg"
+      },
+      {
+        "code": "HM41",
+        "baseColor": "#090d19",
+        "texture": "/textures/HM41.jpg"
+      },
+      {
+        "code": "HM42",
+        "baseColor": "#131313",
+        "texture": "/textures/HM42.jpg"
+      }
+    ],
+    "reference": "/references/himir.jpg"
+  },
+  {
+    "id": "factory",
+    "label": "Factory Himir 2",
+    "kind": "wool",
+    "swatches": [
+      {
+        "code": "TRH203",
+        "baseColor": "#252353",
+        "texture": "/textures/TRH203.jpg"
+      },
+      {
+        "code": "TRH210",
+        "baseColor": "#fdf8e2",
+        "texture": "/textures/TRH210.jpg"
+      },
+      {
+        "code": "TRH219",
+        "baseColor": "#335645",
+        "texture": "/textures/TRH219.jpg"
+      },
+      {
+        "code": "TRH222",
+        "baseColor": "#92252f",
+        "texture": "/textures/TRH222.jpg"
+      },
+      {
+        "code": "TRH231",
+        "baseColor": "#181c28",
+        "texture": "/textures/TRH231.jpg"
+      },
+      {
+        "code": "TRH234",
+        "baseColor": "#151515",
+        "texture": "/textures/TRH234.jpg"
+      },
+      {
+        "code": "TRH244",
+        "baseColor": "#f2d1d6",
+        "texture": "/textures/TRH244.jpg"
+      }
+    ],
+    "reference": "/references/factory.jpg"
+  },
+  {
+    "id": "special-himir",
+    "label": "Special Himir 2",
+    "kind": "wool",
+    "swatches": [
+      {
+        "code": "SHM204",
+        "baseColor": "#98bac6",
+        "texture": "/textures/SHM204.jpg"
+      },
+      {
+        "code": "SHM209",
+        "baseColor": "#2e265f",
+        "texture": "/textures/SHM209.jpg"
+      },
+      {
+        "code": "SHM213",
+        "baseColor": "#d6c7ab",
+        "texture": "/textures/SHM213.jpg"
+      },
+      {
+        "code": "SHM222",
+        "baseColor": "#193c2a",
+        "texture": "/textures/SHM222.jpg"
+      },
+      {
+        "code": "SHM223",
+        "baseColor": "#303928",
+        "texture": "/textures/SHM223.jpg"
+      },
+      {
+        "code": "SHM228",
+        "baseColor": "#0d0d0d",
+        "texture": "/textures/SHM228.jpg"
+      },
+      {
+        "code": "SHM235",
+        "baseColor": "#731825",
+        "texture": "/textures/SHM235.jpg"
+      },
+      {
+        "code": "SHM248",
+        "baseColor": "#dbcbbc",
+        "texture": "/textures/SHM248.jpg"
+      }
+    ],
+    "reference": "/references/special-himir.jpg"
+  },
+  {
+    "id": "leather",
+    "label": "Basic leather",
+    "kind": "leather",
+    "swatches": [
+      {
+        "code": "LD01",
+        "baseColor": "#252326",
+        "texture": "/textures/LD01.jpg"
+      },
+      {
+        "code": "LD05",
+        "baseColor": "#68443a",
+        "texture": "/textures/LD05.jpg"
+      },
+      {
+        "code": "LD07",
+        "baseColor": "#88513b",
+        "texture": "/textures/LD07.jpg"
+      },
+      {
+        "code": "LD10",
+        "baseColor": "#bc2f3f",
+        "texture": "/textures/LD10.jpg"
+      },
+      {
+        "code": "LD15",
+        "baseColor": "#f1ebd8",
+        "texture": "/textures/LD15.jpg"
+      },
+      {
+        "code": "LD16",
+        "baseColor": "#eeebeb",
+        "texture": "/textures/LD16.jpg"
+      },
+      {
+        "code": "LD18",
+        "baseColor": "#333743",
+        "texture": "/textures/LD18.jpg"
+      },
+      {
+        "code": "LD22",
+        "baseColor": "#d7adab",
+        "texture": "/textures/LD22.jpg"
+      }
+    ],
+    "reference": "/references/leather.jpg"
+  },
+  {
+    "id": "premium",
+    "label": "Special leather",
+    "kind": "premium",
+    "swatches": [
+      {
+        "code": "SLD31",
+        "baseColor": "#3c3331",
+        "texture": "/textures/SLD31.jpg"
+      },
+      {
+        "code": "SLD32",
+        "baseColor": "#2f2c2e",
+        "texture": "/textures/SLD32.jpg"
+      },
+      {
+        "code": "SLD33",
+        "baseColor": "#f0eced",
+        "texture": "/textures/SLD33.jpg"
+      },
+      {
+        "code": "SLD34",
+        "baseColor": "#d4c8bc",
+        "texture": "/textures/SLD34.jpg"
+      },
+      {
+        "code": "SLD36",
+        "baseColor": "#b32234",
+        "texture": "/textures/SLD36.jpg"
+      }
+    ],
+    "reference": "/references/premium.jpg"
+  },
+  {
+    "id": "corduroy",
+    "label": "Corduroy",
+    "kind": "corduroy",
+    "swatches": [
+      {
+        "code": "PL02",
+        "baseColor": "#e2dfd3",
+        "texture": "/textures/PL02.jpg"
+      },
+      {
+        "code": "PL04",
+        "baseColor": "#b09470",
+        "texture": "/textures/PL04.jpg"
+      },
+      {
+        "code": "PL05",
+        "baseColor": "#b48e92",
+        "texture": "/textures/PL05.jpg"
+      },
+      {
+        "code": "PL10",
+        "baseColor": "#36533c",
+        "texture": "/textures/PL10.jpg"
+      },
+      {
+        "code": "PL12",
+        "baseColor": "#46140f",
+        "texture": "/textures/PL12.jpg"
+      },
+      {
+        "code": "PL17",
+        "baseColor": "#191d39",
+        "texture": "/textures/PL17.jpg"
+      },
+      {
+        "code": "PL18",
+        "baseColor": "#22211e",
+        "texture": "/textures/PL18.jpg"
+      }
+    ],
+    "reference": "/references/corduroy.jpg"
+  }
+]
