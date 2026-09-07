@@ -1,4 +1,4 @@
-# Varsity 1.0.0
+# Varsity 1.0.1
 
 A client-side varsity jacket configurator. Choose Regular Varsity, select a garment region, then change manufacturer fabrics and colors in an immediate Three.js preview. Includes rotation, zoom, view presets, approximate male/female mannequins, Regular XS–5XL measurements, and real manufacturer examples.
 
@@ -14,14 +14,17 @@ npm run preview
 npm test
 ```
 
-Build output: `dist/`. No backend, API key, account system, database, ordering, pricing or image-generation service is required. Refresh opens a fresh default design intentionally; persistence is outside 1.0.0 scope.
+Build output: `dist/`. No backend, API key, account system, database, ordering, pricing or image-generation service is required. Refresh opens a fresh default design intentionally; persistence is outside 1.0.1 scope.
 
 ## Architecture
 
-- `src/data/materials.json`: 43 manufacturer swatches in six families. Codes are preserved, with approximate colors sampled from supplied fabric sheets.
+- `src/data/materials.json`: 329 manufacturer swatches in 12 supplied families. Every usable code retains a cropped source image, a seamless color map, a matching relief map, a fallback color, and family-specific physical settings.
 - `src/data/config.ts`: serializable design state, region groups, construction availability, hardware/trim approximations, and manufacturer Regular measurements. Default is Regular M.
 - `src/viewer/garment.ts`: procedural elliptical lofts, tapered sleeves, collar, thick cuffs, waistband, pocket welts and seven snaps. Ten independent mesh groups retain separate left/right identifiers for later independent controls.
-- `src/viewer/Viewer.tsx`: rendering and camera controls, picking, neutral mannequin forms, deterministic procedural bump maps, and family-specific physical material properties. Rendering is separate from configuration.
+- `src/viewer/materialLibrary.ts`: bounded, asynchronous texture cache. It applies source pixels as color instead of tinting the jacket with an average hex, aligns each relief map to its color map, handles stale loads safely, and falls back to the sampled color only when an asset fails.
+- `src/viewer/Viewer.tsx`: rendering and camera controls, picking, neutral mannequin forms, and integration with the source-textured material library. Rendering is separate from configuration.
+- `app/brand.css`: editable Varsity blue, interaction red, highlight yellow, Graduate display type, and neutral UI type tokens.
+- `public/fonts`: self-hosted Graduate font and its Open Font License.
 - `app/page.tsx`: start → construction → customization, reference dialogs and accessible controls.
 - `public/textures`: small source-sheet crops used as UI swatches; `public/references`: original sheets and construction/size reference.
 
@@ -29,7 +32,7 @@ The implementation uses Vite, React, TypeScript and Three.js with the starter's 
 
 ## Add swatches and material families
 
-Append a swatch under its existing family with its **actual manufacturer code**, approximate `baseColor`, and local `texture` path. Never invent manufacturer codes. Add the referenced image under `public/textures`. A family has `id`, `label`, `kind`, `swatches`, and `reference`. Extend the renderer's material behavior for a new `kind` as appropriate: roughness, sheen, clearcoat and bump scale. Color sampling is approximate, not color-calibrated.
+Append a swatch under its existing family with its **actual manufacturer code**, source `colorMap`, matching `bumpMap`, approximate fallback `baseColor`, and UI `texture` path. Never invent manufacturer codes. A family has `id`, `label`, `kind`, `materialProperties`, `swatches`, and `reference`. Extend the family properties for a new physical material: roughness, sheen, clearcoat, bump scale, and repeat. Color sampling is approximate and is never the primary jacket surface.
 
 The import script documents source sheet coordinates and can be adapted to another local reference directory; it requires Pillow. Imported output is committed, so running this script is not required to develop or deploy.
 
@@ -45,7 +48,8 @@ Attachment numbering shifts after corduroy: embroidery is image 1; fabrics 2–1
 
 Source catalogue: https://gwa.kr/goods/catalog?code=00010004 . Real example images are linked from the manufacturer; their availability depends on that site. Supplied temporary screenshot files had expired at the listed paths, so corresponding catalogue photographs are used instead.
 
-- Wool, synthetic leather, premium leather and corduroy use approximate procedural surface maps with distinct optical settings. These are not scans of production textiles.
+- Source-sheet crops supply the visible material pixels and relief structure. Mirroring reduces hard tile seams. The photographs are manufacturer references rather than calibrated production texture scans, so scale, lighting, and exact color remain approximate.
+- PL12 carries its burgundy corduroy ribs in both color and relief. TRH234 carries its dark Factory Himir textile image with a softer wool relief and matte finish.
 - Geometry is a procedural prototype, not a production pattern or cloth simulation. Sleeve and collar transitions are approximate.
 - Ribbing/hardware options are explicitly marked as prototype colors without manufacturer codes. Two cream rib stripes are fixed.
 - Mannequins are faceless neutral forms. Size changes reference data only, not geometry or fit prediction.
@@ -55,7 +59,7 @@ Source catalogue: https://gwa.kr/goods/catalog?code=00010004 . Real example imag
 
 ## Validation
 
-`npm run build` performs strict TypeScript checking and production bundling. `npm test` checks swatch integrity/assets, initial material resolution, all ten independent parts, finite 3D positions/normals, garment depth, seven snaps, two mannequin forms, Regular M source measurements and JSON serialization. Browser interaction/visual acceptance should also be reviewed on target devices; automated structural checks do not establish visual fidelity.
+`npm run build` performs strict TypeScript checking and production bundling. `npm test` checks all 329 source color/relief assets and family properties, explicitly distinguishes PL12 from TRH234, and verifies initial material resolution, all ten independent parts, finite 3D positions/normals, garment depth, seven snaps, two mannequin forms, Regular M source measurements and JSON serialization. Browser interaction/visual acceptance should also be reviewed on target devices; automated structural checks do not establish visual fidelity.
 
 ## GitHub → Cloudflare Pages
 

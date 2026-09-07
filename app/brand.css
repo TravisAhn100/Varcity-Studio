@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Graduate';
+  src: url('/fonts/graduate.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  --varsity-blue: #113863;
+  --varsity-red: #cf4437;
+  --varsity-yellow: #eae150;
+  --interaction-tint: #fbefed;
+  --font-display: 'Graduate', Georgia, serif;
+  --font-ui: Arial, Helvetica, sans-serif;
+}

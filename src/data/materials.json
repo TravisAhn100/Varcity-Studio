@@ -3,46 +3,647 @@
     "id": "himir",
     "label": "Himir",
     "kind": "wool",
+    "materialProperties": {
+      "roughness": 0.94,
+      "metalness": 0,
+      "sheen": 0.45,
+      "clearcoat": 0,
+      "bumpScale": 0.009,
+      "tileRepeat": [
+        10,
+        5
+      ]
+    },
     "swatches": [
       {
         "code": "HM01",
-        "baseColor": "#242053",
-        "texture": "/textures/HM01.jpg"
+        "family": "himir",
+        "baseColor": "#242054",
+        "texture": "/textures/HM01.jpg",
+        "colorMap": "/textures/HM01-color.jpg",
+        "bumpMap": "/textures/HM01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          246,
+          153,
+          358
+        ]
+      },
+      {
+        "code": "HM02",
+        "family": "himir",
+        "baseColor": "#166a52",
+        "texture": "/textures/HM02.jpg",
+        "colorMap": "/textures/HM02-color.jpg",
+        "bumpMap": "/textures/HM02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          246,
+          297,
+          358
+        ]
+      },
+      {
+        "code": "HM03",
+        "family": "himir",
+        "baseColor": "#d085a6",
+        "texture": "/textures/HM03.jpg",
+        "colorMap": "/textures/HM03-color.jpg",
+        "bumpMap": "/textures/HM03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          246,
+          441,
+          358
+        ]
+      },
+      {
+        "code": "HM04",
+        "family": "himir",
+        "baseColor": "#483055",
+        "texture": "/textures/HM04.jpg",
+        "colorMap": "/textures/HM04-color.jpg",
+        "bumpMap": "/textures/HM04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          246,
+          585,
+          358
+        ]
+      },
+      {
+        "code": "HM05",
+        "family": "himir",
+        "baseColor": "#9b7f55",
+        "texture": "/textures/HM05.jpg",
+        "colorMap": "/textures/HM05-color.jpg",
+        "bumpMap": "/textures/HM05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          246,
+          729,
+          358
+        ]
+      },
+      {
+        "code": "HM06",
+        "family": "himir",
+        "baseColor": "#a28755",
+        "texture": "/textures/HM06.jpg",
+        "colorMap": "/textures/HM06-color.jpg",
+        "bumpMap": "/textures/HM06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          246,
+          873,
+          358
+        ]
+      },
+      {
+        "code": "HM07",
+        "family": "himir",
+        "baseColor": "#7a6852",
+        "texture": "/textures/HM07.jpg",
+        "colorMap": "/textures/HM07-color.jpg",
+        "bumpMap": "/textures/HM07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          246,
+          1017,
+          358
+        ]
       },
       {
         "code": "HM08",
-        "baseColor": "#a89e89",
-        "texture": "/textures/HM08.jpg"
+        "family": "himir",
+        "baseColor": "#a89f89",
+        "texture": "/textures/HM08.jpg",
+        "colorMap": "/textures/HM08-color.jpg",
+        "bumpMap": "/textures/HM08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          246,
+          1161,
+          358
+        ]
+      },
+      {
+        "code": "HM09",
+        "family": "himir",
+        "baseColor": "#d2d0b7",
+        "texture": "/textures/HM09.jpg",
+        "colorMap": "/textures/HM09-color.jpg",
+        "bumpMap": "/textures/HM09-bump.png",
+        "discontinued": true,
+        "sourceCrop": [
+          41,
+          531,
+          153,
+          643
+        ]
+      },
+      {
+        "code": "HM10",
+        "family": "himir",
+        "baseColor": "#709a97",
+        "texture": "/textures/HM10.jpg",
+        "colorMap": "/textures/HM10-color.jpg",
+        "bumpMap": "/textures/HM10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          531,
+          297,
+          643
+        ]
+      },
+      {
+        "code": "HM11",
+        "family": "himir",
+        "baseColor": "#5e184b",
+        "texture": "/textures/HM11.jpg",
+        "colorMap": "/textures/HM11-color.jpg",
+        "bumpMap": "/textures/HM11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          531,
+          441,
+          643
+        ]
+      },
+      {
+        "code": "HM12",
+        "family": "himir",
+        "baseColor": "#411e28",
+        "texture": "/textures/HM12.jpg",
+        "colorMap": "/textures/HM12-color.jpg",
+        "bumpMap": "/textures/HM12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          531,
+          585,
+          643
+        ]
       },
       {
         "code": "HM13",
-        "baseColor": "#981f2e",
-        "texture": "/textures/HM13.jpg"
+        "family": "himir",
+        "baseColor": "#981f2f",
+        "texture": "/textures/HM13.jpg",
+        "colorMap": "/textures/HM13-color.jpg",
+        "bumpMap": "/textures/HM13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          531,
+          729,
+          643
+        ]
+      },
+      {
+        "code": "HM14",
+        "family": "himir",
+        "baseColor": "#a30853",
+        "texture": "/textures/HM14.jpg",
+        "colorMap": "/textures/HM14-color.jpg",
+        "bumpMap": "/textures/HM14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          531,
+          873,
+          643
+        ]
+      },
+      {
+        "code": "HM15",
+        "family": "himir",
+        "baseColor": "#ba2d29",
+        "texture": "/textures/HM15.jpg",
+        "colorMap": "/textures/HM15-color.jpg",
+        "bumpMap": "/textures/HM15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          531,
+          1017,
+          643
+        ]
+      },
+      {
+        "code": "HM16",
+        "family": "himir",
+        "baseColor": "#86256c",
+        "texture": "/textures/HM16.jpg",
+        "colorMap": "/textures/HM16-color.jpg",
+        "bumpMap": "/textures/HM16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          531,
+          1161,
+          643
+        ]
+      },
+      {
+        "code": "HM17",
+        "family": "himir",
+        "baseColor": "#d1526c",
+        "texture": "/textures/HM17.jpg",
+        "colorMap": "/textures/HM17-color.jpg",
+        "bumpMap": "/textures/HM17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          816,
+          153,
+          928
+        ]
+      },
+      {
+        "code": "HM18",
+        "family": "himir",
+        "baseColor": "#154c80",
+        "texture": "/textures/HM18.jpg",
+        "colorMap": "/textures/HM18-color.jpg",
+        "bumpMap": "/textures/HM18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          816,
+          297,
+          928
+        ]
+      },
+      {
+        "code": "HM19",
+        "family": "himir",
+        "baseColor": "#23181f",
+        "texture": "/textures/HM19.jpg",
+        "colorMap": "/textures/HM19-color.jpg",
+        "bumpMap": "/textures/HM19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          816,
+          441,
+          928
+        ]
+      },
+      {
+        "code": "HM20",
+        "family": "himir",
+        "baseColor": "#3d224b",
+        "texture": "/textures/HM20.jpg",
+        "colorMap": "/textures/HM20-color.jpg",
+        "bumpMap": "/textures/HM20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          816,
+          585,
+          928
+        ]
+      },
+      {
+        "code": "HM21",
+        "family": "himir",
+        "baseColor": "#2e1f44",
+        "texture": "/textures/HM21.jpg",
+        "colorMap": "/textures/HM21-color.jpg",
+        "bumpMap": "/textures/HM21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          816,
+          729,
+          928
+        ]
+      },
+      {
+        "code": "HM22",
+        "family": "himir",
+        "baseColor": "#6d1c40",
+        "texture": "/textures/HM22.jpg",
+        "colorMap": "/textures/HM22-color.jpg",
+        "bumpMap": "/textures/HM22-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          816,
+          873,
+          928
+        ]
+      },
+      {
+        "code": "HM23",
+        "family": "himir",
+        "baseColor": "#b2a8a7",
+        "texture": "/textures/HM23.jpg",
+        "colorMap": "/textures/HM23-color.jpg",
+        "bumpMap": "/textures/HM23-bump.png",
+        "discontinued": true,
+        "sourceCrop": [
+          905,
+          816,
+          1017,
+          928
+        ]
+      },
+      {
+        "code": "HM24",
+        "family": "himir",
+        "baseColor": "#271020",
+        "texture": "/textures/HM24.jpg",
+        "colorMap": "/textures/HM24-color.jpg",
+        "bumpMap": "/textures/HM24-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          816,
+          1161,
+          928
+        ]
       },
       {
         "code": "HM25",
-        "baseColor": "#5e6424",
-        "texture": "/textures/HM25.jpg"
+        "family": "himir",
+        "baseColor": "#5f6524",
+        "texture": "/textures/HM25.jpg",
+        "colorMap": "/textures/HM25-color.jpg",
+        "bumpMap": "/textures/HM25-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          1101,
+          153,
+          1213
+        ]
+      },
+      {
+        "code": "HM26",
+        "family": "himir",
+        "baseColor": "#bab656",
+        "texture": "/textures/HM26.jpg",
+        "colorMap": "/textures/HM26-color.jpg",
+        "bumpMap": "/textures/HM26-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          1101,
+          297,
+          1213
+        ]
+      },
+      {
+        "code": "HM27",
+        "family": "himir",
+        "baseColor": "#075d3b",
+        "texture": "/textures/HM27.jpg",
+        "colorMap": "/textures/HM27-color.jpg",
+        "bumpMap": "/textures/HM27-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          1101,
+          441,
+          1213
+        ]
       },
       {
         "code": "HM28",
+        "family": "himir",
         "baseColor": "#0b2f1e",
-        "texture": "/textures/HM28.jpg"
+        "texture": "/textures/HM28.jpg",
+        "colorMap": "/textures/HM28-color.jpg",
+        "bumpMap": "/textures/HM28-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          1101,
+          585,
+          1213
+        ]
+      },
+      {
+        "code": "HM29",
+        "family": "himir",
+        "baseColor": "#222e47",
+        "texture": "/textures/HM29.jpg",
+        "colorMap": "/textures/HM29-color.jpg",
+        "bumpMap": "/textures/HM29-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          1101,
+          729,
+          1213
+        ]
+      },
+      {
+        "code": "HM30",
+        "family": "himir",
+        "baseColor": "#0e112e",
+        "texture": "/textures/HM30.jpg",
+        "colorMap": "/textures/HM30-color.jpg",
+        "bumpMap": "/textures/HM30-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          1101,
+          873,
+          1213
+        ]
+      },
+      {
+        "code": "HM31",
+        "family": "himir",
+        "baseColor": "#1a2014",
+        "texture": "/textures/HM31.jpg",
+        "colorMap": "/textures/HM31-color.jpg",
+        "bumpMap": "/textures/HM31-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          1101,
+          1017,
+          1213
+        ]
+      },
+      {
+        "code": "HM32",
+        "family": "himir",
+        "baseColor": "#6c4f27",
+        "texture": "/textures/HM32.jpg",
+        "colorMap": "/textures/HM32-color.jpg",
+        "bumpMap": "/textures/HM32-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          1101,
+          1161,
+          1213
+        ]
+      },
+      {
+        "code": "HM33",
+        "family": "himir",
+        "baseColor": "#6b5736",
+        "texture": "/textures/HM33.jpg",
+        "colorMap": "/textures/HM33-color.jpg",
+        "bumpMap": "/textures/HM33-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          1386,
+          153,
+          1498
+        ]
+      },
+      {
+        "code": "HM34",
+        "family": "himir",
+        "baseColor": "#5d1a26",
+        "texture": "/textures/HM34.jpg",
+        "colorMap": "/textures/HM34-color.jpg",
+        "bumpMap": "/textures/HM34-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          1386,
+          297,
+          1498
+        ]
+      },
+      {
+        "code": "HM35",
+        "family": "himir",
+        "baseColor": "#543d28",
+        "texture": "/textures/HM35.jpg",
+        "colorMap": "/textures/HM35-color.jpg",
+        "bumpMap": "/textures/HM35-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          1386,
+          441,
+          1498
+        ]
       },
       {
         "code": "HM36",
+        "family": "himir",
         "baseColor": "#2c1d18",
-        "texture": "/textures/HM36.jpg"
+        "texture": "/textures/HM36.jpg",
+        "colorMap": "/textures/HM36-color.jpg",
+        "bumpMap": "/textures/HM36-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          1386,
+          585,
+          1498
+        ]
+      },
+      {
+        "code": "HM37",
+        "family": "himir",
+        "baseColor": "#231a14",
+        "texture": "/textures/HM37.jpg",
+        "colorMap": "/textures/HM37-color.jpg",
+        "bumpMap": "/textures/HM37-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          1386,
+          729,
+          1498
+        ]
+      },
+      {
+        "code": "HM38",
+        "family": "himir",
+        "baseColor": "#656162",
+        "texture": "/textures/HM38.jpg",
+        "colorMap": "/textures/HM38-color.jpg",
+        "bumpMap": "/textures/HM38-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          1386,
+          873,
+          1498
+        ]
+      },
+      {
+        "code": "HM39",
+        "family": "himir",
+        "baseColor": "#3a393f",
+        "texture": "/textures/HM39.jpg",
+        "colorMap": "/textures/HM39-color.jpg",
+        "bumpMap": "/textures/HM39-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          1386,
+          1017,
+          1498
+        ]
+      },
+      {
+        "code": "HM40",
+        "family": "himir",
+        "baseColor": "#1f1e22",
+        "texture": "/textures/HM40.jpg",
+        "colorMap": "/textures/HM40-color.jpg",
+        "bumpMap": "/textures/HM40-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          1386,
+          1161,
+          1498
+        ]
       },
       {
         "code": "HM41",
+        "family": "himir",
         "baseColor": "#090d19",
-        "texture": "/textures/HM41.jpg"
+        "texture": "/textures/HM41.jpg",
+        "colorMap": "/textures/HM41-color.jpg",
+        "bumpMap": "/textures/HM41-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          1671,
+          153,
+          1783
+        ]
       },
       {
         "code": "HM42",
+        "family": "himir",
         "baseColor": "#131313",
-        "texture": "/textures/HM42.jpg"
+        "texture": "/textures/HM42.jpg",
+        "colorMap": "/textures/HM42-color.jpg",
+        "bumpMap": "/textures/HM42-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          1671,
+          297,
+          1783
+        ]
       }
     ],
     "reference": "/references/himir.jpg"
@@ -51,41 +652,722 @@
     "id": "factory",
     "label": "Factory Himir 2",
     "kind": "wool",
+    "materialProperties": {
+      "roughness": 0.94,
+      "metalness": 0,
+      "sheen": 0.45,
+      "clearcoat": 0,
+      "bumpScale": 0.009,
+      "tileRepeat": [
+        10,
+        5
+      ]
+    },
     "swatches": [
       {
+        "code": "TRH201",
+        "family": "factory",
+        "baseColor": "#b5c7d3",
+        "texture": "/textures/TRH201.jpg",
+        "colorMap": "/textures/TRH201-color.jpg",
+        "bumpMap": "/textures/TRH201-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          234,
+          155,
+          346
+        ]
+      },
+      {
+        "code": "TRH202",
+        "family": "factory",
+        "baseColor": "#232562",
+        "texture": "/textures/TRH202.jpg",
+        "colorMap": "/textures/TRH202-color.jpg",
+        "bumpMap": "/textures/TRH202-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          234,
+          299,
+          346
+        ]
+      },
+      {
         "code": "TRH203",
+        "family": "factory",
         "baseColor": "#252353",
-        "texture": "/textures/TRH203.jpg"
+        "texture": "/textures/TRH203.jpg",
+        "colorMap": "/textures/TRH203-color.jpg",
+        "bumpMap": "/textures/TRH203-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          234,
+          443,
+          346
+        ]
+      },
+      {
+        "code": "TRH204",
+        "family": "factory",
+        "baseColor": "#16424d",
+        "texture": "/textures/TRH204.jpg",
+        "colorMap": "/textures/TRH204-color.jpg",
+        "bumpMap": "/textures/TRH204-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          234,
+          587,
+          346
+        ]
+      },
+      {
+        "code": "TRH205",
+        "family": "factory",
+        "baseColor": "#175f68",
+        "texture": "/textures/TRH205.jpg",
+        "colorMap": "/textures/TRH205-color.jpg",
+        "bumpMap": "/textures/TRH205-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          234,
+          731,
+          346
+        ]
+      },
+      {
+        "code": "TRH206",
+        "family": "factory",
+        "baseColor": "#959a93",
+        "texture": "/textures/TRH206.jpg",
+        "colorMap": "/textures/TRH206-color.jpg",
+        "bumpMap": "/textures/TRH206-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          234,
+          875,
+          346
+        ]
+      },
+      {
+        "code": "TRH207",
+        "family": "factory",
+        "baseColor": "#84857f",
+        "texture": "/textures/TRH207.jpg",
+        "colorMap": "/textures/TRH207-color.jpg",
+        "bumpMap": "/textures/TRH207-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          234,
+          1019,
+          346
+        ]
+      },
+      {
+        "code": "TRH208",
+        "family": "factory",
+        "baseColor": "#515750",
+        "texture": "/textures/TRH208.jpg",
+        "colorMap": "/textures/TRH208-color.jpg",
+        "bumpMap": "/textures/TRH208-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          234,
+          1163,
+          346
+        ]
+      },
+      {
+        "code": "TRH209",
+        "family": "factory",
+        "baseColor": "#3c433c",
+        "texture": "/textures/TRH209.jpg",
+        "colorMap": "/textures/TRH209-color.jpg",
+        "bumpMap": "/textures/TRH209-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          519,
+          155,
+          631
+        ]
       },
       {
         "code": "TRH210",
+        "family": "factory",
         "baseColor": "#fdf8e2",
-        "texture": "/textures/TRH210.jpg"
+        "texture": "/textures/TRH210.jpg",
+        "colorMap": "/textures/TRH210-color.jpg",
+        "bumpMap": "/textures/TRH210-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          519,
+          299,
+          631
+        ]
+      },
+      {
+        "code": "TRH211",
+        "family": "factory",
+        "baseColor": "#fffcf4",
+        "texture": "/textures/TRH211.jpg",
+        "colorMap": "/textures/TRH211-color.jpg",
+        "bumpMap": "/textures/TRH211-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          519,
+          443,
+          631
+        ]
+      },
+      {
+        "code": "TRH212",
+        "family": "factory",
+        "baseColor": "#f7d5ce",
+        "texture": "/textures/TRH212.jpg",
+        "colorMap": "/textures/TRH212-color.jpg",
+        "bumpMap": "/textures/TRH212-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          519,
+          587,
+          631
+        ]
+      },
+      {
+        "code": "TRH213",
+        "family": "factory",
+        "baseColor": "#eb7e8b",
+        "texture": "/textures/TRH213.jpg",
+        "colorMap": "/textures/TRH213-color.jpg",
+        "bumpMap": "/textures/TRH213-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          519,
+          731,
+          631
+        ]
+      },
+      {
+        "code": "TRH214",
+        "family": "factory",
+        "baseColor": "#f5d96e",
+        "texture": "/textures/TRH214.jpg",
+        "colorMap": "/textures/TRH214-color.jpg",
+        "bumpMap": "/textures/TRH214-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          519,
+          875,
+          631
+        ]
+      },
+      {
+        "code": "TRH215",
+        "family": "factory",
+        "baseColor": "#fdc267",
+        "texture": "/textures/TRH215.jpg",
+        "colorMap": "/textures/TRH215-color.jpg",
+        "bumpMap": "/textures/TRH215-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          519,
+          1019,
+          631
+        ]
+      },
+      {
+        "code": "TRH216",
+        "family": "factory",
+        "baseColor": "#a13255",
+        "texture": "/textures/TRH216.jpg",
+        "colorMap": "/textures/TRH216-color.jpg",
+        "bumpMap": "/textures/TRH216-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          519,
+          1163,
+          631
+        ]
+      },
+      {
+        "code": "TRH217",
+        "family": "factory",
+        "baseColor": "#609176",
+        "texture": "/textures/TRH217.jpg",
+        "colorMap": "/textures/TRH217-color.jpg",
+        "bumpMap": "/textures/TRH217-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          804,
+          155,
+          916
+        ]
+      },
+      {
+        "code": "TRH218",
+        "family": "factory",
+        "baseColor": "#424530",
+        "texture": "/textures/TRH218.jpg",
+        "colorMap": "/textures/TRH218-color.jpg",
+        "bumpMap": "/textures/TRH218-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          804,
+          299,
+          916
+        ]
       },
       {
         "code": "TRH219",
+        "family": "factory",
         "baseColor": "#335645",
-        "texture": "/textures/TRH219.jpg"
+        "texture": "/textures/TRH219.jpg",
+        "colorMap": "/textures/TRH219-color.jpg",
+        "bumpMap": "/textures/TRH219-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          804,
+          443,
+          916
+        ]
+      },
+      {
+        "code": "TRH220",
+        "family": "factory",
+        "baseColor": "#294133",
+        "texture": "/textures/TRH220.jpg",
+        "colorMap": "/textures/TRH220-color.jpg",
+        "bumpMap": "/textures/TRH220-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          804,
+          587,
+          916
+        ]
+      },
+      {
+        "code": "TRH221",
+        "family": "factory",
+        "baseColor": "#c62734",
+        "texture": "/textures/TRH221.jpg",
+        "colorMap": "/textures/TRH221-color.jpg",
+        "bumpMap": "/textures/TRH221-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          804,
+          731,
+          916
+        ]
       },
       {
         "code": "TRH222",
-        "baseColor": "#92252f",
-        "texture": "/textures/TRH222.jpg"
+        "family": "factory",
+        "baseColor": "#92252e",
+        "texture": "/textures/TRH222.jpg",
+        "colorMap": "/textures/TRH222-color.jpg",
+        "bumpMap": "/textures/TRH222-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          804,
+          875,
+          916
+        ]
+      },
+      {
+        "code": "TRH223",
+        "family": "factory",
+        "baseColor": "#592222",
+        "texture": "/textures/TRH223.jpg",
+        "colorMap": "/textures/TRH223-color.jpg",
+        "bumpMap": "/textures/TRH223-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          804,
+          1019,
+          916
+        ]
+      },
+      {
+        "code": "TRH224",
+        "family": "factory",
+        "baseColor": "#412628",
+        "texture": "/textures/TRH224.jpg",
+        "colorMap": "/textures/TRH224-color.jpg",
+        "bumpMap": "/textures/TRH224-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          804,
+          1163,
+          916
+        ]
+      },
+      {
+        "code": "TRH225",
+        "family": "factory",
+        "baseColor": "#492c5f",
+        "texture": "/textures/TRH225.jpg",
+        "colorMap": "/textures/TRH225-color.jpg",
+        "bumpMap": "/textures/TRH225-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1089,
+          155,
+          1201
+        ]
+      },
+      {
+        "code": "TRH226",
+        "family": "factory",
+        "baseColor": "#452d4c",
+        "texture": "/textures/TRH226.jpg",
+        "colorMap": "/textures/TRH226-color.jpg",
+        "bumpMap": "/textures/TRH226-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1089,
+          299,
+          1201
+        ]
+      },
+      {
+        "code": "TRH227",
+        "family": "factory",
+        "baseColor": "#ead9ae",
+        "texture": "/textures/TRH227.jpg",
+        "colorMap": "/textures/TRH227-color.jpg",
+        "bumpMap": "/textures/TRH227-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1089,
+          443,
+          1201
+        ]
+      },
+      {
+        "code": "TRH228",
+        "family": "factory",
+        "baseColor": "#8b7250",
+        "texture": "/textures/TRH228.jpg",
+        "colorMap": "/textures/TRH228-color.jpg",
+        "bumpMap": "/textures/TRH228-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1089,
+          587,
+          1201
+        ]
+      },
+      {
+        "code": "TRH229",
+        "family": "factory",
+        "baseColor": "#2c2616",
+        "texture": "/textures/TRH229.jpg",
+        "colorMap": "/textures/TRH229-color.jpg",
+        "bumpMap": "/textures/TRH229-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1089,
+          731,
+          1201
+        ]
+      },
+      {
+        "code": "TRH230",
+        "family": "factory",
+        "baseColor": "#1e2243",
+        "texture": "/textures/TRH230.jpg",
+        "colorMap": "/textures/TRH230-color.jpg",
+        "bumpMap": "/textures/TRH230-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1089,
+          875,
+          1201
+        ]
       },
       {
         "code": "TRH231",
+        "family": "factory",
         "baseColor": "#181c28",
-        "texture": "/textures/TRH231.jpg"
+        "texture": "/textures/TRH231.jpg",
+        "colorMap": "/textures/TRH231-color.jpg",
+        "bumpMap": "/textures/TRH231-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1089,
+          1019,
+          1201
+        ]
+      },
+      {
+        "code": "TRH232",
+        "family": "factory",
+        "baseColor": "#181d23",
+        "texture": "/textures/TRH232.jpg",
+        "colorMap": "/textures/TRH232-color.jpg",
+        "bumpMap": "/textures/TRH232-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          1089,
+          1163,
+          1201
+        ]
+      },
+      {
+        "code": "TRH233",
+        "family": "factory",
+        "baseColor": "#191a1f",
+        "texture": "/textures/TRH233.jpg",
+        "colorMap": "/textures/TRH233-color.jpg",
+        "bumpMap": "/textures/TRH233-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1374,
+          155,
+          1486
+        ]
       },
       {
         "code": "TRH234",
+        "family": "factory",
         "baseColor": "#151515",
-        "texture": "/textures/TRH234.jpg"
+        "texture": "/textures/TRH234.jpg",
+        "colorMap": "/textures/TRH234-color.jpg",
+        "bumpMap": "/textures/TRH234-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1374,
+          299,
+          1486
+        ]
+      },
+      {
+        "code": "TRH235",
+        "family": "factory",
+        "baseColor": "#be3960",
+        "texture": "/textures/TRH235.jpg",
+        "colorMap": "/textures/TRH235-color.jpg",
+        "bumpMap": "/textures/TRH235-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1374,
+          443,
+          1486
+        ]
+      },
+      {
+        "code": "TRH236",
+        "family": "factory",
+        "baseColor": "#f27f3a",
+        "texture": "/textures/TRH236.jpg",
+        "colorMap": "/textures/TRH236-color.jpg",
+        "bumpMap": "/textures/TRH236-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1374,
+          587,
+          1486
+        ]
+      },
+      {
+        "code": "TRH237",
+        "family": "factory",
+        "baseColor": "#89a7c2",
+        "texture": "/textures/TRH237.jpg",
+        "colorMap": "/textures/TRH237-color.jpg",
+        "bumpMap": "/textures/TRH237-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1374,
+          731,
+          1486
+        ]
+      },
+      {
+        "code": "TRH238",
+        "family": "factory",
+        "baseColor": "#254686",
+        "texture": "/textures/TRH238.jpg",
+        "colorMap": "/textures/TRH238-color.jpg",
+        "bumpMap": "/textures/TRH238-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1374,
+          875,
+          1486
+        ]
+      },
+      {
+        "code": "TRH239",
+        "family": "factory",
+        "baseColor": "#592430",
+        "texture": "/textures/TRH239.jpg",
+        "colorMap": "/textures/TRH239-color.jpg",
+        "bumpMap": "/textures/TRH239-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1374,
+          1019,
+          1486
+        ]
+      },
+      {
+        "code": "TRH240",
+        "family": "factory",
+        "baseColor": "#c1bba4",
+        "texture": "/textures/TRH240.jpg",
+        "colorMap": "/textures/TRH240-color.jpg",
+        "bumpMap": "/textures/TRH240-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          1374,
+          1163,
+          1486
+        ]
+      },
+      {
+        "code": "TRH241",
+        "family": "factory",
+        "baseColor": "#aac4a0",
+        "texture": "/textures/TRH241.jpg",
+        "colorMap": "/textures/TRH241-color.jpg",
+        "bumpMap": "/textures/TRH241-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1659,
+          155,
+          1771
+        ]
+      },
+      {
+        "code": "TRH242",
+        "family": "factory",
+        "baseColor": "#887e5c",
+        "texture": "/textures/TRH242.jpg",
+        "colorMap": "/textures/TRH242-color.jpg",
+        "bumpMap": "/textures/TRH242-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1659,
+          299,
+          1771
+        ]
+      },
+      {
+        "code": "TRH243",
+        "family": "factory",
+        "baseColor": "#c8dcdd",
+        "texture": "/textures/TRH243.jpg",
+        "colorMap": "/textures/TRH243-color.jpg",
+        "bumpMap": "/textures/TRH243-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1659,
+          443,
+          1771
+        ]
       },
       {
         "code": "TRH244",
-        "baseColor": "#f2d1d6",
-        "texture": "/textures/TRH244.jpg"
+        "family": "factory",
+        "baseColor": "#f2d0d5",
+        "texture": "/textures/TRH244.jpg",
+        "colorMap": "/textures/TRH244-color.jpg",
+        "bumpMap": "/textures/TRH244-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1659,
+          587,
+          1771
+        ]
+      },
+      {
+        "code": "TRH245",
+        "family": "factory",
+        "baseColor": "#1b2465",
+        "texture": "/textures/TRH245.jpg",
+        "colorMap": "/textures/TRH245-color.jpg",
+        "bumpMap": "/textures/TRH245-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1659,
+          731,
+          1771
+        ]
+      },
+      {
+        "code": "TRH246",
+        "family": "factory",
+        "baseColor": "#d3c4e6",
+        "texture": "/textures/TRH246.jpg",
+        "colorMap": "/textures/TRH246-color.jpg",
+        "bumpMap": "/textures/TRH246-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1659,
+          875,
+          1771
+        ]
+      },
+      {
+        "code": "TRH247",
+        "family": "factory",
+        "baseColor": "#d0b6aa",
+        "texture": "/textures/TRH247.jpg",
+        "colorMap": "/textures/TRH247-color.jpg",
+        "bumpMap": "/textures/TRH247-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1659,
+          1019,
+          1771
+        ]
       }
     ],
     "reference": "/references/factory.jpg"
@@ -94,46 +1376,812 @@
     "id": "special-himir",
     "label": "Special Himir 2",
     "kind": "wool",
+    "materialProperties": {
+      "roughness": 0.94,
+      "metalness": 0,
+      "sheen": 0.45,
+      "clearcoat": 0,
+      "bumpScale": 0.009,
+      "tileRepeat": [
+        10,
+        5
+      ]
+    },
     "swatches": [
       {
+        "code": "SHM201",
+        "family": "special-himir",
+        "baseColor": "#202142",
+        "texture": "/textures/SHM201.jpg",
+        "colorMap": "/textures/SHM201-color.jpg",
+        "bumpMap": "/textures/SHM201-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          238,
+          154,
+          350
+        ]
+      },
+      {
+        "code": "SHM202",
+        "family": "special-himir",
+        "baseColor": "#1c1f30",
+        "texture": "/textures/SHM202.jpg",
+        "colorMap": "/textures/SHM202-color.jpg",
+        "bumpMap": "/textures/SHM202-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          238,
+          298,
+          350
+        ]
+      },
+      {
+        "code": "SHM203",
+        "family": "special-himir",
+        "baseColor": "#212121",
+        "texture": "/textures/SHM203.jpg",
+        "colorMap": "/textures/SHM203-color.jpg",
+        "bumpMap": "/textures/SHM203-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          238,
+          442,
+          350
+        ]
+      },
+      {
         "code": "SHM204",
-        "baseColor": "#98bac6",
-        "texture": "/textures/SHM204.jpg"
+        "family": "special-himir",
+        "baseColor": "#97bac5",
+        "texture": "/textures/SHM204.jpg",
+        "colorMap": "/textures/SHM204-color.jpg",
+        "bumpMap": "/textures/SHM204-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          238,
+          586,
+          350
+        ]
+      },
+      {
+        "code": "SHM205",
+        "family": "special-himir",
+        "baseColor": "#60779a",
+        "texture": "/textures/SHM205.jpg",
+        "colorMap": "/textures/SHM205-color.jpg",
+        "bumpMap": "/textures/SHM205-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          238,
+          730,
+          350
+        ]
+      },
+      {
+        "code": "SHM206",
+        "family": "special-himir",
+        "baseColor": "#346993",
+        "texture": "/textures/SHM206.jpg",
+        "colorMap": "/textures/SHM206-color.jpg",
+        "bumpMap": "/textures/SHM206-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          238,
+          874,
+          350
+        ]
+      },
+      {
+        "code": "SHM207",
+        "family": "special-himir",
+        "baseColor": "#135782",
+        "texture": "/textures/SHM207.jpg",
+        "colorMap": "/textures/SHM207-color.jpg",
+        "bumpMap": "/textures/SHM207-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          238,
+          1018,
+          350
+        ]
+      },
+      {
+        "code": "SHM208",
+        "family": "special-himir",
+        "baseColor": "#253d7c",
+        "texture": "/textures/SHM208.jpg",
+        "colorMap": "/textures/SHM208-color.jpg",
+        "bumpMap": "/textures/SHM208-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          238,
+          1162,
+          350
+        ]
       },
       {
         "code": "SHM209",
-        "baseColor": "#2e265f",
-        "texture": "/textures/SHM209.jpg"
+        "family": "special-himir",
+        "baseColor": "#2f2761",
+        "texture": "/textures/SHM209.jpg",
+        "colorMap": "/textures/SHM209-color.jpg",
+        "bumpMap": "/textures/SHM209-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          523,
+          154,
+          635
+        ]
+      },
+      {
+        "code": "SHM210",
+        "family": "special-himir",
+        "baseColor": "#23415b",
+        "texture": "/textures/SHM210.jpg",
+        "colorMap": "/textures/SHM210-color.jpg",
+        "bumpMap": "/textures/SHM210-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          523,
+          298,
+          635
+        ]
+      },
+      {
+        "code": "SHM211",
+        "family": "special-himir",
+        "baseColor": "#293345",
+        "texture": "/textures/SHM211.jpg",
+        "colorMap": "/textures/SHM211-color.jpg",
+        "bumpMap": "/textures/SHM211-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          523,
+          442,
+          635
+        ]
+      },
+      {
+        "code": "SHM212",
+        "family": "special-himir",
+        "baseColor": "#c1b5a4",
+        "texture": "/textures/SHM212.jpg",
+        "colorMap": "/textures/SHM212-color.jpg",
+        "bumpMap": "/textures/SHM212-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          523,
+          586,
+          635
+        ]
       },
       {
         "code": "SHM213",
-        "baseColor": "#d6c7ab",
-        "texture": "/textures/SHM213.jpg"
+        "family": "special-himir",
+        "baseColor": "#d6c7aa",
+        "texture": "/textures/SHM213.jpg",
+        "colorMap": "/textures/SHM213-color.jpg",
+        "bumpMap": "/textures/SHM213-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          523,
+          730,
+          635
+        ]
+      },
+      {
+        "code": "SHM214",
+        "family": "special-himir",
+        "baseColor": "#c5b293",
+        "texture": "/textures/SHM214.jpg",
+        "colorMap": "/textures/SHM214-color.jpg",
+        "bumpMap": "/textures/SHM214-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          523,
+          874,
+          635
+        ]
+      },
+      {
+        "code": "SHM215",
+        "family": "special-himir",
+        "baseColor": "#a9c3b4",
+        "texture": "/textures/SHM215.jpg",
+        "colorMap": "/textures/SHM215-color.jpg",
+        "bumpMap": "/textures/SHM215-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          523,
+          1018,
+          635
+        ]
+      },
+      {
+        "code": "SHM216",
+        "family": "special-himir",
+        "baseColor": "#989d7e",
+        "texture": "/textures/SHM216.jpg",
+        "colorMap": "/textures/SHM216-color.jpg",
+        "bumpMap": "/textures/SHM216-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          523,
+          1162,
+          635
+        ]
+      },
+      {
+        "code": "SHM217",
+        "family": "special-himir",
+        "baseColor": "#b89176",
+        "texture": "/textures/SHM217.jpg",
+        "colorMap": "/textures/SHM217-color.jpg",
+        "bumpMap": "/textures/SHM217-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          808,
+          154,
+          920
+        ]
+      },
+      {
+        "code": "SHM218",
+        "family": "special-himir",
+        "baseColor": "#72b9a9",
+        "texture": "/textures/SHM218.jpg",
+        "colorMap": "/textures/SHM218-color.jpg",
+        "bumpMap": "/textures/SHM218-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          808,
+          298,
+          920
+        ]
+      },
+      {
+        "code": "SHM219",
+        "family": "special-himir",
+        "baseColor": "#37a188",
+        "texture": "/textures/SHM219.jpg",
+        "colorMap": "/textures/SHM219-color.jpg",
+        "bumpMap": "/textures/SHM219-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          808,
+          442,
+          920
+        ]
+      },
+      {
+        "code": "SHM220",
+        "family": "special-himir",
+        "baseColor": "#518970",
+        "texture": "/textures/SHM220.jpg",
+        "colorMap": "/textures/SHM220-color.jpg",
+        "bumpMap": "/textures/SHM220-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          808,
+          586,
+          920
+        ]
+      },
+      {
+        "code": "SHM221",
+        "family": "special-himir",
+        "baseColor": "#6c7a39",
+        "texture": "/textures/SHM221.jpg",
+        "colorMap": "/textures/SHM221-color.jpg",
+        "bumpMap": "/textures/SHM221-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          808,
+          730,
+          920
+        ]
       },
       {
         "code": "SHM222",
-        "baseColor": "#193c2a",
-        "texture": "/textures/SHM222.jpg"
+        "family": "special-himir",
+        "baseColor": "#193c2b",
+        "texture": "/textures/SHM222.jpg",
+        "colorMap": "/textures/SHM222-color.jpg",
+        "bumpMap": "/textures/SHM222-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          808,
+          874,
+          920
+        ]
       },
       {
         "code": "SHM223",
+        "family": "special-himir",
         "baseColor": "#303928",
-        "texture": "/textures/SHM223.jpg"
+        "texture": "/textures/SHM223.jpg",
+        "colorMap": "/textures/SHM223-color.jpg",
+        "bumpMap": "/textures/SHM223-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          808,
+          1018,
+          920
+        ]
+      },
+      {
+        "code": "SHM224",
+        "family": "special-himir",
+        "baseColor": "#aeaeae",
+        "texture": "/textures/SHM224.jpg",
+        "colorMap": "/textures/SHM224-color.jpg",
+        "bumpMap": "/textures/SHM224-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          808,
+          1162,
+          920
+        ]
+      },
+      {
+        "code": "SHM225",
+        "family": "special-himir",
+        "baseColor": "#626262",
+        "texture": "/textures/SHM225.jpg",
+        "colorMap": "/textures/SHM225-color.jpg",
+        "bumpMap": "/textures/SHM225-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          1093,
+          154,
+          1205
+        ]
+      },
+      {
+        "code": "SHM226",
+        "family": "special-himir",
+        "baseColor": "#464646",
+        "texture": "/textures/SHM226.jpg",
+        "colorMap": "/textures/SHM226-color.jpg",
+        "bumpMap": "/textures/SHM226-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          1093,
+          298,
+          1205
+        ]
+      },
+      {
+        "code": "SHM227",
+        "family": "special-himir",
+        "baseColor": "#222222",
+        "texture": "/textures/SHM227.jpg",
+        "colorMap": "/textures/SHM227-color.jpg",
+        "bumpMap": "/textures/SHM227-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          1093,
+          442,
+          1205
+        ]
       },
       {
         "code": "SHM228",
-        "baseColor": "#0d0d0d",
-        "texture": "/textures/SHM228.jpg"
+        "family": "special-himir",
+        "baseColor": "#0e0e0e",
+        "texture": "/textures/SHM228.jpg",
+        "colorMap": "/textures/SHM228-color.jpg",
+        "bumpMap": "/textures/SHM228-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          1093,
+          586,
+          1205
+        ]
+      },
+      {
+        "code": "SHM229",
+        "family": "special-himir",
+        "baseColor": "#dea143",
+        "texture": "/textures/SHM229.jpg",
+        "colorMap": "/textures/SHM229-color.jpg",
+        "bumpMap": "/textures/SHM229-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          1093,
+          730,
+          1205
+        ]
+      },
+      {
+        "code": "SHM230",
+        "family": "special-himir",
+        "baseColor": "#e889a0",
+        "texture": "/textures/SHM230.jpg",
+        "colorMap": "/textures/SHM230-color.jpg",
+        "bumpMap": "/textures/SHM230-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          1093,
+          874,
+          1205
+        ]
+      },
+      {
+        "code": "SHM231",
+        "family": "special-himir",
+        "baseColor": "#bb2e5e",
+        "texture": "/textures/SHM231.jpg",
+        "colorMap": "/textures/SHM231-color.jpg",
+        "bumpMap": "/textures/SHM231-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          1093,
+          1018,
+          1205
+        ]
+      },
+      {
+        "code": "SHM232",
+        "family": "special-himir",
+        "baseColor": "#df673b",
+        "texture": "/textures/SHM232.jpg",
+        "colorMap": "/textures/SHM232-color.jpg",
+        "bumpMap": "/textures/SHM232-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          1093,
+          1162,
+          1205
+        ]
+      },
+      {
+        "code": "SHM233",
+        "family": "special-himir",
+        "baseColor": "#c1514e",
+        "texture": "/textures/SHM233.jpg",
+        "colorMap": "/textures/SHM233-color.jpg",
+        "bumpMap": "/textures/SHM233-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          1378,
+          154,
+          1490
+        ]
+      },
+      {
+        "code": "SHM234",
+        "family": "special-himir",
+        "baseColor": "#9b1616",
+        "texture": "/textures/SHM234.jpg",
+        "colorMap": "/textures/SHM234-color.jpg",
+        "bumpMap": "/textures/SHM234-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          1378,
+          298,
+          1490
+        ]
       },
       {
         "code": "SHM235",
+        "family": "special-himir",
         "baseColor": "#731825",
-        "texture": "/textures/SHM235.jpg"
+        "texture": "/textures/SHM235.jpg",
+        "colorMap": "/textures/SHM235-color.jpg",
+        "bumpMap": "/textures/SHM235-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          1378,
+          442,
+          1490
+        ]
+      },
+      {
+        "code": "SHM236",
+        "family": "special-himir",
+        "baseColor": "#4c1f1f",
+        "texture": "/textures/SHM236.jpg",
+        "colorMap": "/textures/SHM236-color.jpg",
+        "bumpMap": "/textures/SHM236-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          1378,
+          586,
+          1490
+        ]
+      },
+      {
+        "code": "SHM237",
+        "family": "special-himir",
+        "baseColor": "#9b8868",
+        "texture": "/textures/SHM237.jpg",
+        "colorMap": "/textures/SHM237-color.jpg",
+        "bumpMap": "/textures/SHM237-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          1378,
+          730,
+          1490
+        ]
+      },
+      {
+        "code": "SHM238",
+        "family": "special-himir",
+        "baseColor": "#d0ad64",
+        "texture": "/textures/SHM238.jpg",
+        "colorMap": "/textures/SHM238-color.jpg",
+        "bumpMap": "/textures/SHM238-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          1378,
+          874,
+          1490
+        ]
+      },
+      {
+        "code": "SHM239",
+        "family": "special-himir",
+        "baseColor": "#ac8b55",
+        "texture": "/textures/SHM239.jpg",
+        "colorMap": "/textures/SHM239-color.jpg",
+        "bumpMap": "/textures/SHM239-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          1378,
+          1018,
+          1490
+        ]
+      },
+      {
+        "code": "SHM240",
+        "family": "special-himir",
+        "baseColor": "#6a533b",
+        "texture": "/textures/SHM240.jpg",
+        "colorMap": "/textures/SHM240-color.jpg",
+        "bumpMap": "/textures/SHM240-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          1378,
+          1162,
+          1490
+        ]
+      },
+      {
+        "code": "SHM241",
+        "family": "special-himir",
+        "baseColor": "#8c633f",
+        "texture": "/textures/SHM241.jpg",
+        "colorMap": "/textures/SHM241-color.jpg",
+        "bumpMap": "/textures/SHM241-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          1663,
+          154,
+          1775
+        ]
+      },
+      {
+        "code": "SHM242",
+        "family": "special-himir",
+        "baseColor": "#372318",
+        "texture": "/textures/SHM242.jpg",
+        "colorMap": "/textures/SHM242-color.jpg",
+        "bumpMap": "/textures/SHM242-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          1663,
+          298,
+          1775
+        ]
+      },
+      {
+        "code": "SHM243",
+        "family": "special-himir",
+        "baseColor": "#32231e",
+        "texture": "/textures/SHM243.jpg",
+        "colorMap": "/textures/SHM243-color.jpg",
+        "bumpMap": "/textures/SHM243-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          1663,
+          442,
+          1775
+        ]
+      },
+      {
+        "code": "SHM244",
+        "family": "special-himir",
+        "baseColor": "#847886",
+        "texture": "/textures/SHM244.jpg",
+        "colorMap": "/textures/SHM244-color.jpg",
+        "bumpMap": "/textures/SHM244-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          1663,
+          586,
+          1775
+        ]
+      },
+      {
+        "code": "SHM245",
+        "family": "special-himir",
+        "baseColor": "#42224a",
+        "texture": "/textures/SHM245.jpg",
+        "colorMap": "/textures/SHM245-color.jpg",
+        "bumpMap": "/textures/SHM245-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          1663,
+          730,
+          1775
+        ]
+      },
+      {
+        "code": "SHM246",
+        "family": "special-himir",
+        "baseColor": "#444444",
+        "texture": "/textures/SHM246.jpg",
+        "colorMap": "/textures/SHM246-color.jpg",
+        "bumpMap": "/textures/SHM246-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          1663,
+          874,
+          1775
+        ]
+      },
+      {
+        "code": "SHM247",
+        "family": "special-himir",
+        "baseColor": "#0e3554",
+        "texture": "/textures/SHM247.jpg",
+        "colorMap": "/textures/SHM247-color.jpg",
+        "bumpMap": "/textures/SHM247-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          1663,
+          1018,
+          1775
+        ]
       },
       {
         "code": "SHM248",
+        "family": "special-himir",
         "baseColor": "#dbcbbc",
-        "texture": "/textures/SHM248.jpg"
+        "texture": "/textures/SHM248.jpg",
+        "colorMap": "/textures/SHM248-color.jpg",
+        "bumpMap": "/textures/SHM248-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          1663,
+          1162,
+          1775
+        ]
+      },
+      {
+        "code": "SHM249",
+        "family": "special-himir",
+        "baseColor": "#d6a3ba",
+        "texture": "/textures/SHM249.jpg",
+        "colorMap": "/textures/SHM249-color.jpg",
+        "bumpMap": "/textures/SHM249-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          1948,
+          154,
+          2060
+        ]
+      },
+      {
+        "code": "SHM250",
+        "family": "special-himir",
+        "baseColor": "#e04d64",
+        "texture": "/textures/SHM250.jpg",
+        "colorMap": "/textures/SHM250-color.jpg",
+        "bumpMap": "/textures/SHM250-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          1948,
+          298,
+          2060
+        ]
+      },
+      {
+        "code": "SHM251",
+        "family": "special-himir",
+        "baseColor": "#7d7881",
+        "texture": "/textures/SHM251.jpg",
+        "colorMap": "/textures/SHM251-color.jpg",
+        "bumpMap": "/textures/SHM251-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          1948,
+          442,
+          2060
+        ]
+      },
+      {
+        "code": "SHM252",
+        "family": "special-himir",
+        "baseColor": "#251036",
+        "texture": "/textures/SHM252.jpg",
+        "colorMap": "/textures/SHM252-color.jpg",
+        "bumpMap": "/textures/SHM252-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          1948,
+          586,
+          2060
+        ]
+      },
+      {
+        "code": "SHM253",
+        "family": "special-himir",
+        "baseColor": "#505052",
+        "texture": "/textures/SHM253.jpg",
+        "colorMap": "/textures/SHM253-color.jpg",
+        "bumpMap": "/textures/SHM253-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          1948,
+          730,
+          2060
+        ]
       }
     ],
     "reference": "/references/special-himir.jpg"
@@ -142,124 +2190,2976 @@
     "id": "leather",
     "label": "Basic leather",
     "kind": "leather",
+    "materialProperties": {
+      "roughness": 0.48,
+      "metalness": 0,
+      "sheen": 0.08,
+      "clearcoat": 0.06,
+      "bumpScale": 0.013,
+      "tileRepeat": [
+        9,
+        4.5
+      ]
+    },
     "swatches": [
       {
         "code": "LD01",
+        "family": "leather",
         "baseColor": "#252326",
-        "texture": "/textures/LD01.jpg"
+        "texture": "/textures/LD01.jpg",
+        "colorMap": "/textures/LD01-color.jpg",
+        "bumpMap": "/textures/LD01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          223,
+          153,
+          335
+        ]
+      },
+      {
+        "code": "LD02",
+        "family": "leather",
+        "baseColor": "#312b2d",
+        "texture": "/textures/LD02.jpg",
+        "colorMap": "/textures/LD02-color.jpg",
+        "bumpMap": "/textures/LD02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          223,
+          297,
+          335
+        ]
+      },
+      {
+        "code": "LD03",
+        "family": "leather",
+        "baseColor": "#3a2e2d",
+        "texture": "/textures/LD03.jpg",
+        "colorMap": "/textures/LD03-color.jpg",
+        "bumpMap": "/textures/LD03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          223,
+          441,
+          335
+        ]
+      },
+      {
+        "code": "LD04",
+        "family": "leather",
+        "baseColor": "#57453c",
+        "texture": "/textures/LD04.jpg",
+        "colorMap": "/textures/LD04-color.jpg",
+        "bumpMap": "/textures/LD04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          223,
+          585,
+          335
+        ]
       },
       {
         "code": "LD05",
-        "baseColor": "#68443a",
-        "texture": "/textures/LD05.jpg"
+        "family": "leather",
+        "baseColor": "#69463c",
+        "texture": "/textures/LD05.jpg",
+        "colorMap": "/textures/LD05-color.jpg",
+        "bumpMap": "/textures/LD05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          223,
+          729,
+          335
+        ]
+      },
+      {
+        "code": "LD06",
+        "family": "leather",
+        "baseColor": "#755445",
+        "texture": "/textures/LD06.jpg",
+        "colorMap": "/textures/LD06-color.jpg",
+        "bumpMap": "/textures/LD06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          223,
+          873,
+          335
+        ]
       },
       {
         "code": "LD07",
+        "family": "leather",
         "baseColor": "#88513b",
-        "texture": "/textures/LD07.jpg"
+        "texture": "/textures/LD07.jpg",
+        "colorMap": "/textures/LD07-color.jpg",
+        "bumpMap": "/textures/LD07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          223,
+          1017,
+          335
+        ]
+      },
+      {
+        "code": "LD08",
+        "family": "leather",
+        "baseColor": "#5b2d32",
+        "texture": "/textures/LD08.jpg",
+        "colorMap": "/textures/LD08-color.jpg",
+        "bumpMap": "/textures/LD08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          223,
+          1161,
+          335
+        ]
+      },
+      {
+        "code": "LD09",
+        "family": "leather",
+        "baseColor": "#db5a94",
+        "texture": "/textures/LD09.jpg",
+        "colorMap": "/textures/LD09-color.jpg",
+        "bumpMap": "/textures/LD09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          508,
+          153,
+          620
+        ]
       },
       {
         "code": "LD10",
+        "family": "leather",
         "baseColor": "#bc2f3f",
-        "texture": "/textures/LD10.jpg"
+        "texture": "/textures/LD10.jpg",
+        "colorMap": "/textures/LD10-color.jpg",
+        "bumpMap": "/textures/LD10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          508,
+          297,
+          620
+        ]
+      },
+      {
+        "code": "LD11",
+        "family": "leather",
+        "baseColor": "#242619",
+        "texture": "/textures/LD11.jpg",
+        "colorMap": "/textures/LD11-color.jpg",
+        "bumpMap": "/textures/LD11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          508,
+          441,
+          620
+        ]
+      },
+      {
+        "code": "LD12",
+        "family": "leather",
+        "baseColor": "#9d8e7c",
+        "texture": "/textures/LD12.jpg",
+        "colorMap": "/textures/LD12-color.jpg",
+        "bumpMap": "/textures/LD12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          508,
+          585,
+          620
+        ]
+      },
+      {
+        "code": "LD13",
+        "family": "leather",
+        "baseColor": "#b2a381",
+        "texture": "/textures/LD13.jpg",
+        "colorMap": "/textures/LD13-color.jpg",
+        "bumpMap": "/textures/LD13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          508,
+          729,
+          620
+        ]
+      },
+      {
+        "code": "LD14",
+        "family": "leather",
+        "baseColor": "#ccc4b8",
+        "texture": "/textures/LD14.jpg",
+        "colorMap": "/textures/LD14-color.jpg",
+        "bumpMap": "/textures/LD14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          508,
+          873,
+          620
+        ]
       },
       {
         "code": "LD15",
+        "family": "leather",
         "baseColor": "#f1ebd8",
-        "texture": "/textures/LD15.jpg"
+        "texture": "/textures/LD15.jpg",
+        "colorMap": "/textures/LD15-color.jpg",
+        "bumpMap": "/textures/LD15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          508,
+          1017,
+          620
+        ]
       },
       {
         "code": "LD16",
-        "baseColor": "#eeebeb",
-        "texture": "/textures/LD16.jpg"
+        "family": "leather",
+        "baseColor": "#eeebea",
+        "texture": "/textures/LD16.jpg",
+        "colorMap": "/textures/LD16-color.jpg",
+        "bumpMap": "/textures/LD16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          508,
+          1161,
+          620
+        ]
+      },
+      {
+        "code": "LD17",
+        "family": "leather",
+        "baseColor": "#b6b5b7",
+        "texture": "/textures/LD17.jpg",
+        "colorMap": "/textures/LD17-color.jpg",
+        "bumpMap": "/textures/LD17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          793,
+          153,
+          905
+        ]
       },
       {
         "code": "LD18",
-        "baseColor": "#333743",
-        "texture": "/textures/LD18.jpg"
+        "family": "leather",
+        "baseColor": "#333643",
+        "texture": "/textures/LD18.jpg",
+        "colorMap": "/textures/LD18-color.jpg",
+        "bumpMap": "/textures/LD18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          793,
+          297,
+          905
+        ]
+      },
+      {
+        "code": "LD19",
+        "family": "leather",
+        "baseColor": "#5f5a59",
+        "texture": "/textures/LD19.jpg",
+        "colorMap": "/textures/LD19-color.jpg",
+        "bumpMap": "/textures/LD19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          793,
+          441,
+          905
+        ]
+      },
+      {
+        "code": "LD20",
+        "family": "leather",
+        "baseColor": "#7f7d82",
+        "texture": "/textures/LD20.jpg",
+        "colorMap": "/textures/LD20-color.jpg",
+        "bumpMap": "/textures/LD20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          793,
+          585,
+          905
+        ]
+      },
+      {
+        "code": "LD21",
+        "family": "leather",
+        "baseColor": "#bbd9e0",
+        "texture": "/textures/LD21.jpg",
+        "colorMap": "/textures/LD21-color.jpg",
+        "bumpMap": "/textures/LD21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          793,
+          729,
+          905
+        ]
       },
       {
         "code": "LD22",
+        "family": "leather",
         "baseColor": "#d7adab",
-        "texture": "/textures/LD22.jpg"
+        "texture": "/textures/LD22.jpg",
+        "colorMap": "/textures/LD22-color.jpg",
+        "bumpMap": "/textures/LD22-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          793,
+          873,
+          905
+        ]
+      },
+      {
+        "code": "LD23",
+        "family": "leather",
+        "baseColor": "#d7523c",
+        "texture": "/textures/LD23.jpg",
+        "colorMap": "/textures/LD23-color.jpg",
+        "bumpMap": "/textures/LD23-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          793,
+          1017,
+          905
+        ]
+      },
+      {
+        "code": "LD24",
+        "family": "leather",
+        "baseColor": "#70ae56",
+        "texture": "/textures/LD24.jpg",
+        "colorMap": "/textures/LD24-color.jpg",
+        "bumpMap": "/textures/LD24-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          793,
+          1161,
+          905
+        ]
+      },
+      {
+        "code": "LD25",
+        "family": "leather",
+        "baseColor": "#edc53f",
+        "texture": "/textures/LD25.jpg",
+        "colorMap": "/textures/LD25-color.jpg",
+        "bumpMap": "/textures/LD25-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          1078,
+          153,
+          1190
+        ]
+      },
+      {
+        "code": "LD26",
+        "family": "leather",
+        "baseColor": "#8cbdd2",
+        "texture": "/textures/LD26.jpg",
+        "colorMap": "/textures/LD26-color.jpg",
+        "bumpMap": "/textures/LD26-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          1078,
+          297,
+          1190
+        ]
+      },
+      {
+        "code": "LD27",
+        "family": "leather",
+        "baseColor": "#ebd8de",
+        "texture": "/textures/LD27.jpg",
+        "colorMap": "/textures/LD27-color.jpg",
+        "bumpMap": "/textures/LD27-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          1078,
+          441,
+          1190
+        ]
+      },
+      {
+        "code": "LD28",
+        "family": "leather",
+        "baseColor": "#13883f",
+        "texture": "/textures/LD28.jpg",
+        "colorMap": "/textures/LD28-color.jpg",
+        "bumpMap": "/textures/LD28-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          1078,
+          585,
+          1190
+        ]
+      },
+      {
+        "code": "LD29",
+        "family": "leather",
+        "baseColor": "#9590cd",
+        "texture": "/textures/LD29.jpg",
+        "colorMap": "/textures/LD29-color.jpg",
+        "bumpMap": "/textures/LD29-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          1078,
+          729,
+          1190
+        ]
+      },
+      {
+        "code": "LD30",
+        "family": "leather",
+        "baseColor": "#1b60a9",
+        "texture": "/textures/LD30.jpg",
+        "colorMap": "/textures/LD30-color.jpg",
+        "bumpMap": "/textures/LD30-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          1078,
+          873,
+          1190
+        ]
+      },
+      {
+        "code": "LD31",
+        "family": "leather",
+        "baseColor": "#babbbe",
+        "texture": "/textures/LD31.jpg",
+        "colorMap": "/textures/LD31-color.jpg",
+        "bumpMap": "/textures/LD31-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          1078,
+          1017,
+          1190
+        ]
+      },
+      {
+        "code": "LD32",
+        "family": "leather",
+        "baseColor": "#9c7957",
+        "texture": "/textures/LD32.jpg",
+        "colorMap": "/textures/LD32-color.jpg",
+        "bumpMap": "/textures/LD32-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1049,
+          1078,
+          1161,
+          1190
+        ]
+      },
+      {
+        "code": "LD33",
+        "family": "leather",
+        "baseColor": "#209088",
+        "texture": "/textures/LD33.jpg",
+        "colorMap": "/textures/LD33-color.jpg",
+        "bumpMap": "/textures/LD33-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          1363,
+          153,
+          1475
+        ]
+      },
+      {
+        "code": "LD34",
+        "family": "leather",
+        "baseColor": "#454448",
+        "texture": "/textures/LD34.jpg",
+        "colorMap": "/textures/LD34-color.jpg",
+        "bumpMap": "/textures/LD34-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          1363,
+          297,
+          1475
+        ]
       }
     ],
     "reference": "/references/leather.jpg"
   },
   {
     "id": "premium",
-    "label": "Special leather",
+    "label": "Special leather 2",
     "kind": "premium",
+    "materialProperties": {
+      "roughness": 0.32,
+      "metalness": 0,
+      "sheen": 0.1,
+      "clearcoat": 0.22,
+      "bumpScale": 0.019,
+      "tileRepeat": [
+        9,
+        4.5
+      ]
+    },
     "swatches": [
       {
         "code": "SLD31",
-        "baseColor": "#3c3331",
-        "texture": "/textures/SLD31.jpg"
+        "family": "premium",
+        "baseColor": "#3c3332",
+        "texture": "/textures/SLD31.jpg",
+        "colorMap": "/textures/SLD31-color.jpg",
+        "bumpMap": "/textures/SLD31-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          41,
+          186,
+          153,
+          298
+        ]
       },
       {
         "code": "SLD32",
+        "family": "premium",
         "baseColor": "#2f2c2e",
-        "texture": "/textures/SLD32.jpg"
+        "texture": "/textures/SLD32.jpg",
+        "colorMap": "/textures/SLD32-color.jpg",
+        "bumpMap": "/textures/SLD32-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          185,
+          186,
+          297,
+          298
+        ]
       },
       {
         "code": "SLD33",
+        "family": "premium",
         "baseColor": "#f0eced",
-        "texture": "/textures/SLD33.jpg"
+        "texture": "/textures/SLD33.jpg",
+        "colorMap": "/textures/SLD33-color.jpg",
+        "bumpMap": "/textures/SLD33-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          329,
+          186,
+          441,
+          298
+        ]
       },
       {
         "code": "SLD34",
-        "baseColor": "#d4c8bc",
-        "texture": "/textures/SLD34.jpg"
+        "family": "premium",
+        "baseColor": "#d4c7bc",
+        "texture": "/textures/SLD34.jpg",
+        "colorMap": "/textures/SLD34-color.jpg",
+        "bumpMap": "/textures/SLD34-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          473,
+          186,
+          585,
+          298
+        ]
+      },
+      {
+        "code": "SLD35",
+        "family": "premium",
+        "baseColor": "#454244",
+        "texture": "/textures/SLD35.jpg",
+        "colorMap": "/textures/SLD35-color.jpg",
+        "bumpMap": "/textures/SLD35-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          617,
+          186,
+          729,
+          298
+        ]
       },
       {
         "code": "SLD36",
+        "family": "premium",
         "baseColor": "#b32234",
-        "texture": "/textures/SLD36.jpg"
+        "texture": "/textures/SLD36.jpg",
+        "colorMap": "/textures/SLD36-color.jpg",
+        "bumpMap": "/textures/SLD36-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          761,
+          186,
+          873,
+          298
+        ]
+      },
+      {
+        "code": "SLD37",
+        "family": "premium",
+        "baseColor": "#2b303d",
+        "texture": "/textures/SLD37.jpg",
+        "colorMap": "/textures/SLD37-color.jpg",
+        "bumpMap": "/textures/SLD37-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          905,
+          186,
+          1017,
+          298
+        ]
       }
     ],
     "reference": "/references/premium.jpg"
   },
   {
+    "id": "premium-1",
+    "label": "Special leather 1",
+    "kind": "premium",
+    "materialProperties": {
+      "roughness": 0.32,
+      "metalness": 0,
+      "sheen": 0.1,
+      "clearcoat": 0.22,
+      "bumpScale": 0.019,
+      "tileRepeat": [
+        9,
+        4.5
+      ]
+    },
+    "swatches": [
+      {
+        "code": "SLD02",
+        "family": "premium-1",
+        "baseColor": "#e3e0e0",
+        "texture": "/textures/SLD02.jpg",
+        "colorMap": "/textures/SLD02-color.jpg",
+        "bumpMap": "/textures/SLD02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          214,
+          154,
+          326
+        ]
+      },
+      {
+        "code": "SLD11",
+        "family": "premium-1",
+        "baseColor": "#252324",
+        "texture": "/textures/SLD11.jpg",
+        "colorMap": "/textures/SLD11-color.jpg",
+        "bumpMap": "/textures/SLD11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          184,
+          214,
+          296,
+          326
+        ]
+      }
+    ],
+    "reference": "/references/premium-1.jpg"
+  },
+  {
     "id": "corduroy",
     "label": "Corduroy",
     "kind": "corduroy",
+    "materialProperties": {
+      "roughness": 0.96,
+      "metalness": 0,
+      "sheen": 0.35,
+      "clearcoat": 0,
+      "bumpScale": 0.026,
+      "tileRepeat": [
+        8,
+        4
+      ]
+    },
     "swatches": [
       {
+        "code": "PL01",
+        "family": "corduroy",
+        "baseColor": "#d0a244",
+        "texture": "/textures/PL01.jpg",
+        "colorMap": "/textures/PL01-color.jpg",
+        "bumpMap": "/textures/PL01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          202,
+          154,
+          314
+        ]
+      },
+      {
         "code": "PL02",
+        "family": "corduroy",
         "baseColor": "#e2dfd3",
-        "texture": "/textures/PL02.jpg"
+        "texture": "/textures/PL02.jpg",
+        "colorMap": "/textures/PL02-color.jpg",
+        "bumpMap": "/textures/PL02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          202,
+          298,
+          314
+        ]
+      },
+      {
+        "code": "PL03",
+        "family": "corduroy",
+        "baseColor": "#d8cfbf",
+        "texture": "/textures/PL03.jpg",
+        "colorMap": "/textures/PL03-color.jpg",
+        "bumpMap": "/textures/PL03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          202,
+          442,
+          314
+        ]
       },
       {
         "code": "PL04",
-        "baseColor": "#b09470",
-        "texture": "/textures/PL04.jpg"
+        "family": "corduroy",
+        "baseColor": "#b29773",
+        "texture": "/textures/PL04.jpg",
+        "colorMap": "/textures/PL04-color.jpg",
+        "bumpMap": "/textures/PL04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          202,
+          586,
+          314
+        ]
       },
       {
         "code": "PL05",
-        "baseColor": "#b48e92",
-        "texture": "/textures/PL05.jpg"
+        "family": "corduroy",
+        "baseColor": "#b69295",
+        "texture": "/textures/PL05.jpg",
+        "colorMap": "/textures/PL05-color.jpg",
+        "bumpMap": "/textures/PL05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          202,
+          730,
+          314
+        ]
+      },
+      {
+        "code": "PL06",
+        "family": "corduroy",
+        "baseColor": "#948a7f",
+        "texture": "/textures/PL06.jpg",
+        "colorMap": "/textures/PL06-color.jpg",
+        "bumpMap": "/textures/PL06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          202,
+          874,
+          314
+        ]
+      },
+      {
+        "code": "PL07",
+        "family": "corduroy",
+        "baseColor": "#b28552",
+        "texture": "/textures/PL07.jpg",
+        "colorMap": "/textures/PL07-color.jpg",
+        "bumpMap": "/textures/PL07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          202,
+          1018,
+          314
+        ]
+      },
+      {
+        "code": "PL08",
+        "family": "corduroy",
+        "baseColor": "#2b5e64",
+        "texture": "/textures/PL08.jpg",
+        "colorMap": "/textures/PL08-color.jpg",
+        "bumpMap": "/textures/PL08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          202,
+          1162,
+          314
+        ]
+      },
+      {
+        "code": "PL09",
+        "family": "corduroy",
+        "baseColor": "#34525a",
+        "texture": "/textures/PL09.jpg",
+        "colorMap": "/textures/PL09-color.jpg",
+        "bumpMap": "/textures/PL09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          487,
+          154,
+          599
+        ]
       },
       {
         "code": "PL10",
-        "baseColor": "#36533c",
-        "texture": "/textures/PL10.jpg"
+        "family": "corduroy",
+        "baseColor": "#37543e",
+        "texture": "/textures/PL10.jpg",
+        "colorMap": "/textures/PL10-color.jpg",
+        "bumpMap": "/textures/PL10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          487,
+          298,
+          599
+        ]
+      },
+      {
+        "code": "PL11",
+        "family": "corduroy",
+        "baseColor": "#8f363b",
+        "texture": "/textures/PL11.jpg",
+        "colorMap": "/textures/PL11-color.jpg",
+        "bumpMap": "/textures/PL11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          330,
+          487,
+          442,
+          599
+        ]
       },
       {
         "code": "PL12",
-        "baseColor": "#46140f",
-        "texture": "/textures/PL12.jpg"
+        "family": "corduroy",
+        "baseColor": "#491711",
+        "texture": "/textures/PL12.jpg",
+        "colorMap": "/textures/PL12-color.jpg",
+        "bumpMap": "/textures/PL12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          474,
+          487,
+          586,
+          599
+        ]
+      },
+      {
+        "code": "PL13",
+        "family": "corduroy",
+        "baseColor": "#464a2f",
+        "texture": "/textures/PL13.jpg",
+        "colorMap": "/textures/PL13-color.jpg",
+        "bumpMap": "/textures/PL13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          618,
+          487,
+          730,
+          599
+        ]
+      },
+      {
+        "code": "PL14",
+        "family": "corduroy",
+        "baseColor": "#938c7d",
+        "texture": "/textures/PL14.jpg",
+        "colorMap": "/textures/PL14-color.jpg",
+        "bumpMap": "/textures/PL14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          762,
+          487,
+          874,
+          599
+        ]
+      },
+      {
+        "code": "PL15",
+        "family": "corduroy",
+        "baseColor": "#55504a",
+        "texture": "/textures/PL15.jpg",
+        "colorMap": "/textures/PL15-color.jpg",
+        "bumpMap": "/textures/PL15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          906,
+          487,
+          1018,
+          599
+        ]
+      },
+      {
+        "code": "PL16",
+        "family": "corduroy",
+        "baseColor": "#322b13",
+        "texture": "/textures/PL16.jpg",
+        "colorMap": "/textures/PL16-color.jpg",
+        "bumpMap": "/textures/PL16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1050,
+          487,
+          1162,
+          599
+        ]
       },
       {
         "code": "PL17",
-        "baseColor": "#191d39",
-        "texture": "/textures/PL17.jpg"
+        "family": "corduroy",
+        "baseColor": "#1a1f3a",
+        "texture": "/textures/PL17.jpg",
+        "colorMap": "/textures/PL17-color.jpg",
+        "bumpMap": "/textures/PL17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          42,
+          772,
+          154,
+          884
+        ]
       },
       {
         "code": "PL18",
-        "baseColor": "#22211e",
-        "texture": "/textures/PL18.jpg"
+        "family": "corduroy",
+        "baseColor": "#1c1b17",
+        "texture": "/textures/PL18.jpg",
+        "colorMap": "/textures/PL18-color.jpg",
+        "bumpMap": "/textures/PL18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          186,
+          772,
+          298,
+          884
+        ]
       }
     ],
     "reference": "/references/corduroy.jpg"
+  },
+  {
+    "id": "denim",
+    "label": "Denim",
+    "kind": "denim",
+    "materialProperties": {
+      "roughness": 0.91,
+      "metalness": 0,
+      "sheen": 0.18,
+      "clearcoat": 0,
+      "bumpScale": 0.012,
+      "tileRepeat": [
+        10,
+        5
+      ]
+    },
+    "swatches": [
+      {
+        "code": "DN01",
+        "family": "denim",
+        "baseColor": "#212335",
+        "texture": "/textures/DN01.jpg",
+        "colorMap": "/textures/DN01-color.jpg",
+        "bumpMap": "/textures/DN01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          229,
+          155,
+          341
+        ]
+      },
+      {
+        "code": "DN02",
+        "family": "denim",
+        "baseColor": "#222841",
+        "texture": "/textures/DN02.jpg",
+        "colorMap": "/textures/DN02-color.jpg",
+        "bumpMap": "/textures/DN02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          229,
+          299,
+          341
+        ]
+      },
+      {
+        "code": "DN03",
+        "family": "denim",
+        "baseColor": "#455876",
+        "texture": "/textures/DN03.jpg",
+        "colorMap": "/textures/DN03-color.jpg",
+        "bumpMap": "/textures/DN03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          229,
+          443,
+          341
+        ]
+      },
+      {
+        "code": "DN04",
+        "family": "denim",
+        "baseColor": "#697f99",
+        "texture": "/textures/DN04.jpg",
+        "colorMap": "/textures/DN04-color.jpg",
+        "bumpMap": "/textures/DN04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          229,
+          587,
+          341
+        ]
+      },
+      {
+        "code": "DN05",
+        "family": "denim",
+        "baseColor": "#272526",
+        "texture": "/textures/DN05.jpg",
+        "colorMap": "/textures/DN05-color.jpg",
+        "bumpMap": "/textures/DN05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          229,
+          731,
+          341
+        ]
+      },
+      {
+        "code": "DN06",
+        "family": "denim",
+        "baseColor": "#252a3d",
+        "texture": "/textures/DN06.jpg",
+        "colorMap": "/textures/DN06-color.jpg",
+        "bumpMap": "/textures/DN06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          229,
+          875,
+          341
+        ]
+      }
+    ],
+    "reference": "/references/denim.jpg"
+  },
+  {
+    "id": "bomber",
+    "label": "Flight / bomber",
+    "kind": "nylon",
+    "materialProperties": {
+      "roughness": 0.58,
+      "metalness": 0,
+      "sheen": 0.25,
+      "clearcoat": 0.08,
+      "bumpScale": 0.006,
+      "tileRepeat": [
+        12,
+        6
+      ]
+    },
+    "swatches": [
+      {
+        "code": "MA01",
+        "family": "bomber",
+        "baseColor": "#3a4235",
+        "texture": "/textures/MA01.jpg",
+        "colorMap": "/textures/MA01-color.jpg",
+        "bumpMap": "/textures/MA01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          241,
+          155,
+          353
+        ]
+      },
+      {
+        "code": "MA02",
+        "family": "bomber",
+        "baseColor": "#1d1d1d",
+        "texture": "/textures/MA02.jpg",
+        "colorMap": "/textures/MA02-color.jpg",
+        "bumpMap": "/textures/MA02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          241,
+          299,
+          353
+        ]
+      },
+      {
+        "code": "MA03",
+        "family": "bomber",
+        "baseColor": "#e9e8e8",
+        "texture": "/textures/MA03.jpg",
+        "colorMap": "/textures/MA03-color.jpg",
+        "bumpMap": "/textures/MA03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          241,
+          443,
+          353
+        ]
+      },
+      {
+        "code": "MA04",
+        "family": "bomber",
+        "baseColor": "#20263a",
+        "texture": "/textures/MA04.jpg",
+        "colorMap": "/textures/MA04-color.jpg",
+        "bumpMap": "/textures/MA04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          241,
+          587,
+          353
+        ]
+      },
+      {
+        "code": "MA05",
+        "family": "bomber",
+        "baseColor": "#191d28",
+        "texture": "/textures/MA05.jpg",
+        "colorMap": "/textures/MA05-color.jpg",
+        "bumpMap": "/textures/MA05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          241,
+          731,
+          353
+        ]
+      },
+      {
+        "code": "MA06",
+        "family": "bomber",
+        "baseColor": "#213529",
+        "texture": "/textures/MA06.jpg",
+        "colorMap": "/textures/MA06-color.jpg",
+        "bumpMap": "/textures/MA06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          241,
+          875,
+          353
+        ]
+      },
+      {
+        "code": "MA07",
+        "family": "bomber",
+        "baseColor": "#b1b193",
+        "texture": "/textures/MA07.jpg",
+        "colorMap": "/textures/MA07-color.jpg",
+        "bumpMap": "/textures/MA07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          241,
+          1019,
+          353
+        ]
+      },
+      {
+        "code": "MA08",
+        "family": "bomber",
+        "baseColor": "#867c5e",
+        "texture": "/textures/MA08.jpg",
+        "colorMap": "/textures/MA08-color.jpg",
+        "bumpMap": "/textures/MA08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          241,
+          1163,
+          353
+        ]
+      },
+      {
+        "code": "MA09",
+        "family": "bomber",
+        "baseColor": "#917340",
+        "texture": "/textures/MA09.jpg",
+        "colorMap": "/textures/MA09-color.jpg",
+        "bumpMap": "/textures/MA09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          526,
+          155,
+          638
+        ]
+      },
+      {
+        "code": "MA10",
+        "family": "bomber",
+        "baseColor": "#c49641",
+        "texture": "/textures/MA10.jpg",
+        "colorMap": "/textures/MA10-color.jpg",
+        "bumpMap": "/textures/MA10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          526,
+          299,
+          638
+        ]
+      },
+      {
+        "code": "MA11",
+        "family": "bomber",
+        "baseColor": "#2a3286",
+        "texture": "/textures/MA11.jpg",
+        "colorMap": "/textures/MA11-color.jpg",
+        "bumpMap": "/textures/MA11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          526,
+          443,
+          638
+        ]
+      },
+      {
+        "code": "MA12",
+        "family": "bomber",
+        "baseColor": "#3e403b",
+        "texture": "/textures/MA12.jpg",
+        "colorMap": "/textures/MA12-color.jpg",
+        "bumpMap": "/textures/MA12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          526,
+          587,
+          638
+        ]
+      },
+      {
+        "code": "MA13",
+        "family": "bomber",
+        "baseColor": "#4f5a54",
+        "texture": "/textures/MA13.jpg",
+        "colorMap": "/textures/MA13-color.jpg",
+        "bumpMap": "/textures/MA13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          526,
+          731,
+          638
+        ]
+      },
+      {
+        "code": "MA14",
+        "family": "bomber",
+        "baseColor": "#757d75",
+        "texture": "/textures/MA14.jpg",
+        "colorMap": "/textures/MA14-color.jpg",
+        "bumpMap": "/textures/MA14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          526,
+          875,
+          638
+        ]
+      },
+      {
+        "code": "MA15",
+        "family": "bomber",
+        "baseColor": "#3b2c51",
+        "texture": "/textures/MA15.jpg",
+        "colorMap": "/textures/MA15-color.jpg",
+        "bumpMap": "/textures/MA15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          526,
+          1019,
+          638
+        ]
+      },
+      {
+        "code": "MA16",
+        "family": "bomber",
+        "baseColor": "#c14d2e",
+        "texture": "/textures/MA16.jpg",
+        "colorMap": "/textures/MA16-color.jpg",
+        "bumpMap": "/textures/MA16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          526,
+          1163,
+          638
+        ]
+      },
+      {
+        "code": "MA17",
+        "family": "bomber",
+        "baseColor": "#5d1626",
+        "texture": "/textures/MA17.jpg",
+        "colorMap": "/textures/MA17-color.jpg",
+        "bumpMap": "/textures/MA17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          811,
+          155,
+          923
+        ]
+      },
+      {
+        "code": "MA18",
+        "family": "bomber",
+        "baseColor": "#8d1a22",
+        "texture": "/textures/MA18.jpg",
+        "colorMap": "/textures/MA18-color.jpg",
+        "bumpMap": "/textures/MA18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          811,
+          299,
+          923
+        ]
+      },
+      {
+        "code": "MA19",
+        "family": "bomber",
+        "baseColor": "#373123",
+        "texture": "/textures/MA19.jpg",
+        "colorMap": "/textures/MA19-color.jpg",
+        "bumpMap": "/textures/MA19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          811,
+          443,
+          923
+        ]
+      },
+      {
+        "code": "MA20",
+        "family": "bomber",
+        "baseColor": "#383529",
+        "texture": "/textures/MA20.jpg",
+        "colorMap": "/textures/MA20-color.jpg",
+        "bumpMap": "/textures/MA20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          811,
+          587,
+          923
+        ]
+      },
+      {
+        "code": "MA21",
+        "family": "bomber",
+        "baseColor": "#363b1c",
+        "texture": "/textures/MA21.jpg",
+        "colorMap": "/textures/MA21-color.jpg",
+        "bumpMap": "/textures/MA21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          811,
+          731,
+          923
+        ]
+      },
+      {
+        "code": "MA22",
+        "family": "bomber",
+        "baseColor": "#373e27",
+        "texture": "/textures/MA22.jpg",
+        "colorMap": "/textures/MA22-color.jpg",
+        "bumpMap": "/textures/MA22-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          811,
+          875,
+          923
+        ]
+      },
+      {
+        "code": "MA23",
+        "family": "bomber",
+        "baseColor": "#1f323d",
+        "texture": "/textures/MA23.jpg",
+        "colorMap": "/textures/MA23-color.jpg",
+        "bumpMap": "/textures/MA23-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          811,
+          1019,
+          923
+        ]
+      },
+      {
+        "code": "MA24",
+        "family": "bomber",
+        "baseColor": "#4d5328",
+        "texture": "/textures/MA24.jpg",
+        "colorMap": "/textures/MA24-color.jpg",
+        "bumpMap": "/textures/MA24-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          811,
+          1163,
+          923
+        ]
+      },
+      {
+        "code": "MA25",
+        "family": "bomber",
+        "baseColor": "#696d6e",
+        "texture": "/textures/MA25.jpg",
+        "colorMap": "/textures/MA25-color.jpg",
+        "bumpMap": "/textures/MA25-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1096,
+          155,
+          1208
+        ]
+      }
+    ],
+    "reference": "/references/bomber.jpg"
+  },
+  {
+    "id": "coach",
+    "label": "Coach fabric",
+    "kind": "coach",
+    "materialProperties": {
+      "roughness": 0.83,
+      "metalness": 0,
+      "sheen": 0.22,
+      "clearcoat": 0,
+      "bumpScale": 0.006,
+      "tileRepeat": [
+        12,
+        6
+      ]
+    },
+    "swatches": [
+      {
+        "code": "CO01",
+        "family": "coach",
+        "baseColor": "#34300d",
+        "texture": "/textures/CO01.jpg",
+        "colorMap": "/textures/CO01-color.jpg",
+        "bumpMap": "/textures/CO01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          230,
+          155,
+          342
+        ]
+      },
+      {
+        "code": "CO02",
+        "family": "coach",
+        "baseColor": "#473e21",
+        "texture": "/textures/CO02.jpg",
+        "colorMap": "/textures/CO02-color.jpg",
+        "bumpMap": "/textures/CO02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          230,
+          299,
+          342
+        ]
+      },
+      {
+        "code": "CO03",
+        "family": "coach",
+        "baseColor": "#e4e4e2",
+        "texture": "/textures/CO03.jpg",
+        "colorMap": "/textures/CO03-color.jpg",
+        "bumpMap": "/textures/CO03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          230,
+          443,
+          342
+        ]
+      },
+      {
+        "code": "CO04",
+        "family": "coach",
+        "baseColor": "#aaa085",
+        "texture": "/textures/CO04.jpg",
+        "colorMap": "/textures/CO04-color.jpg",
+        "bumpMap": "/textures/CO04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          230,
+          587,
+          342
+        ]
+      },
+      {
+        "code": "CO05",
+        "family": "coach",
+        "baseColor": "#8f8667",
+        "texture": "/textures/CO05.jpg",
+        "colorMap": "/textures/CO05-color.jpg",
+        "bumpMap": "/textures/CO05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          230,
+          731,
+          342
+        ]
+      },
+      {
+        "code": "CO06",
+        "family": "coach",
+        "baseColor": "#958468",
+        "texture": "/textures/CO06.jpg",
+        "colorMap": "/textures/CO06-color.jpg",
+        "bumpMap": "/textures/CO06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          230,
+          875,
+          342
+        ]
+      },
+      {
+        "code": "CO07",
+        "family": "coach",
+        "baseColor": "#7d674c",
+        "texture": "/textures/CO07.jpg",
+        "colorMap": "/textures/CO07-color.jpg",
+        "bumpMap": "/textures/CO07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          230,
+          1019,
+          342
+        ]
+      },
+      {
+        "code": "CO08",
+        "family": "coach",
+        "baseColor": "#841d22",
+        "texture": "/textures/CO08.jpg",
+        "colorMap": "/textures/CO08-color.jpg",
+        "bumpMap": "/textures/CO08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          230,
+          1163,
+          342
+        ]
+      },
+      {
+        "code": "CO09",
+        "family": "coach",
+        "baseColor": "#3f3f3f",
+        "texture": "/textures/CO09.jpg",
+        "colorMap": "/textures/CO09-color.jpg",
+        "bumpMap": "/textures/CO09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          515,
+          155,
+          627
+        ]
+      },
+      {
+        "code": "CO10",
+        "family": "coach",
+        "baseColor": "#1f1e26",
+        "texture": "/textures/CO10.jpg",
+        "colorMap": "/textures/CO10-color.jpg",
+        "bumpMap": "/textures/CO10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          515,
+          299,
+          627
+        ]
+      },
+      {
+        "code": "CO11",
+        "family": "coach",
+        "baseColor": "#1a1a1a",
+        "texture": "/textures/CO11.jpg",
+        "colorMap": "/textures/CO11-color.jpg",
+        "bumpMap": "/textures/CO11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          515,
+          443,
+          627
+        ]
+      },
+      {
+        "code": "CO12",
+        "family": "coach",
+        "baseColor": "#3d1e20",
+        "texture": "/textures/CO12.jpg",
+        "colorMap": "/textures/CO12-color.jpg",
+        "bumpMap": "/textures/CO12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          515,
+          587,
+          627
+        ]
+      },
+      {
+        "code": "CO13",
+        "family": "coach",
+        "baseColor": "#2c2d27",
+        "texture": "/textures/CO13.jpg",
+        "colorMap": "/textures/CO13-color.jpg",
+        "bumpMap": "/textures/CO13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          515,
+          731,
+          627
+        ]
+      },
+      {
+        "code": "CO14",
+        "family": "coach",
+        "baseColor": "#4d533b",
+        "texture": "/textures/CO14.jpg",
+        "colorMap": "/textures/CO14-color.jpg",
+        "bumpMap": "/textures/CO14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          515,
+          875,
+          627
+        ]
+      },
+      {
+        "code": "CO15",
+        "family": "coach",
+        "baseColor": "#746938",
+        "texture": "/textures/CO15.jpg",
+        "colorMap": "/textures/CO15-color.jpg",
+        "bumpMap": "/textures/CO15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          515,
+          1019,
+          627
+        ]
+      },
+      {
+        "code": "CO16",
+        "family": "coach",
+        "baseColor": "#a38334",
+        "texture": "/textures/CO16.jpg",
+        "colorMap": "/textures/CO16-color.jpg",
+        "bumpMap": "/textures/CO16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          515,
+          1163,
+          627
+        ]
+      },
+      {
+        "code": "CO17",
+        "family": "coach",
+        "baseColor": "#a17f76",
+        "texture": "/textures/CO17.jpg",
+        "colorMap": "/textures/CO17-color.jpg",
+        "bumpMap": "/textures/CO17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          800,
+          155,
+          912
+        ]
+      },
+      {
+        "code": "CO18",
+        "family": "coach",
+        "baseColor": "#a18c79",
+        "texture": "/textures/CO18.jpg",
+        "colorMap": "/textures/CO18-color.jpg",
+        "bumpMap": "/textures/CO18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          800,
+          299,
+          912
+        ]
+      },
+      {
+        "code": "CO19",
+        "family": "coach",
+        "baseColor": "#657477",
+        "texture": "/textures/CO19.jpg",
+        "colorMap": "/textures/CO19-color.jpg",
+        "bumpMap": "/textures/CO19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          800,
+          443,
+          912
+        ]
+      },
+      {
+        "code": "CO20",
+        "family": "coach",
+        "baseColor": "#6a221b",
+        "texture": "/textures/CO20.jpg",
+        "colorMap": "/textures/CO20-color.jpg",
+        "bumpMap": "/textures/CO20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          800,
+          587,
+          912
+        ]
+      },
+      {
+        "code": "CO21",
+        "family": "coach",
+        "baseColor": "#1c3323",
+        "texture": "/textures/CO21.jpg",
+        "colorMap": "/textures/CO21-color.jpg",
+        "bumpMap": "/textures/CO21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          800,
+          731,
+          912
+        ]
+      }
+    ],
+    "reference": "/references/coach.jpg"
+  },
+  {
+    "id": "cashmere",
+    "label": "Cashmere-like",
+    "kind": "cashmere",
+    "materialProperties": {
+      "roughness": 0.97,
+      "metalness": 0,
+      "sheen": 0.65,
+      "clearcoat": 0,
+      "bumpScale": 0.011,
+      "tileRepeat": [
+        9,
+        4.5
+      ]
+    },
+    "swatches": [
+      {
+        "code": "CM01",
+        "family": "cashmere",
+        "baseColor": "#7f6020",
+        "texture": "/textures/CM01.jpg",
+        "colorMap": "/textures/CM01-color.jpg",
+        "bumpMap": "/textures/CM01-bump.png",
+        "discontinued": true,
+        "sourceCrop": [
+          43,
+          263,
+          155,
+          375
+        ]
+      },
+      {
+        "code": "CM02",
+        "family": "cashmere",
+        "baseColor": "#353420",
+        "texture": "/textures/CM02.jpg",
+        "colorMap": "/textures/CM02-color.jpg",
+        "bumpMap": "/textures/CM02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          263,
+          299,
+          375
+        ]
+      },
+      {
+        "code": "CM03",
+        "family": "cashmere",
+        "baseColor": "#242e65",
+        "texture": "/textures/CM03.jpg",
+        "colorMap": "/textures/CM03-color.jpg",
+        "bumpMap": "/textures/CM03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          263,
+          443,
+          375
+        ]
+      },
+      {
+        "code": "CM04",
+        "family": "cashmere",
+        "baseColor": "#bc8572",
+        "texture": "/textures/CM04.jpg",
+        "colorMap": "/textures/CM04-color.jpg",
+        "bumpMap": "/textures/CM04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          263,
+          587,
+          375
+        ]
+      },
+      {
+        "code": "CM05",
+        "family": "cashmere",
+        "baseColor": "#934d3b",
+        "texture": "/textures/CM05.jpg",
+        "colorMap": "/textures/CM05-color.jpg",
+        "bumpMap": "/textures/CM05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          263,
+          731,
+          375
+        ]
+      },
+      {
+        "code": "CM06",
+        "family": "cashmere",
+        "baseColor": "#9d132a",
+        "texture": "/textures/CM06.jpg",
+        "colorMap": "/textures/CM06-color.jpg",
+        "bumpMap": "/textures/CM06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          263,
+          875,
+          375
+        ]
+      },
+      {
+        "code": "CM07",
+        "family": "cashmere",
+        "baseColor": "#6b1a26",
+        "texture": "/textures/CM07.jpg",
+        "colorMap": "/textures/CM07-color.jpg",
+        "bumpMap": "/textures/CM07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          263,
+          1019,
+          375
+        ]
+      },
+      {
+        "code": "CM08",
+        "family": "cashmere",
+        "baseColor": "#33191d",
+        "texture": "/textures/CM08.jpg",
+        "colorMap": "/textures/CM08-color.jpg",
+        "bumpMap": "/textures/CM08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          263,
+          1163,
+          375
+        ]
+      },
+      {
+        "code": "CM09",
+        "family": "cashmere",
+        "baseColor": "#d1a6b0",
+        "texture": "/textures/CM09.jpg",
+        "colorMap": "/textures/CM09-color.jpg",
+        "bumpMap": "/textures/CM09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          548,
+          155,
+          660
+        ]
+      },
+      {
+        "code": "CM10",
+        "family": "cashmere",
+        "baseColor": "#d9d7ca",
+        "texture": "/textures/CM10.jpg",
+        "colorMap": "/textures/CM10-color.jpg",
+        "bumpMap": "/textures/CM10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          548,
+          299,
+          660
+        ]
+      },
+      {
+        "code": "CM11",
+        "family": "cashmere",
+        "baseColor": "#acbfc4",
+        "texture": "/textures/CM11.jpg",
+        "colorMap": "/textures/CM11-color.jpg",
+        "bumpMap": "/textures/CM11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          548,
+          443,
+          660
+        ]
+      },
+      {
+        "code": "CM12",
+        "family": "cashmere",
+        "baseColor": "#d0ccb1",
+        "texture": "/textures/CM12.jpg",
+        "colorMap": "/textures/CM12-color.jpg",
+        "bumpMap": "/textures/CM12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          548,
+          587,
+          660
+        ]
+      },
+      {
+        "code": "CM13",
+        "family": "cashmere",
+        "baseColor": "#8b8e7d",
+        "texture": "/textures/CM13.jpg",
+        "colorMap": "/textures/CM13-color.jpg",
+        "bumpMap": "/textures/CM13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          548,
+          731,
+          660
+        ]
+      },
+      {
+        "code": "CM14",
+        "family": "cashmere",
+        "baseColor": "#979086",
+        "texture": "/textures/CM14.jpg",
+        "colorMap": "/textures/CM14-color.jpg",
+        "bumpMap": "/textures/CM14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          548,
+          875,
+          660
+        ]
+      },
+      {
+        "code": "CM15",
+        "family": "cashmere",
+        "baseColor": "#7d7e79",
+        "texture": "/textures/CM15.jpg",
+        "colorMap": "/textures/CM15-color.jpg",
+        "bumpMap": "/textures/CM15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          548,
+          1019,
+          660
+        ]
+      },
+      {
+        "code": "CM16",
+        "family": "cashmere",
+        "baseColor": "#3e3d3e",
+        "texture": "/textures/CM16.jpg",
+        "colorMap": "/textures/CM16-color.jpg",
+        "bumpMap": "/textures/CM16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          548,
+          1163,
+          660
+        ]
+      },
+      {
+        "code": "CM17",
+        "family": "cashmere",
+        "baseColor": "#98896c",
+        "texture": "/textures/CM17.jpg",
+        "colorMap": "/textures/CM17-color.jpg",
+        "bumpMap": "/textures/CM17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          833,
+          155,
+          945
+        ]
+      },
+      {
+        "code": "CM18",
+        "family": "cashmere",
+        "baseColor": "#6f6349",
+        "texture": "/textures/CM18.jpg",
+        "colorMap": "/textures/CM18-color.jpg",
+        "bumpMap": "/textures/CM18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          833,
+          299,
+          945
+        ]
+      },
+      {
+        "code": "CM19",
+        "family": "cashmere",
+        "baseColor": "#433f30",
+        "texture": "/textures/CM19.jpg",
+        "colorMap": "/textures/CM19-color.jpg",
+        "bumpMap": "/textures/CM19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          833,
+          443,
+          945
+        ]
+      },
+      {
+        "code": "CM20",
+        "family": "cashmere",
+        "baseColor": "#2f2c26",
+        "texture": "/textures/CM20.jpg",
+        "colorMap": "/textures/CM20-color.jpg",
+        "bumpMap": "/textures/CM20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          833,
+          587,
+          945
+        ]
+      },
+      {
+        "code": "CM21",
+        "family": "cashmere",
+        "baseColor": "#111823",
+        "texture": "/textures/CM21.jpg",
+        "colorMap": "/textures/CM21-color.jpg",
+        "bumpMap": "/textures/CM21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          833,
+          731,
+          945
+        ]
+      },
+      {
+        "code": "CM22",
+        "family": "cashmere",
+        "baseColor": "#151515",
+        "texture": "/textures/CM22.jpg",
+        "colorMap": "/textures/CM22-color.jpg",
+        "bumpMap": "/textures/CM22-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          833,
+          875,
+          945
+        ]
+      }
+    ],
+    "reference": "/references/cashmere.jpg"
+  },
+  {
+    "id": "pattern",
+    "label": "Woven pattern",
+    "kind": "pattern",
+    "materialProperties": {
+      "roughness": 0.92,
+      "metalness": 0,
+      "sheen": 0.2,
+      "clearcoat": 0,
+      "bumpScale": 0.014,
+      "tileRepeat": [
+        8,
+        4
+      ]
+    },
+    "swatches": [
+      {
+        "code": "PT01",
+        "family": "pattern",
+        "baseColor": "#828083",
+        "texture": "/textures/PT01.jpg",
+        "colorMap": "/textures/PT01-color.jpg",
+        "bumpMap": "/textures/PT01-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          231,
+          155,
+          343
+        ]
+      },
+      {
+        "code": "PT02",
+        "family": "pattern",
+        "baseColor": "#6c696c",
+        "texture": "/textures/PT02.jpg",
+        "colorMap": "/textures/PT02-color.jpg",
+        "bumpMap": "/textures/PT02-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          231,
+          299,
+          343
+        ]
+      },
+      {
+        "code": "PT03",
+        "family": "pattern",
+        "baseColor": "#4e4c50",
+        "texture": "/textures/PT03.jpg",
+        "colorMap": "/textures/PT03-color.jpg",
+        "bumpMap": "/textures/PT03-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          231,
+          443,
+          343
+        ]
+      },
+      {
+        "code": "PT04",
+        "family": "pattern",
+        "baseColor": "#504e56",
+        "texture": "/textures/PT04.jpg",
+        "colorMap": "/textures/PT04-color.jpg",
+        "bumpMap": "/textures/PT04-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          231,
+          587,
+          343
+        ]
+      },
+      {
+        "code": "PT05",
+        "family": "pattern",
+        "baseColor": "#585456",
+        "texture": "/textures/PT05.jpg",
+        "colorMap": "/textures/PT05-color.jpg",
+        "bumpMap": "/textures/PT05-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          231,
+          731,
+          343
+        ]
+      },
+      {
+        "code": "PT06",
+        "family": "pattern",
+        "baseColor": "#585458",
+        "texture": "/textures/PT06.jpg",
+        "colorMap": "/textures/PT06-color.jpg",
+        "bumpMap": "/textures/PT06-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          231,
+          875,
+          343
+        ]
+      },
+      {
+        "code": "PT07",
+        "family": "pattern",
+        "baseColor": "#4a4a52",
+        "texture": "/textures/PT07.jpg",
+        "colorMap": "/textures/PT07-color.jpg",
+        "bumpMap": "/textures/PT07-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          231,
+          1019,
+          343
+        ]
+      },
+      {
+        "code": "PT08",
+        "family": "pattern",
+        "baseColor": "#272427",
+        "texture": "/textures/PT08.jpg",
+        "colorMap": "/textures/PT08-color.jpg",
+        "bumpMap": "/textures/PT08-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          231,
+          1163,
+          343
+        ]
+      },
+      {
+        "code": "PT09",
+        "family": "pattern",
+        "baseColor": "#a09682",
+        "texture": "/textures/PT09.jpg",
+        "colorMap": "/textures/PT09-color.jpg",
+        "bumpMap": "/textures/PT09-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          516,
+          155,
+          628
+        ]
+      },
+      {
+        "code": "PT10",
+        "family": "pattern",
+        "baseColor": "#a49a89",
+        "texture": "/textures/PT10.jpg",
+        "colorMap": "/textures/PT10-color.jpg",
+        "bumpMap": "/textures/PT10-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          516,
+          299,
+          628
+        ]
+      },
+      {
+        "code": "PT11",
+        "family": "pattern",
+        "baseColor": "#a3987a",
+        "texture": "/textures/PT11.jpg",
+        "colorMap": "/textures/PT11-color.jpg",
+        "bumpMap": "/textures/PT11-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          516,
+          443,
+          628
+        ]
+      },
+      {
+        "code": "PT12",
+        "family": "pattern",
+        "baseColor": "#6e6665",
+        "texture": "/textures/PT12.jpg",
+        "colorMap": "/textures/PT12-color.jpg",
+        "bumpMap": "/textures/PT12-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          516,
+          587,
+          628
+        ]
+      },
+      {
+        "code": "PT13",
+        "family": "pattern",
+        "baseColor": "#433e39",
+        "texture": "/textures/PT13.jpg",
+        "colorMap": "/textures/PT13-color.jpg",
+        "bumpMap": "/textures/PT13-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          516,
+          731,
+          628
+        ]
+      },
+      {
+        "code": "PT14",
+        "family": "pattern",
+        "baseColor": "#453f32",
+        "texture": "/textures/PT14.jpg",
+        "colorMap": "/textures/PT14-color.jpg",
+        "bumpMap": "/textures/PT14-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          516,
+          875,
+          628
+        ]
+      },
+      {
+        "code": "PT15",
+        "family": "pattern",
+        "baseColor": "#5d5445",
+        "texture": "/textures/PT15.jpg",
+        "colorMap": "/textures/PT15-color.jpg",
+        "bumpMap": "/textures/PT15-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          516,
+          1019,
+          628
+        ]
+      },
+      {
+        "code": "PT16",
+        "family": "pattern",
+        "baseColor": "#4b4333",
+        "texture": "/textures/PT16.jpg",
+        "colorMap": "/textures/PT16-color.jpg",
+        "bumpMap": "/textures/PT16-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          516,
+          1163,
+          628
+        ]
+      },
+      {
+        "code": "PT17",
+        "family": "pattern",
+        "baseColor": "#564a3c",
+        "texture": "/textures/PT17.jpg",
+        "colorMap": "/textures/PT17-color.jpg",
+        "bumpMap": "/textures/PT17-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          801,
+          155,
+          913
+        ]
+      },
+      {
+        "code": "PT18",
+        "family": "pattern",
+        "baseColor": "#605649",
+        "texture": "/textures/PT18.jpg",
+        "colorMap": "/textures/PT18-color.jpg",
+        "bumpMap": "/textures/PT18-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          801,
+          299,
+          913
+        ]
+      },
+      {
+        "code": "PT19",
+        "family": "pattern",
+        "baseColor": "#5f564c",
+        "texture": "/textures/PT19.jpg",
+        "colorMap": "/textures/PT19-color.jpg",
+        "bumpMap": "/textures/PT19-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          801,
+          443,
+          913
+        ]
+      },
+      {
+        "code": "PT20",
+        "family": "pattern",
+        "baseColor": "#887b71",
+        "texture": "/textures/PT20.jpg",
+        "colorMap": "/textures/PT20-color.jpg",
+        "bumpMap": "/textures/PT20-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          801,
+          587,
+          913
+        ]
+      },
+      {
+        "code": "PT21",
+        "family": "pattern",
+        "baseColor": "#a09281",
+        "texture": "/textures/PT21.jpg",
+        "colorMap": "/textures/PT21-color.jpg",
+        "bumpMap": "/textures/PT21-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          801,
+          731,
+          913
+        ]
+      },
+      {
+        "code": "PT22",
+        "family": "pattern",
+        "baseColor": "#44454f",
+        "texture": "/textures/PT22.jpg",
+        "colorMap": "/textures/PT22-color.jpg",
+        "bumpMap": "/textures/PT22-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          801,
+          875,
+          913
+        ]
+      },
+      {
+        "code": "PT23",
+        "family": "pattern",
+        "baseColor": "#b4ad9e",
+        "texture": "/textures/PT23.jpg",
+        "colorMap": "/textures/PT23-color.jpg",
+        "bumpMap": "/textures/PT23-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          801,
+          1019,
+          913
+        ]
+      },
+      {
+        "code": "PT24",
+        "family": "pattern",
+        "baseColor": "#4f4842",
+        "texture": "/textures/PT24.jpg",
+        "colorMap": "/textures/PT24-color.jpg",
+        "bumpMap": "/textures/PT24-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          801,
+          1163,
+          913
+        ]
+      },
+      {
+        "code": "PT25",
+        "family": "pattern",
+        "baseColor": "#332e28",
+        "texture": "/textures/PT25.jpg",
+        "colorMap": "/textures/PT25-color.jpg",
+        "bumpMap": "/textures/PT25-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1086,
+          155,
+          1198
+        ]
+      },
+      {
+        "code": "PT26",
+        "family": "pattern",
+        "baseColor": "#342f2a",
+        "texture": "/textures/PT26.jpg",
+        "colorMap": "/textures/PT26-color.jpg",
+        "bumpMap": "/textures/PT26-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1086,
+          299,
+          1198
+        ]
+      },
+      {
+        "code": "PT27",
+        "family": "pattern",
+        "baseColor": "#3a3229",
+        "texture": "/textures/PT27.jpg",
+        "colorMap": "/textures/PT27-color.jpg",
+        "bumpMap": "/textures/PT27-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1086,
+          443,
+          1198
+        ]
+      },
+      {
+        "code": "PT28",
+        "family": "pattern",
+        "baseColor": "#372f25",
+        "texture": "/textures/PT28.jpg",
+        "colorMap": "/textures/PT28-color.jpg",
+        "bumpMap": "/textures/PT28-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1086,
+          587,
+          1198
+        ]
+      },
+      {
+        "code": "PT29",
+        "family": "pattern",
+        "baseColor": "#3a2f27",
+        "texture": "/textures/PT29.jpg",
+        "colorMap": "/textures/PT29-color.jpg",
+        "bumpMap": "/textures/PT29-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1086,
+          731,
+          1198
+        ]
+      },
+      {
+        "code": "PT30",
+        "family": "pattern",
+        "baseColor": "#7b7c7a",
+        "texture": "/textures/PT30.jpg",
+        "colorMap": "/textures/PT30-color.jpg",
+        "bumpMap": "/textures/PT30-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1086,
+          875,
+          1198
+        ]
+      },
+      {
+        "code": "PT31",
+        "family": "pattern",
+        "baseColor": "#6a6f6d",
+        "texture": "/textures/PT31.jpg",
+        "colorMap": "/textures/PT31-color.jpg",
+        "bumpMap": "/textures/PT31-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1086,
+          1019,
+          1198
+        ]
+      },
+      {
+        "code": "PT32",
+        "family": "pattern",
+        "baseColor": "#744b41",
+        "texture": "/textures/PT32.jpg",
+        "colorMap": "/textures/PT32-color.jpg",
+        "bumpMap": "/textures/PT32-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          1086,
+          1163,
+          1198
+        ]
+      },
+      {
+        "code": "PT33",
+        "family": "pattern",
+        "baseColor": "#5d3a35",
+        "texture": "/textures/PT33.jpg",
+        "colorMap": "/textures/PT33-color.jpg",
+        "bumpMap": "/textures/PT33-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1371,
+          155,
+          1483
+        ]
+      },
+      {
+        "code": "PT34",
+        "family": "pattern",
+        "baseColor": "#464345",
+        "texture": "/textures/PT34.jpg",
+        "colorMap": "/textures/PT34-color.jpg",
+        "bumpMap": "/textures/PT34-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1371,
+          299,
+          1483
+        ]
+      },
+      {
+        "code": "PT35",
+        "family": "pattern",
+        "baseColor": "#363335",
+        "texture": "/textures/PT35.jpg",
+        "colorMap": "/textures/PT35-color.jpg",
+        "bumpMap": "/textures/PT35-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1371,
+          443,
+          1483
+        ]
+      },
+      {
+        "code": "PT36",
+        "family": "pattern",
+        "baseColor": "#393639",
+        "texture": "/textures/PT36.jpg",
+        "colorMap": "/textures/PT36-color.jpg",
+        "bumpMap": "/textures/PT36-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1371,
+          587,
+          1483
+        ]
+      },
+      {
+        "code": "PT37",
+        "family": "pattern",
+        "baseColor": "#49464c",
+        "texture": "/textures/PT37.jpg",
+        "colorMap": "/textures/PT37-color.jpg",
+        "bumpMap": "/textures/PT37-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1371,
+          731,
+          1483
+        ]
+      },
+      {
+        "code": "PT38",
+        "family": "pattern",
+        "baseColor": "#444246",
+        "texture": "/textures/PT38.jpg",
+        "colorMap": "/textures/PT38-color.jpg",
+        "bumpMap": "/textures/PT38-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1371,
+          875,
+          1483
+        ]
+      },
+      {
+        "code": "PT39",
+        "family": "pattern",
+        "baseColor": "#464344",
+        "texture": "/textures/PT39.jpg",
+        "colorMap": "/textures/PT39-color.jpg",
+        "bumpMap": "/textures/PT39-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1371,
+          1019,
+          1483
+        ]
+      },
+      {
+        "code": "PT40",
+        "family": "pattern",
+        "baseColor": "#4c494b",
+        "texture": "/textures/PT40.jpg",
+        "colorMap": "/textures/PT40-color.jpg",
+        "bumpMap": "/textures/PT40-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          1371,
+          1163,
+          1483
+        ]
+      },
+      {
+        "code": "PT41",
+        "family": "pattern",
+        "baseColor": "#5f5c60",
+        "texture": "/textures/PT41.jpg",
+        "colorMap": "/textures/PT41-color.jpg",
+        "bumpMap": "/textures/PT41-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1656,
+          155,
+          1768
+        ]
+      },
+      {
+        "code": "PT42",
+        "family": "pattern",
+        "baseColor": "#8c888e",
+        "texture": "/textures/PT42.jpg",
+        "colorMap": "/textures/PT42-color.jpg",
+        "bumpMap": "/textures/PT42-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1656,
+          299,
+          1768
+        ]
+      },
+      {
+        "code": "PT43",
+        "family": "pattern",
+        "baseColor": "#717279",
+        "texture": "/textures/PT43.jpg",
+        "colorMap": "/textures/PT43-color.jpg",
+        "bumpMap": "/textures/PT43-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1656,
+          443,
+          1768
+        ]
+      },
+      {
+        "code": "PT44",
+        "family": "pattern",
+        "baseColor": "#40464f",
+        "texture": "/textures/PT44.jpg",
+        "colorMap": "/textures/PT44-color.jpg",
+        "bumpMap": "/textures/PT44-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1656,
+          587,
+          1768
+        ]
+      },
+      {
+        "code": "PT45",
+        "family": "pattern",
+        "baseColor": "#565f68",
+        "texture": "/textures/PT45.jpg",
+        "colorMap": "/textures/PT45-color.jpg",
+        "bumpMap": "/textures/PT45-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          619,
+          1656,
+          731,
+          1768
+        ]
+      },
+      {
+        "code": "PT46",
+        "family": "pattern",
+        "baseColor": "#716e71",
+        "texture": "/textures/PT46.jpg",
+        "colorMap": "/textures/PT46-color.jpg",
+        "bumpMap": "/textures/PT46-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          763,
+          1656,
+          875,
+          1768
+        ]
+      },
+      {
+        "code": "PT47",
+        "family": "pattern",
+        "baseColor": "#646061",
+        "texture": "/textures/PT47.jpg",
+        "colorMap": "/textures/PT47-color.jpg",
+        "bumpMap": "/textures/PT47-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          907,
+          1656,
+          1019,
+          1768
+        ]
+      },
+      {
+        "code": "PT48",
+        "family": "pattern",
+        "baseColor": "#6b6564",
+        "texture": "/textures/PT48.jpg",
+        "colorMap": "/textures/PT48-color.jpg",
+        "bumpMap": "/textures/PT48-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          1051,
+          1656,
+          1163,
+          1768
+        ]
+      },
+      {
+        "code": "PT49",
+        "family": "pattern",
+        "baseColor": "#6d6761",
+        "texture": "/textures/PT49.jpg",
+        "colorMap": "/textures/PT49-color.jpg",
+        "bumpMap": "/textures/PT49-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          43,
+          1941,
+          155,
+          2053
+        ]
+      },
+      {
+        "code": "PT50",
+        "family": "pattern",
+        "baseColor": "#77726d",
+        "texture": "/textures/PT50.jpg",
+        "colorMap": "/textures/PT50-color.jpg",
+        "bumpMap": "/textures/PT50-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          187,
+          1941,
+          299,
+          2053
+        ]
+      },
+      {
+        "code": "PT51",
+        "family": "pattern",
+        "baseColor": "#776f65",
+        "texture": "/textures/PT51.jpg",
+        "colorMap": "/textures/PT51-color.jpg",
+        "bumpMap": "/textures/PT51-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          331,
+          1941,
+          443,
+          2053
+        ]
+      },
+      {
+        "code": "PT52",
+        "family": "pattern",
+        "baseColor": "#6a635c",
+        "texture": "/textures/PT52.jpg",
+        "colorMap": "/textures/PT52-color.jpg",
+        "bumpMap": "/textures/PT52-bump.png",
+        "discontinued": false,
+        "sourceCrop": [
+          475,
+          1941,
+          587,
+          2053
+        ]
+      }
+    ],
+    "reference": "/references/pattern.jpg"
   }
 ]

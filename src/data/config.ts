@@ -9,9 +9,9 @@ export const snapColors=[{code:'snap-silver',label:'Silver',baseColor:'#c4c8cc'}
 export const initialConfig:Config={jacketType:'regular',fit:'regular',size:'M',mannequin:'none',body:{material:'factory',code:'TRH231'},sleeves:{material:'premium',code:'SLD34'},collar:{material:'rib-knit',code:'trim-navy'},cuffs:{material:'rib-knit',code:'trim-navy'},waistband:{material:'rib-knit',code:'trim-navy'},pocketTrim:{material:'premium',code:'SLD34'},snaps:{material:'metal',code:'snap-silver'}};
 export function resolveChoice(choice:Choice){
  const family=families.find(f=>f.id===choice.material);const s=family?.swatches.find(s=>s.code===choice.code);
- if(s&&family)return {...s,kind:family.kind,label:family.label,manufacturerCode:s.code};
+ if(s&&family)return {...s,materialProperties:family.materialProperties,kind:family.kind,label:family.label,manufacturerCode:s.code};
  const trim=[...trimColors,...snapColors].find(s=>s.code===choice.code)!;
- return {...trim,texture:'',kind:choice.material,label:trim?.label??'Navy',manufacturerCode:null};
+ return {...trim,texture:'',colorMap:'',bumpMap:'',materialProperties:{roughness:choice.material==='metal'?.23:.94,metalness:choice.material==='metal'?.85:0,sheen:.15,clearcoat:0,bumpScale:.008,tileRepeat:[1,1]},kind:choice.material,label:trim?.label??'Navy',manufacturerCode:null};
 }
 export const sizes=['XS','S','M','L','XL','2XL','3XL','4XL','5XL'];
 export const measurements=[[62.5,54,43,60],[64.5,56,45,61],[65.5,58,47,62],[67.5,61,48,63],[69.5,64,50,64],[71.5,66,52,65],[73.5,68,54,66],[75.5,70,56,66.5],[77,72,57.5,68]];
