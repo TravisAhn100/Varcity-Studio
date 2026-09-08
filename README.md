@@ -1,5 +1,7 @@
 # Varsity 1.2.0
 
+Having a matching club/team/school varsity jacket is common in Korea. This project was made for my StuCo to visualize what colors/types we would want.
+
 Varsity is a browser-based varsity jacket configurator. This repository preserves the stable 1.2.0 release; future versions will continue from this repository.
 
 A client-side varsity jacket configurator. Combine shoulder, closure and collar controls, select a garment region, then change manufacturer fabrics and colors in an immediate Three.js preview. Includes rotation, zoom, view presets, approximate male/female mannequins, Regular XS–5XL measurements, and real manufacturer examples.
