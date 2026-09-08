@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import type {Construction} from '../data/config';
+import {sourceMannequin} from './mannequin';
 
 export type FitMode='none'|'male'|'female';
 export type FitParameters={shoulderWidth:number;chestWidth:number;waistWidth:number;torsoLength:number;sleeveLength:number;sleeveVolume:number};
@@ -30,16 +31,18 @@ function profile(knots:number[][],t:number){
 export function loft(rings:number[][],segments=48){
  return surface((u,v)=>{const row=v*(rings.length-1),i=Math.min(Math.floor(row),rings.length-2),f=row-i,a=rings[i],b=rings[i+1],r=Array.from({length:5},(_,j)=>lerp(a[j]??0,b[j]??0,f));return new THREE.Vector3(r[3]+r[1]*Math.cos(u*tau),r[0],r[4]+r[2]*Math.sin(u*tau));},segments,Math.max(12,rings.length*3));
 }
-const bodyKnots=[[0,.715,.315],[.09,.78,.355],[.28,.825,.38],[.48,.845,.40],[.67,.85,.405],[.82,.83,.355],[.90,.73,.30],[.96,.50,.255],[1,.30,.225]];
+const bodyKnots=[[0,.715,.315],[.07,.79,.375],[.20,.865,.410],[.42,.875,.425],[.65,.87,.425],[.80,.835,.375],[.89,.735,.315],[.96,.49,.255],[1,.30,.225]];
 export function bodyPoint(u:number,v:number,folds=true){
  const a=u*tau,[rx,rz]=profile(bodyKnots,v),s=Math.sin(a),c=Math.cos(a);
  let x=rx*signedPower(c,.88),y=lerp(-1,1.075,v),z=rz*signedPower(s,.72);
  // Long hanging folds taper into the hem; diagonals compress only near the armholes.
  if(folds){
-  const waist=.018*bell(v,.11,.09)*Math.sin(12*a+v*23);
-  const underarm=.015*bell(v,.65,.14)*Math.abs(c)**4*Math.sin(v*65+Math.abs(c)*14);
+  const waist=.026*bell(v,.10,.075)*Math.sin(12*a+v*23);
+  const underarm=.022*bell(v,.65,.12)*Math.abs(c)**4*Math.sin(v*54+Math.abs(c)*14);
   const drape=.009*Math.sin(a*7+v*4)*Math.sin(Math.PI*v);
-  const f=waist+underarm+drape;
+  const opening=.012*bell(Math.abs(c),.13,.10)*bell(v,.36,.23)*Math.sin(v*24+a);
+  const shoulder=.009*bell(v,.85,.075)*Math.abs(c)**3*Math.sin(a*9+v*26);
+  const f=waist+underarm+drape+opening+shoulder;
   x+=c*f;z+=s*f;
   y-=.055*bell(v,.87,.12)*Math.abs(c)**2;
   y+=.008*Math.sin(3*a+.5)*Math.sin(Math.PI*v);
@@ -52,11 +55,11 @@ const sleeveCurves=new Map<number,THREE.CatmullRomCurve3>();
 export function sleeveCurve(side:number){
  const cached=sleeveCurves.get(side);if(cached)return cached;
  const curve=new THREE.CatmullRomCurve3([
-  new THREE.Vector3(side*.64,.78,0),
-  new THREE.Vector3(side*.93,.52,-.015),
-  new THREE.Vector3(side*1.125,.02,-.035),
-  new THREE.Vector3(side*1.17,-.48,.055),
-  new THREE.Vector3(side*1.12,-1.005,.145)
+  new THREE.Vector3(side*.60,.82,0),
+  new THREE.Vector3(side*.95,.51,-.015),
+  new THREE.Vector3(side*1.18,.02,-.035),
+  new THREE.Vector3(side*1.23,-.48,.075),
+  new THREE.Vector3(side*1.16,-1.005,.165)
  ],false,'catmullrom',.35);sleeveCurves.set(side,curve);return curve;
 }
 function sleeveFrame(curve:THREE.CatmullRomCurve3,t:number){
@@ -65,11 +68,11 @@ function sleeveFrame(curve:THREE.CatmullRomCurve3,t:number){
 }
 export function sleevePoint(side:number,u:number,v:number,folds=true){
  const curve=sleeveCurve(side),t=1-v,center=curve.getPoint(t),{x,z}=sleeveFrame(curve,t),a=u*tau;
- const [radius]=profile([[0,.045],[.12,.22],[.35,.25],[.55,.23],[.75,.218],[.89,.208],[1,.158]],t);
+ const [radius]=profile([[0,.055],[.12,.255],[.32,.28],[.55,.255],[.75,.235],[.87,.235],[.96,.186],[1,.158]],t);
  const phase=side===1?.45:-.2;
- const cuff=.012*bell(t,.90,.095)*Math.sin(t*91+Math.cos(a)*2.5+phase);
- const elbow=.013*bell(t,.58,.12)*Math.sin(t*66+a*1.4+phase)*(.45+.55*Math.max(0,-Math.sin(a)));
- const armpit=.009*bell(t,.22,.10)*Math.sin(t*65+a*2);
+ const cuff=.022*bell(t,.90,.070)*Math.sin(t*94+Math.cos(a)*2.5+phase);
+ const elbow=.020*bell(t,.58,.12)*Math.sin(t*60+a*1.4+phase)*(.45+.55*Math.max(0,-Math.sin(a)));
+ const armpit=.012*bell(t,.22,.10)*Math.sin(t*65+a*2);
  const r=radius+(folds?cuff+elbow+armpit:0);
  return center.addScaledVector(x,r*Math.cos(a)).addScaledVector(z,r*1.08*Math.sin(a));
 }
@@ -117,10 +120,18 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
   add(suffix+'Sleeve',surface((u,v)=>sleevePoint(side,u,v),48,48),'curved-sleeve');
   const end=curve.getPoint(1),frame=sleeveFrame(curve,1);
   // Rounded outer/inner cuff cross section with actual 0.025-unit thickness.
-  add(suffix+'Cuff',surface((u,v)=>{
+  const cuff=surface((u,v)=>{
    const [along,r]=profile([[0,0,.16],[.12,.015,.172],[.40,.165,.172],[.50,.18,.158],[.62,.165,.145],[.90,.015,.145],[1,0,.16]],v);
    return end.clone().addScaledVector(frame.tangent,along).addScaledVector(frame.x,r*Math.cos(u*tau)).addScaledVector(frame.z,r*1.08*Math.sin(u*tau));
-  },64,14));
+  },64,24);
+  // Sample one existing contrast stripe: selected base / cream / selected base.
+  // Use physical cuff length on both faces; no texture or material is changed.
+  const cuffUV=cuff.getAttribute('uv');
+  for(let i=0;i<cuffUV.count;i++){
+   const v=cuffUV.getY(i),[along]=profile([[0,0],[.12,.015],[.40,.165],[.50,.18],[.62,.165],[.90,.015],[1,0]],v);
+   cuffUV.setY(i,1-(40+48*along/.18)/128);
+  }
+  add(suffix+'Cuff',cuff);
   // A narrow welt embedded along a relaxed diagonal pocket opening.
   const points=Array.from({length:16},(_,i)=>{const t=i/15,x=side*lerp(.50,.64,t),y=lerp(-.32,-.67,t);return new THREE.Vector3(x,y,frontDepth(x,y)+.012);});
   add(suffix+'PocketTrim',new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points),20,.025,8,false));
@@ -130,7 +141,7 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
   return new THREE.Vector3(rx*Math.cos(u*tau),y+.006*Math.sin(u*tau*3),rz*Math.sin(u*tau));
  },96,16));
  add('collar',surface((u,v)=>{
-  const a=Math.PI/2+.16+u*(tau-.32),base=1.01-.15*Math.max(0,Math.sin(a)),height=high?.38:.17;
+  const a=Math.PI/2+.16+u*(tau-.32),base=1.01-.15*Math.max(0,Math.sin(a)),height=high?.38:.205;
   const [y,r]=profile([[0,0,1],[.13,.018,1.075],[.4,height-.018,1.04],[.5,height,.99],[.62,height-.016,.92],[.9,.015,.93],[1,0,1]],v);
   return new THREE.Vector3(.305*r*Math.cos(a),base+y,.228*r*Math.sin(a));
  },72,16,false));
@@ -162,22 +173,6 @@ function frontDepth(x:number,y:number){
  return p.z;
 }
 export function makeMannequin(female:boolean){
- const mode:FitMode=female?'female':'male',fit=fitPresets[mode],group=new THREE.Group(),material=new THREE.MeshStandardMaterial({color:'#c4c5c2',roughness:.82,metalness:0});
- function add(name:string,g:THREE.BufferGeometry){const m=new THREE.Mesh(g,material);m.name=name;m.castShadow=m.receiveShadow=true;group.add(m);return m;}
- function ellipsoid(name:string,pos:number[],scale:number[]){const g=new THREE.SphereGeometry(1,24,18);g.scale(scale[0],scale[1],scale[2]);g.translate(pos[0],pos[1],pos[2]);return add(name,g);}
- const body=loft([[-1.34,female?.47:.45,.235],[-1.05,.40,.22],[-.6,.42,.235],[0,.56,.28],[.55,.65,.29],[.78,.61,.255],[.99,.25,.19],[1.13,.145,.135]],48);
- const p=body.getAttribute('position');for(let i=0;i<p.count;i++){const v=fitPoint(new THREE.Vector3(p.getX(i),p.getY(i),p.getZ(i)),'body',fit);p.setXYZ(i,v.x,v.y,v.z);}body.computeVertexNormals();add('torso',body);
- const neck=new THREE.CylinderGeometry(.142,.15,.28,24);neck.translate(0,1.20,0);add('neck',neck);
- ellipsoid('head',[0,1.61,0],[female?.225:.24,.315,.215]);
- ellipsoid('pelvis',[0,-1.32,0],[female?.45:.43,.31,.23]);
- for(const side of [-1,1]){
-  const suffix=side===1?'left':'right',curve=sleeveCurve(side);
-  const arm=surface((u,v)=>{const t=1-v,frame=sleeveFrame(curve,t),r=profile([[0,.045],[.2,.145],[.55,.12],[1,.09]],t)[0];return curve.getPoint(t).addScaledVector(frame.x,r*Math.cos(u*tau)).addScaledVector(frame.z,r*1.05*Math.sin(u*tau));},24,24);
-  const pos=arm.getAttribute('position');for(let i=0;i<pos.count;i++){const v=fitPoint(new THREE.Vector3(pos.getX(i),pos.getY(i),pos.getZ(i)),suffix+'Sleeve',fit);pos.setXYZ(i,v.x,v.y,v.z);}arm.computeVertexNormals();add(suffix+'Arm',arm);
-  const hand=fitPoint(curve.getPoint(1).addScaledVector(sleeveFrame(curve,1).tangent,.31),suffix+'Sleeve',fit);
-  ellipsoid(suffix+'Hand',hand.toArray(),[.092,.19,.085]);ellipsoid(suffix+'Thumb',[hand.x-side*.078,hand.y+.055,hand.z+.02],[.036,.077,.044]);
-  const leg=loft([[-2.90,.105,.115,side*.255],[-2.72,.115,.125,side*.26],[-2.30,.145,.155,side*.27],[-2.05,.145,.15,side*.26],[-1.60,.20,.21,side*.25],[-1.35,.205,.22,side*.235]],32);add(suffix+'Leg',leg);
-  ellipsoid(suffix+'Foot',[side*.255,-2.94,.085],[.125,.095,.25]);
- }
- group.userData.fitMode=mode;return group;
+ const fit=fitPresets[female?'female':'male'];
+ return sourceMannequin(female,(p,id)=>fitPoint(p,id,fit),sleeveCurve);
 }
