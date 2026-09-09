@@ -28,16 +28,21 @@ export function sourceMannequin(
   return add(name,deform(original(id),(p,b)=>{
    const s=b.getSize(new THREE.Vector3()),c=b.getCenter(new THREE.Vector3());
    p.sub(c).divide(s).multiply(new THREE.Vector3(...size)).add(new THREE.Vector3(...center));
+   // Round the source torso's box corners inside the slim garment envelope.
+   if(name==='torso'){
+    p.z*=1-.22*Math.pow(Math.abs(p.x)/(.5*size[0]),4);
+    if(p.y>.45)p.x*=1-.04*THREE.MathUtils.clamp((p.y-.45)/.45,0,1);
+   }
    return region==='body'?fit(p,region):p;
   }));
  }
- part(9,'torso',[0,-.06,0],[1.22,1.95,.49]);
- part(3,'pelvis',[0,-1.28,0],[female?.86:.82,.44,.46]);
+ part(9,'torso',[0,-.06,0],[1.12,1.95,.42]);
+ part(3,'pelvis',[0,-1.28,0],[female?.86:.82,.44,.39]);
  // Female height is modestly shorter below the hip, keeping shoes on the stage.
  const floor=-3.035,legTop=female?-1.40:-1.30,footHeight=.22;
  for(const side of [-1,1]){
   const name=side===1?'left':'right',curve=sleeveCurve(side),upper=side===1?11:10,lower=side===1?13:12;
-  const sections=[[upper,.11,.53,.14],[lower,.53,1,.115]];
+  const sections=[[upper,.11,.53,.12],[lower,.53,1,.10]];
   const armParts=sections.map(([id,start,end,radius])=>deform(original(id),(p,b)=>{
    const c=b.getCenter(new THREE.Vector3()),s=b.getSize(new THREE.Vector3());
    const t=THREE.MathUtils.lerp(start,end,1-(p.y-b.min.y)/s.y),center=curve.getPoint(t),tangent=curve.getTangent(t).normalize();
@@ -58,7 +63,7 @@ export function sourceMannequin(
  const headTransform=(p:THREE.Vector3)=>new THREE.Vector3(p.x*2.65*headScale,1.28+(p.y-1.63)*2.65*headScale+headOffset,p.z*2.05-.09);
  add('head',deform(original(5),p=>headTransform(p)));
  add('hair',deform(original(4),p=>headTransform(p)),true);
- part(6,'neck',[0,1.20+headOffset,0],[.265,.27,.25],'placed');
+ part(6,'neck',[0,1.11+headOffset,0],[.265,.45,.25],'placed');
  if(female){
   // Open-front, low-poly longer hair follows the back of the head and neck.
   const positions:number[]=[],indices:number[]=[],segments=10;

@@ -31,7 +31,7 @@ function profile(knots:number[][],t:number){
 export function loft(rings:number[][],segments=48){
  return surface((u,v)=>{const row=v*(rings.length-1),i=Math.min(Math.floor(row),rings.length-2),f=row-i,a=rings[i],b=rings[i+1],r=Array.from({length:5},(_,j)=>lerp(a[j]??0,b[j]??0,f));return new THREE.Vector3(r[3]+r[1]*Math.cos(u*tau),r[0],r[4]+r[2]*Math.sin(u*tau));},segments,Math.max(12,rings.length*3));
 }
-const bodyKnots=[[0,.665,.31],[.07,.715,.33],[.20,.755,.345],[.42,.765,.36],[.65,.76,.36],[.80,.745,.325],[.89,.66,.285],[.96,.46,.24],[1,.30,.225]];
+const bodyKnots=[[0,.625,.27],[.07,.65,.285],[.20,.68,.295],[.42,.685,.30],[.65,.68,.30],[.80,.665,.285],[.89,.595,.255],[.96,.43,.225],[1,.30,.215]];
 export function bodyPoint(u:number,v:number,folds=true){
  const a=u*tau,[rx,rz]=profile(bodyKnots,v),s=Math.sin(a),c=Math.cos(a);
  // A softly boxy hem gives the lower torso clearance without inflating its width.
@@ -48,7 +48,8 @@ export function bodyPoint(u:number,v:number,folds=true){
   y-=.055*bell(v,.87,.12)*Math.abs(c)**2;
   y+=.008*Math.sin(3*a+.5)*Math.sin(Math.PI*v);
  }
- y-=.13*Math.pow(v,8)*Math.max(0,s);
+ // Dip the front neckline to the base of the neck, retaining a higher back neck.
+ y-=.32*Math.pow(v,8)*Math.max(0,s);
  // Keep the center opening calm so hardware follows the front accurately.
  return new THREE.Vector3(x,y,z);
 }
@@ -56,11 +57,11 @@ const sleeveCurves=new Map<number,THREE.CatmullRomCurve3>();
 export function sleeveCurve(side:number){
  const cached=sleeveCurves.get(side);if(cached)return cached;
  const curve=new THREE.CatmullRomCurve3([
-  new THREE.Vector3(side*.56,.82,0),
-  new THREE.Vector3(side*.86,.51,-.015),
-  new THREE.Vector3(side*1.065,.02,-.035),
-  new THREE.Vector3(side*1.115,-.48,.075),
-  new THREE.Vector3(side*1.06,-1.005,.165)
+  new THREE.Vector3(side*.52,.82,0),
+  new THREE.Vector3(side*.73,.51,-.015),
+  new THREE.Vector3(side*.86,.02,-.06),
+  new THREE.Vector3(side*.89,-.48,.06),
+  new THREE.Vector3(side*.88,-1.005,.165)
  ],false,'catmullrom',.35);sleeveCurves.set(side,curve);return curve;
 }
 function sleeveFrame(curve:THREE.CatmullRomCurve3,t:number){
@@ -69,7 +70,7 @@ function sleeveFrame(curve:THREE.CatmullRomCurve3,t:number){
 }
 export function sleevePoint(side:number,u:number,v:number,folds=true){
  const curve=sleeveCurve(side),t=1-v,center=curve.getPoint(t),{x,z}=sleeveFrame(curve,t),a=u*tau;
- const [radius]=profile([[0,.055],[.12,.215],[.32,.215],[.55,.21],[.75,.19],[.87,.182],[.96,.164],[1,.158]],t);
+ const [radius]=profile([[0,.05],[.12,.19],[.32,.19],[.55,.185],[.75,.171],[.87,.166],[.96,.152],[1,.148]],t);
  const phase=side===1?.45:-.2;
  const cuff=.011*bell(t,.90,.070)*Math.sin(t*94+Math.cos(a)*2.5+phase);
  const elbow=.011*bell(t,.58,.12)*Math.sin(t*60+a*1.4+phase)*(.45+.55*Math.max(0,-Math.sin(a)));
@@ -122,7 +123,7 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
   const end=curve.getPoint(1),frame=sleeveFrame(curve,1);
   // Rounded outer/inner cuff cross section with actual 0.025-unit thickness.
   const cuff=surface((u,v)=>{
-   const [along,r]=profile([[0,0,.16],[.12,.015,.172],[.40,.165,.172],[.50,.18,.158],[.62,.165,.145],[.90,.015,.145],[1,0,.16]],v);
+   const [along,r]=profile([[0,0,.15],[.12,.015,.16],[.40,.165,.16],[.50,.18,.148],[.62,.165,.135],[.90,.015,.135],[1,0,.15]],v);
    return end.clone().addScaledVector(frame.tangent,along).addScaledVector(frame.x,r*Math.cos(u*tau)).addScaledVector(frame.z,r*1.08*Math.sin(u*tau));
   },64,24);
   // Sample one existing contrast stripe: selected base / cream / selected base.
@@ -134,11 +135,11 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
   }
   add(suffix+'Cuff',cuff);
   // A narrow welt embedded along a relaxed diagonal pocket opening.
-  const points=Array.from({length:16},(_,i)=>{const t=i/15,x=side*lerp(.50,.64,t),y=lerp(-.32,-.67,t);return new THREE.Vector3(x,y,frontDepth(x,y)+.012);});
+  const points=Array.from({length:16},(_,i)=>{const t=i/15,x=side*lerp(.44,.565,t),y=lerp(-.32,-.67,t);return new THREE.Vector3(x,y,frontDepth(x,y)+.012);});
   add(suffix+'PocketTrim',new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points),20,.025,8,false));
  }
  const waistband=surface((u,v)=>{
-  const [y,rx,rz]=profile([[0,-.985,.667,.315],[.13,-1.01,.681,.33],[.4,-1.16,.674,.325],[.5,-1.185,.659,.31],[.64,-1.16,.644,.297],[.87,-1.01,.649,.30],[1,-.985,.667,.315]],v);
+  const [y,rx,rz]=profile([[0,-.985,.627,.275],[.13,-1.01,.639,.29],[.4,-1.16,.634,.285],[.5,-1.185,.619,.27],[.64,-1.16,.604,.257],[.87,-1.01,.609,.26],[1,-.985,.627,.275]],v);
   return new THREE.Vector3(rx*Math.cos(u*tau),y+.006*Math.sin(u*tau*3),rz*signedPower(Math.sin(u*tau),.8));
  },96,24);
  const waistbandUV=waistband.getAttribute('uv');
@@ -148,11 +149,11 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
  }
  add('waistband',waistband);
  add('collar',surface((u,v)=>{
-  const a=Math.PI/2+.16+u*(tau-.32),base=1.01-.15*Math.max(0,Math.sin(a)),height=high?.38:.205;
+  const gap=high?.16:.43,a=Math.PI/2+gap+u*(tau-2*gap),base=1.01-.27*Math.max(0,Math.sin(a)),height=high?.38:.115;
   const [y,r]=profile([[0,0,1],[.13,.018,1.075],[.4,height-.018,1.04],[.5,height,.99],[.62,height-.016,.92],[.9,.015,.93],[1,0,1]],v);
-  return new THREE.Vector3(.305*r*Math.cos(a),base+y,.228*r*Math.sin(a));
+  return new THREE.Vector3(.305*r*Math.cos(a),base+y,.218*r*Math.sin(a));
  },72,16,false));
- const bottom=-1.145,top=high?1.20:.865;
+ const bottom=-1.145,top=high?1.08:.735;
  if(!zip||covered){
   const width=covered?.105:.068,cx=covered?.035:0;
   const flap=surface((u,v)=>{const y=lerp(bottom,top,v),x=cx+(u-.5)*width;return new THREE.Vector3(x,y,frontDepth(x,y)+.015+Math.sin(u*Math.PI)*.006);},6,64,false);
@@ -173,8 +174,8 @@ export function makeGarment(construction:Construction={shoulder:'regular',closur
  return {group,parts};
 }
 function frontDepth(x:number,y:number){
- if(y>.94)return .23;
- if(y< -1)return .327;
+ if(y>1.075)return .22;
+ if(y< -1)return .287;
  let v=clamp((y+1)/2.075,0,1),p=new THREE.Vector3();
  for(let i=0;i<7;i++){const [rx]=profile(bodyKnots,v),c=signedPower(clamp(x/rx,-.999,.999),1/.88);p=bodyPoint(Math.acos(c)/tau,v);v=clamp(v+(y-p.y)/2.075,0,1);}
  return p.z;
