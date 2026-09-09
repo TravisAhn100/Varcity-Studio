@@ -178,3 +178,49 @@ assert.equal(response.fabricResponse('wool').clearcoat,0);
 const roughness=response.microRoughness('wool');assert.equal(roughness.image.width,64);assert.equal(roughness.image.height,64);assert.equal(roughness.colorSpace,THREE.NoColorSpace);roughness.dispose();
 console.log(`Verified 36 construction/fit combinations; max ${maxTriangles} triangles and ${maxMeshes} meshes per jacket; curved sleeves, bounded folds, complete mannequins and distinct fabric responses.`);
 assert.equal(designs.designSignature({...data.initialConfig,mannequin:'male'}),designs.designSignature({...data.initialConfig,mannequin:'female'}),'fit mode alone is not an unsaved design change');
+
+const embroideryData=load('src/data/embroidery.ts');
+const {BodyProjector,projectedTextGeometry}=load('src/viewer/embroidery.ts');
+const inscription={id:'front-test',text:'STUCO',side:'front',position:{x:.30,y:.20},rotation:8,scale:.10,font:'varsity',fillColor:'#ffffff',outlineColor:'#113863',embroideryDepth:.004};
+const backText={...inscription,id:'back-test',side:'back',text:'Student Council',position:{x:0,y:.20},font:'cursive',scale:.24};
+const textConfig={...data.initialConfig,embroidery:[inscription,backText]};
+const savedText=designs.saveSlot(designs.emptySlots(),1,textConfig,now);
+assert.deepEqual(designs.decodeDesigns(designs.encodeDesigns(savedText)).slots[0].config,textConfig,'all embroidery properties survive save/reload');
+const longText={...inscription,text:'Student Council '.repeat(10000)};
+assert(embroideryData.validEmbroidery(Array.from({length:100},(_,i)=>({...longText,id:String(i)}))),'no character or element cap');
+assert.equal(designs.parseConfig({...textConfig,embroidery:[{...inscription,scale:NaN}]}),null);
+assert.equal(designs.parseConfig({...textConfig,embroidery:[inscription,inscription]}),null,'reject duplicate IDs');
+assert.equal(designs.parseConfig({...textConfig,embroidery:[{...inscription,font:'unknown'}]}),null);
+assert(designs.parseConfig(data.initialConfig),'pre-embroidery saves remain valid');
+assert.notEqual(designs.designSignature(textConfig),designs.designSignature({...textConfig,embroidery:[backText]}));
+assert.equal(embroideryData.outsideArea(inscription,3),false);
+assert.equal(embroideryData.outsideArea({...inscription,position:{x:0,y:.2}},3),true,'front fastening is excluded');
+assert.equal(embroideryData.outsideArea({...backText,scale:1},8),true,'long text warns without truncation');
+assert.deepEqual(embroideryData.clampPlacement(5,-5,'front'),{x:.53,y:-.72});
+for(const mode of ['none','male','female'])for(const shoulder of ['regular','raglan'])for(const closure of ['snaps','zipper','placket'])for(const collar of ['varsity','high-neck']){
+ const garment=makeGarment({shoulder,closure,collar},mode),body=garment.parts.get('body')[0],projector=new BodyProjector(body,garment.group.userData.fit);
+ for(const text of [inscription,backText]){
+  const {geometry,warning}=projectedTextGeometry(projector,text,3);
+  assert.equal(warning,false,`${mode}/${shoulder}/${closure}/${collar}/${text.side} placement`);
+  assert(geometry.index.count>0,'visible embroidered surface');
+  assert(geometry.attributes.position.count<1000,'bounded lettering mesh');
+  const p=geometry.attributes.position,sign=text.side==='front'?1:-1;
+  let minZ=Infinity,maxZ=-Infinity;
+  for(let i=0;i<p.count;i++){
+   const v=new THREE.Vector3().fromBufferAttribute(p,i);assert(Number.isFinite(v.length()));assert(v.z*sign>0,'correct side of body');
+   minZ=Math.min(minZ,v.z);maxZ=Math.max(maxZ,v.z);
+  }
+  assert(maxZ-minZ>.001,'text carrier follows cloth curvature');
+  // Check triangle interiors too, rather than just projected vertices.
+  for(let i=0;i<geometry.index.count;i+=27){
+   const v=new THREE.Vector3();for(let j=0;j<3;j++)v.add(new THREE.Vector3().fromBufferAttribute(p,geometry.index.getX(i+j)));v.divideScalar(3);
+   const logical=projector.logical(v),surface=projector.sample(logical.x,logical.y,text.side,0);
+   assert(surface&&sign*(v.z-surface.z)>-.0005,'no carrier clipping between samples');
+   assert(sign*(v.z-surface.z)<.012,'no floating carrier');
+  }
+  geometry.dispose();
+ }
+ projector.dispose();garment.group.children.forEach(m=>{m.geometry.dispose();m.material.dispose();});
+}
+for(const font of ['graduate.ttf','cedarville-cursive.ttf'])assert(fs.statSync(new URL('../public/fonts/'+font,import.meta.url)).size>10000);
+console.log('Verified embroidery save compatibility, unlimited text data, boundary warnings and curved front/back attachment across all 36 fit/construction combinations.');

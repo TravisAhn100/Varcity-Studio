@@ -1,4 +1,5 @@
 import {families,regions,trimColors,snapColors,sizes,type Config,type Choice} from './config';
+import {validEmbroidery} from './embroidery';
 
 export const STORAGE_KEY='varsity.designs.v1';
 export type SavedDesign={id:number;config:Config;savedAt:string};
@@ -22,8 +23,10 @@ export function parseConfig(value:unknown):Config|null{
  if(c.fit!=='regular'||!oneOf(c.size,sizes)||!oneOf(c.mannequin,['none','male','female']))return null;
  for(const {id} of regions)if(!validChoice(c[id],id==='snaps'?'metal':['collar','cuffs','waistband'].includes(id)?'rib':'fabric'))return null;
  if(c.fabricCollar!==undefined&&!validChoice(c.fabricCollar,'fabric'))return null;
+ if(c.embroidery!==undefined&&!validEmbroidery(c.embroidery))return null;
  const result:Config={construction:{shoulder:k.shoulder,closure:k.closure,collar:k.collar},fit:'regular',size:c.size,mannequin:c.mannequin,...Object.fromEntries(regions.map(({id})=>[id,{material:c[id].material,code:c[id].code}]))} as Config;
  if(c.fabricCollar)result.fabricCollar={...c.fabricCollar};
+ if(c.embroidery)result.embroidery=JSON.parse(JSON.stringify(c.embroidery));
  return result;
 }
 export function decodeDesigns(raw:string|null):{slots:DesignSlots;warning:string}{

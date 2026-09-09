@@ -1,0 +1,17 @@
+.embroidery-editor{border-top:1px solid #d9dcd9;margin-top:20px;padding-top:14px}
+.embroidery-heading{display:flex;justify-content:space-between;align-items:center;width:100%;font-size:13px;font-weight:650;letter-spacing:.07em;padding:8px 0}
+.embroidery-controls{display:grid;gap:14px;padding:12px 0}
+.embroidery-controls>label,.embroidery-colors>label{display:grid;gap:7px;font-size:14px}
+.embroidery-controls textarea,.embroidery-controls input[type=number],.embroidery-colors input:not([type=color]){width:100%;min-width:0;padding:8px;border:1px solid #cdd1d3;border-radius:4px;background:white;color:#182c42;font-size:14px}
+.embroidery-controls textarea{resize:vertical}
+.embroidery-controls input[type=range]{width:100%;accent-color:#113863}
+.embroidery-list,.embroidery-options,.embroidery-actions{display:flex;gap:8px;flex-wrap:wrap}
+.embroidery-list{max-height:10rem;overflow:auto}
+.embroidery-list button,.embroidery-options button,.embroidery-actions button,.embroidery-add{border:1px solid #cdd1d3;padding:8px 12px;border-radius:4px;font-size:14px}
+.embroidery-list button[aria-pressed=true],.embroidery-options button[aria-pressed=true]{background:#113863;border-color:#113863;color:white}
+.embroidery-colors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.embroidery-colors label>div{display:flex;gap:5px}
+.embroidery-colors input[type=color]{width:36px;min-width:36px;height:36px;cursor:pointer;background:none}
+.embroidery-warning{font-size:14px;line-height:1.5;color:#8c4323;background:#fff3e9;padding:10px;border-radius:4px}
+.embroidery-actions{justify-content:space-between}
+.embroidery-add{width:100%}
