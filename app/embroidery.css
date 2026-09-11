@@ -15,3 +15,7 @@
 .embroidery-warning{font-size:14px;line-height:1.5;color:#8c4323;background:#fff3e9;padding:10px;border-radius:4px}
 .embroidery-actions{justify-content:space-between}
 .embroidery-add{width:100%}
+.image-artwork-list{display:flex;gap:8px;flex-wrap:wrap;max-height:14rem;overflow:auto}
+.image-artwork-list button{width:84px;padding:6px;border:1px solid #cdd1d3;border-radius:4px;font-size:13px;cursor:grab}
+.image-artwork-list button[aria-pressed=true]{border:2px solid #113863}
+.image-artwork-list img{width:70px;height:64px;object-fit:contain;background:#e9e9e7}

@@ -1,11 +1,12 @@
 import catalogue from './materials.json';
 import type {EmbroideryText} from './embroidery';
+import type {ImageEmbroidery} from './imageEmbroidery';
 export const families = catalogue;
 export type Region = 'body'|'sleeves'|'collar'|'cuffs'|'waistband'|'pocketTrim'|'snaps';
 export const regions: {id:Region;label:string}[] = [{id:'body',label:'Body'},{id:'sleeves',label:'Sleeves'},{id:'collar',label:'Collar'},{id:'cuffs',label:'Cuffs'},{id:'waistband',label:'Waistband'},{id:'pocketTrim',label:'Pocket trim'},{id:'snaps',label:'Snaps'}];
 export type Choice = {material:string;code:string};
 export type Construction={shoulder:'regular'|'raglan';closure:'snaps'|'zipper'|'placket';collar:'varsity'|'high-neck'};
-export type Config = {construction:Construction;fit:'regular';size:string;mannequin:'none'|'male'|'female';fabricCollar?:Choice;embroidery?:EmbroideryText[]} & Record<Region,Choice>;
+export type Config = {construction:Construction;fit:'regular';size:string;mannequin:'none'|'male'|'female';fabricCollar?:Choice;embroidery?:EmbroideryText[];images?:ImageEmbroidery[]} & Record<Region,Choice>;
 export const hasFabricCollar=(c:Construction)=>c.collar==='high-neck'&&c.closure==='placket';
 export const regionChoice=(config:Config,region:Region)=>region==='collar'&&hasFabricCollar(config.construction)?config.fabricCollar??config.body:config[region];
 export const constructionKey=(c:Construction)=>[c.shoulder,c.closure,c.collar].join('/');

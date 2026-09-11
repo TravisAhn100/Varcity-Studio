@@ -9,6 +9,7 @@ import VarsityStar from '../src/components/VarsityStar';
 import ConstructionControls from '../src/components/ConstructionControls';
 import MaterialEditor from '../src/components/MaterialEditor';
 import EmbroideryEditor from '../src/components/EmbroideryEditor';
+import ImageEmbroideryEditor from '../src/components/ImageEmbroideryEditor';
 import References from '../src/components/References';
 import DesignLibrary,{type LibraryMode} from '../src/components/DesignLibrary';
 
@@ -25,6 +26,8 @@ export default function App(){
  const [region,setRegion]=useState<Region>('body');
  const [selectedText,setSelectedText]=useState<string|null>(null);
  const [textWarnings,setTextWarnings]=useState<string[]>([]);
+ const [selectedImage,setSelectedImage]=useState<string|null>(null);
+ const [imageWarnings,setImageWarnings]=useState<string[]>([]);
  const [modal,setModal]=useState<'sizes'|'examples'|null>(null);
  const [libraryMode,setLibraryMode]=useState<LibraryMode>(null);
  const [constructionOpen,setConstructionOpen]=useState(false);
@@ -76,7 +79,7 @@ export default function App(){
    </div>
    <section className="stage">
     <div className="watermark" aria-hidden="true">VARSITY</div>
-    {!viewingDesigns&&<Viewer config={config} command={command} onSelect={r=>{if(step==='customize'){setRegion(r);setSelectedText(null);}}} selectedText={step==='customize'?selectedText:null} onTextSelect={step==='customize'?setSelectedText:undefined} onTextMove={(id,position)=>setConfig(c=>({...c,embroidery:c.embroidery?.map(t=>t.id===id?{...t,position}:t)}))} onTextWarnings={setTextWarnings}/>}
+    {!viewingDesigns&&<Viewer config={config} command={command} onSelect={r=>{if(step==='customize'){setRegion(r);setSelectedText(null);}}} selectedImage={step==='customize'?selectedImage:null} onImageSelect={step==='customize'?id=>{setSelectedImage(id);setSelectedText(null);}:undefined} onImageMove={(id,anchor)=>setConfig(c=>({...c,images:c.images?.map(i=>i.id===id?{...i,anchor}:i)}))} onImageWarnings={setImageWarnings} selectedText={step==='customize'?selectedText:null} onTextSelect={step==='customize'?id=>{setSelectedText(id);setSelectedImage(null);}:undefined} onTextMove={(id,position)=>setConfig(c=>({...c,embroidery:c.embroidery?.map(t=>t.id===id?{...t,position}:t)}))} onTextWarnings={setTextWarnings}/>}
     <div className="viewer-tools"><button aria-label="Zoom in" onClick={()=>goView(command.angle,.85)}><Plus size={17}/></button><button aria-label="Zoom out" onClick={()=>goView(command.angle,1.15)}><Minus size={17}/></button><button aria-label="Reset camera" onClick={()=>setCommand(c=>({angle:0,serial:c.serial+1,zoom:0}))}><RotateCcw size={16}/></button></div>
     <div className="stage-bottom"><div className="view-buttons">{[['Front',0],['Back',Math.PI],['Left ¾',-Math.PI/4],['Right ¾',Math.PI/4]].map(([label,angle])=><button key={label} aria-pressed={command.angle===angle} onClick={()=>setCommand(c=>({angle:Number(angle),serial:c.serial+1,zoom:0}))}>{label}</button>)}</div><span className="drag-hint"><MoveHorizontal size={15}/> Drag to rotate · Scroll to zoom</span></div>
     <div className="model-bar"><span>VIEW ON</span><div>{(['none','male','female'] as const).map(m=><button key={m} aria-pressed={config.mannequin===m} onClick={()=>setConfig(c=>({...c,mannequin:m}))}>{m==='none'?'Jacket only':m==='male'?'Male':'Female'}</button>)}</div><span className="model-note">{config.mannequin==='none'?'360° studio view':'Approximate mannequin'}</span></div>
@@ -87,6 +90,7 @@ export default function App(){
     <div className="region-grid" aria-label="Jacket regions">{regions.map((r,i)=><button key={r.id} aria-pressed={region===r.id} onClick={()=>setRegion(r.id)}><span>{String(i+1).padStart(2,'0')}</span>{labelFor(r.id)}{region===r.id&&<span className="selected-dot"/>}</button>)}</div>
     <MaterialEditor config={config} region={region} onChoose={setChoice}/>
     <EmbroideryEditor texts={config.embroidery??[]} selected={selectedText} onSelect={setSelectedText} onChange={embroidery=>setConfig(c=>({...c,embroidery}))} onSide={side=>setCommand(c=>({angle:side==='front'?0:Math.PI,serial:c.serial+1,zoom:0}))} warnings={textWarnings}/>
+    <ImageEmbroideryEditor images={config.images??[]} selected={selectedImage} onSelect={id=>{setSelectedImage(id);setSelectedText(null);}} onChange={images=>setConfig(c=>({...c,images}))} warnings={imageWarnings}/>
     <div className="editor-progress"><span>STEP {index+1} / 7</span><div>{index>0&&<button className="previous-step" onClick={()=>setRegion(regions[index-1].id)}>Back</button>}<button className="primary" onClick={()=>{if(index<6)setRegion(regions[index+1].id);else{setMessage('');setLibraryMode('save');}}}>{index===6?'Save your design':`Next: ${labelFor(regions[index+1].id)}`} <ArrowRight size={16}/></button></div></div>
     <div className="panel-footer"><span>Designed by you.</span><span>VARSITY / 1.2.0</span></div>
    </>}

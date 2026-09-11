@@ -1,5 +1,6 @@
 import {families,regions,trimColors,snapColors,sizes,type Config,type Choice} from './config';
 import {validEmbroidery} from './embroidery';
+import {validImages} from './imageEmbroidery';
 
 export const STORAGE_KEY='varsity.designs.v1';
 export type SavedDesign={id:number;config:Config;savedAt:string};
@@ -24,9 +25,11 @@ export function parseConfig(value:unknown):Config|null{
  for(const {id} of regions)if(!validChoice(c[id],id==='snaps'?'metal':['collar','cuffs','waistband'].includes(id)?'rib':'fabric'))return null;
  if(c.fabricCollar!==undefined&&!validChoice(c.fabricCollar,'fabric'))return null;
  if(c.embroidery!==undefined&&!validEmbroidery(c.embroidery))return null;
+ if(c.images!==undefined&&!validImages(c.images))return null;
  const result:Config={construction:{shoulder:k.shoulder,closure:k.closure,collar:k.collar},fit:'regular',size:c.size,mannequin:c.mannequin,...Object.fromEntries(regions.map(({id})=>[id,{material:c[id].material,code:c[id].code}]))} as Config;
  if(c.fabricCollar)result.fabricCollar={...c.fabricCollar};
  if(c.embroidery)result.embroidery=JSON.parse(JSON.stringify(c.embroidery));
+ if(c.images)result.images=JSON.parse(JSON.stringify(c.images));
  return result;
 }
 export function decodeDesigns(raw:string|null):{slots:DesignSlots;warning:string}{

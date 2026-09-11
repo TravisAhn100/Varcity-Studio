@@ -224,3 +224,23 @@ for(const mode of ['none','male','female'])for(const shoulder of ['regular','rag
 }
 for(const font of ['graduate.ttf','cedarville-cursive.ttf'])assert(fs.statSync(new URL('../public/fonts/'+font,import.meta.url)).size>10000);
 console.log('Verified embroidery save compatibility, unlimited text data, boundary warnings and curved front/back attachment across all 36 fit/construction combinations.');
+
+const {imageSurfaces,resolveImageAnchor,imageDecal}=load('src/viewer/imageEmbroidery.ts');
+const artwork={id:'artwork',name:'Patch',imageData:'data:image/png;base64,AAAA',aspect:1,anchor:{surface:'leftSleeve',uv:[.1,.6]},scale:.25,rotation:25};
+const imageConfig={...textConfig,images:[artwork]};
+assert.deepEqual(designs.decodeDesigns(designs.encodeDesigns(designs.saveSlot(designs.emptySlots(),1,imageConfig,now))).slots[0].config,imageConfig);
+assert.equal(designs.parseConfig({...imageConfig,images:[{...artwork,anchor:{surface:'empty-space',uv:[0,0]}}]}),null);
+assert.equal(designs.parseConfig({...imageConfig,images:[{...artwork,imageData:'https://example.com/image.png'}]}),null);
+for(const mode of ['none','male','female'])for(const shoulder of ['regular','raglan'])for(const closure of ['snaps','zipper','placket'])for(const collar of ['varsity','high-neck']){
+ const garment=makeGarment({shoulder,closure,collar},mode),surfaces=imageSurfaces(garment.parts);
+ for(const anchor of [{surface:'body',uv:[.25,.65]},{surface:'body',uv:[.75,.65]},{surface:'body',uv:[.05,.89]},{surface:'leftSleeve',uv:[.1,.6]},{surface:'rightSleeve',uv:[.6,.25]}]){
+  const attachment=resolveImageAnchor(anchor,surfaces);assert(attachment,'surface attachment survives fit/construction');
+  const {geometry}=imageDecal({...artwork,anchor},surfaces);assert(geometry.attributes.position.count>0,'decal covers fabric');
+  for(const key of ['position','normal','uv'])for(const value of geometry.attributes[key].array)assert(Number.isFinite(value));
+  const normals=geometry.attributes.normal,first=new THREE.Vector3().fromBufferAttribute(normals,0);let curvature=0;
+  for(let i=0;i<normals.count;i++)curvature=Math.max(curvature,first.distanceTo(new THREE.Vector3().fromBufferAttribute(normals,i)));
+  assert(curvature>.005,'artwork conforms to fabric curvature');geometry.dispose();
+ }
+ garment.group.children.forEach(m=>{m.geometry.dispose();m.material.dispose();});
+}
+console.log('Verified image save data and curved body/back/shoulder/sleeve decals across 36 fit/construction combinations.');
